@@ -1,11 +1,12 @@
 import sys
 from PyQt5.QtCore import pyqtSignal, QObject
 from time import sleep
+from Signal import Signal
 
 class GameLoop(QObject):
     
     __instance = None
-    _update = pyqtSignal()
+    _update_signal = Signal()
 
     @staticmethod
     def getInstance():
@@ -23,28 +24,26 @@ class GameLoop(QObject):
          super().__init__()
          GameLoop.__instance = self
 
-    def _connect(self, obj):
-        self._update.connect(obj.update)
-        print("CONNECTED {}".format(obj.__class__.__name__))
-
-    def _emit(self):
-        self._update.emit()
-        print("EMITED")
+    def _connect(self, method):
+        self._update_signal.connect(method)
+        print("CONNECTED {}".format(method.__name__))
 
     def _loop(self):
         while True:
-            self._update.emit()
+            self._update_signal.notify_all()
             print("LOOP")
             sleep(1/6)
 
 
 if __name__ == '__main__':
-    import Application
-    app = Application()
-    
-    print("AAAAA")
+    from GameObject import ConcreteObject
+
+    gl = GameLoop.getInstance()
+    go = ConcreteObject()
+    go = ConcreteObject()
+    go = ConcreteObject()
+
+    gl._loop()
     
     sleep (3)
     print("BBBBB")
-
-    app.stop_game_loop()

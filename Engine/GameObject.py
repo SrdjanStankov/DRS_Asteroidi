@@ -5,7 +5,7 @@ class GameObject():
 
     def __init__(self, *args, **kwargs):
         self.gl = loop.GameLoop.getInstance()
-        self.gl._update.connect(self.update)
+        self.gl._update_signal.connect(self.update)
         print("GAME OBJECT INITIALIZED")
 
     def update(self):
