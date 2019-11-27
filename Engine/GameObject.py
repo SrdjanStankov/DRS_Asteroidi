@@ -1,16 +1,18 @@
-import GameLoop as loop
-import sys
+from GameLoop import GameLoopManager
+import multiprocessing as mp
+
 
 class GameObject():
 
     def __init__(self, *args, **kwargs):
-        self.gl = loop.GameLoop.getInstance()
-        self.gl._update_signal.connect(self.update)
+        #GameLoopManager.getInstance().q.put(self.update)
+        print("GO: ", args[0])
         print("GAME OBJECT INITIALIZED")
 
     def update(self):
         print("GAME OBJECT UPDATE")
-
+        print("GameObject update: ", mp.current_process().name)
+        
 
 class ConcreteObject(GameObject):
 
@@ -20,3 +22,4 @@ class ConcreteObject(GameObject):
 
     def update(self):
         print("CONCRETE OBJECT UPDATE")
+        print("ConcreteObject update: ", mp.current_process().name)
