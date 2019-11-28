@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>09372e28-7b70-4baa-970a-a42eddd87ac5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GameLoop.py</StartupFile>
+    <StartupFile>Main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,15 +25,20 @@
     <Compile Include="Application.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClickableLabel.py" />
     <Compile Include="GameLoop.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GameObject.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Main.py" />
+    <Compile Include="MenusFacade.py" />
+    <Compile Include="MultiplayerMenu.py" />
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="StartMenu.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
