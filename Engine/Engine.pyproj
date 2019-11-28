@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>09372e28-7b70-4baa-970a-a42eddd87ac5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GameLoop.py</StartupFile>
+    <StartupFile>GameObject.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

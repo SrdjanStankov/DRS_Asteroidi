@@ -1,25 +1,30 @@
-from GameLoop import GameLoopManager
-import multiprocessing as mp
+import GameLoop as gl
 
 
 class GameObject():
 
     def __init__(self, *args, **kwargs):
-        #GameLoopManager.getInstance().q.put(self.update)
-        print("GO: ", args[0])
-        print("GAME OBJECT INITIALIZED")
-
+        gl.GameLoop.getInstance().connect_to_update(self.update)
     def update(self):
         print("GAME OBJECT UPDATE")
-        print("GameObject update: ", mp.current_process().name)
         
 
 class ConcreteObject(GameObject):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        print("CONCRETE OBJECT INITIALIZED")
 
     def update(self):
         print("CONCRETE OBJECT UPDATE")
-        print("ConcreteObject update: ", mp.current_process().name)
+        pass
+
+if __name__ == '__main__':
+    from time import sleep
+    
+    go1 = ConcreteObject()
+    go2 = ConcreteObject()
+    go3 = ConcreteObject()
+    go4 = ConcreteObject()
+
+    sleep(1)
+    gl.GameLoop.getInstance().cancel()
