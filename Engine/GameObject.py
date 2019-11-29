@@ -1,22 +1,9 @@
-import GameLoop as loop
-import sys
+import GameLoop as gl
+
 
 class GameObject():
 
     def __init__(self, *args, **kwargs):
-        self.gl = loop.GameLoop.getInstance()
-        self.gl._update_signal.connect(self.update)
-        print("GAME OBJECT INITIALIZED")
-
+        gl.GameLoop.getInstance().connect_to_update(self.update)
     def update(self):
         print("GAME OBJECT UPDATE")
-
-
-class ConcreteObject(GameObject):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        print("CONCRETE OBJECT INITIALIZED")
-
-    def update(self):
-        print("CONCRETE OBJECT UPDATE")
