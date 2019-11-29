@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>09372e28-7b70-4baa-970a-a42eddd87ac5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Vector.py</StartupFile>
+    <StartupFile>Transform.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -29,6 +29,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Signal.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Transform.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Vector.py">
