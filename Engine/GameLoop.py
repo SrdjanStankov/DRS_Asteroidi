@@ -17,7 +17,6 @@ class GameLoop():
     def __new__(cls):
         if cls.__instance is None:
             cls.__instance = super(GameLoop, cls).__new__(cls)
-            # Put any initialization here.
             cls.__instance.start_loop()
         return cls.__instance
 
@@ -36,20 +35,4 @@ class GameLoop():
             if GameLoop.getInstance()._cancelation_token==True:
                 break
             self._update_signal.notify_all()
-            sleep(1/60)
-
-
-if __name__=='__main__':
-    from GameObject import ConcreteObject
-
-    GameLoop.getInstance()
-    GameLoop.getInstance()
-    GameLoop.getInstance()
-    
-    go = ConcreteObject()
-
-    sleep(3)
-
-    GameLoop.getInstance()._cancelation_token = True
-
-    print("End")
+            sleep(1/6)
