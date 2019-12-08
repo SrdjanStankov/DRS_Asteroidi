@@ -28,6 +28,8 @@
     <Compile Include="GameObject.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="InputCommandType.py" />
+    <Compile Include="InputManager.py" />
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>
