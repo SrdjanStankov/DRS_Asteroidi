@@ -7,4 +7,4 @@ class GameObject():
         gl.GameLoop.getInstance().connect_to_update(self.update)
         self.transform = Transform.Transform()
     def update(self):
-        print("GAME OBJECT UPDATE")
+        pass

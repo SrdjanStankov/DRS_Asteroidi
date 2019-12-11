@@ -6,6 +6,12 @@ from time import sleep
 from threading import Thread
 from queue import Queue
 
+
+#Set desired input for commands
+left = "left"
+right = "right"
+
+
 # Should be instantiated first to get priority in update cycles
 class InputManager:
     def __init__(self):
@@ -17,12 +23,12 @@ class InputManager:
         return self.Command
 
     def GetInput(self):
-        print("checking")
-        if keyboard.is_pressed("left"):
+        if keyboard.is_pressed(left):
             self.Command = InputCommandType.InputCommandType.left
 
-        elif keyboard.is_pressed("right"):
-            selfCommand = InputCommandType.InputCommandType.right
+        elif keyboard.is_pressed(right):
+            self.Command = InputCommandType.InputCommandType.right
 
         else:
             self.Command = InputCommandType.InputCommandType.none
+       # print(self.Command) #test

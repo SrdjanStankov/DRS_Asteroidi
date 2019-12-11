@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>09372e28-7b70-4baa-970a-a42eddd87ac5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GameObject.py</StartupFile>
+    <StartupFile>Main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,6 +30,15 @@
     </Compile>
     <Compile Include="InputCommandType.py" />
     <Compile Include="InputManager.py" />
+    <Compile Include="Main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectFactory.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectManager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>
