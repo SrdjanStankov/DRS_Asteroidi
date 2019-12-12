@@ -35,4 +35,4 @@ class GameLoop():
             if GameLoop.getInstance()._cancelation_token==True:
                 break
             self._update_signal.notify_all()
-            sleep(1/6)
+            sleep(1/100)
