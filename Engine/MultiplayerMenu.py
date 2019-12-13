@@ -10,6 +10,8 @@ class MultiplayerMenuu(QMainWindow):
         super().__init__()
         self.menus = menuss
         self.initUI()
+		
+		
 
     def initUI(self):
         twoPlayer = ClickableQLabel('2 PLAYER', self)
@@ -43,6 +45,8 @@ class MultiplayerMenuu(QMainWindow):
         twoPlayer.connect(self.click2Player)
         threePlayer.connect(self.click3Player)
         fourPlayer.connect(self.click4Player)
+		
+		
 
     def clickBack(self):
         self.hide()
