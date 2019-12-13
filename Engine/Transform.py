@@ -15,6 +15,8 @@ class Transform(object):
     def move(self):
         raise NotImplementedError("Treaba da se implementira!")
 
+		
+		
 
 if __name__=="__main__":
     t = Transform()
