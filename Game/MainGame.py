@@ -1,22 +1,16 @@
-from GameObject import GameObject
-
-class Asteroid(GameObject):
-    
-    def __init__(self, *args, **kwargs):
-        return super().__init__(*args, **kwargs)
-
-    def update(self):
-        print("asteroid update")
-
+from Asteroid import Asteroid
+from Player import Player
 
 if __name__ == "__main__":
-    
-    a = Asteroid();
-
-    from time import sleep
-
-    sleep(5);
-
     from GameLoop import GameLoop as gl
+    from time import sleep
+    loop = gl.getInstance()
+    
 
-    gl.getInstance().cancel();
+    p = Player()
+    a = Asteroid()
+
+
+    sleep(1);
+
+    loop.cancel();
