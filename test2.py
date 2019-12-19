@@ -1,3 +1,4 @@
+import math
 import time
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -28,6 +29,9 @@ class Player(QtWidgets.QGraphicsItem):
     def __init__(self, width, height, parent=None):
         super(Player, self).__init__(parent)
         self.currentRotation = 0
+        self.name = "Dejan"
+        self.width = width
+        self.height = height
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
@@ -48,24 +52,44 @@ class Player(QtWidgets.QGraphicsItem):
         painter.drawPolygon(self.polygon)
 
     def boundingRect(self) -> QtCore.QRectF:
-        return QtCore.QRectF(0, 0, 100, 100)
+        return QtCore.QRectF(0, 0, self.width, self.height)
 
     def shape(self) -> QtGui.QPainterPath:
         path = QPainterPath()
         path.addPolygon(self.polygon)
         return path
 
+    def getPosition(self):
+        pos = self.scenePos()
+        return pos.x(), pos.y()
+
+    def moveUp(self, amount=1):
+        x,y = self.getPosition()
+        dx = x + math.sin(math.radians(self.currentRotation)) * amount
+        dy = y + math.cos(math.radians(self.currentRotation)) * amount
+        self.moveBy(dx - x, y - dy)
+
+    def moveDown(self, amount=1):
+        x, y = self.getPosition()
+        dx = x - math.sin(math.radians(self.currentRotation)) * amount
+        dy = y - math.cos(math.radians(self.currentRotation)) * amount
+        self.moveBy(dx - x, y - dy)
+
     def rotateLeft(self):
-        self.currentRotation -= 10
+        self.currentRotation -= 5
         self.setRotation(self.currentRotation)
 
     def rotateRight(self):
-        self.currentRotation += 10
+        self.currentRotation += 5
         self.setRotation(self.currentRotation)
 
     def centerRotation(self):
         self.setTransformOriginPoint(self.boundingRect().center().x(),
                                      self.boundingRect().center().y())
+
+
+class Projectile(QtWidgets.QGraphicsItem):
+    pass
 
 
 class MoveThread(QThread):
@@ -85,14 +109,15 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__(parent)
         scene = QtWidgets.QGraphicsScene(self)
         scene.setBackgroundBrush(QBrush(QColor('yellow')))
-        scene.setSceneRect(0, 0, 200, 200)
+        scene.setSceneRect(0, 0, 500, 500)
         view = QtWidgets.QGraphicsView(scene)
-        view.setSceneRect(20, 20, 100, 100)
+        view.setSceneRect(100, 100, 200, 200)
         self.setCentralWidget(view)
-        self.player = Player(100, 100)
+        self.player = Player(50, 50)
         scene.addItem(self.player)
+        self.player.setPos(scene.sceneRect().center())
         self.player.centerRotation()
-        self.rect = scene.addRect(0, -100, 50, 50)
+        self.rect = scene.addRect(100, 100, 50, 50)
         self.th = MoveThread()
         self.th.s.connect(self.func)
         self.th.start()
@@ -103,15 +128,13 @@ class MainWindow(QtWidgets.QMainWindow):
         elif a0.key() == Qt.Key_D:
             self.player.rotateRight()
         elif a0.key() == Qt.Key_W:
-            self.player.moveBy(0, -10)
+            self.player.moveUp(5)
         elif a0.key() == Qt.Key_S:
-            self.player.moveBy(0, 10)
+            self.player.moveDown(5)
 
     def func(self):
         if self.player.collidesWithItem(self.rect):
             self.player.hide()
-
-
 
 
 if __name__ == '__main__':
