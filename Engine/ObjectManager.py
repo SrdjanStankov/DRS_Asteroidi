@@ -5,7 +5,7 @@ class ObjectManager:
 
     Pool = []
     def __init__(self):
-        print("Im here Boii")
+        print("Im here Boiiii")
         self.id = 0
         self.factory = factory.ObjectFactory()
 
