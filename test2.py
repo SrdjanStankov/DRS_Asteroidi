@@ -66,8 +66,9 @@ class Player(QtWidgets.QGraphicsItem):
     def moveUp(self, amount=1):
         x,y = self.getPosition()
         dx = x + math.sin(math.radians(self.currentRotation)) * amount
-        dy = y + math.cos(math.radians(self.currentRotation)) * amount
-        self.moveBy(dx - x, y - dy)
+        dy = y - math.cos(math.radians(self.currentRotation)) * amount
+        self.setPos(dx, dy)
+        #self.moveBy(dx - x, y - dy)
 
     def moveDown(self, amount=1):
         x, y = self.getPosition()

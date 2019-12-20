@@ -7,7 +7,7 @@ if __name__ == "__main__":
     loop = gl.getInstance()
     
 
-    p = Player()
+    #p = Player()
     a = Asteroid()
 
 

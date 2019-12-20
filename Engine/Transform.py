@@ -2,18 +2,23 @@ from Vector import Vector
 
 class Transform(object):
 
-    def __init__(self, position = Vector(), rotation = Vector()):
+    def __init__(self, position = Vector(), rotation = 0, speed = 10, rotationSpeed = 10):
         self.position = position
         self.rotation = rotation
+        self.speed = speed
+        self.rotationSpeed = rotationSpeed
 
     def __str__(self):
         return "position: {}, rotation: {}".format(self.position, self.rotation)
 
-    def rotate(self):
-        raise NotImplementedError("Treaba da se implementira!")
+    def rotate(self, direction = 1):
+        self.rotation += direction * self.rotationSpeed
 
-    def move(self):
-        raise NotImplementedError("Treaba da se implementira!")
+    def move(self, direction=1):
+        dx = self.position.x + direction * math.sin(math.radians(self.rotation)) * speed
+        dy = self.position.y + direction * math.cos(math.radians(self.rotation)) * speed
+        self.position.x = dx
+        self.position.y = dy
 
 		
 		

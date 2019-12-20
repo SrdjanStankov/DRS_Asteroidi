@@ -6,4 +6,5 @@ class Asteroid(GameObject):
         return super().__init__(*args, **kwargs)
 
     def update(self):
-        print("Asteroid update")
+        self.transform.move()
+        print(self.transform)
