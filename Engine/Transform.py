@@ -15,9 +15,9 @@ class Transform(object):
     def rotate(self, direction = 1):
         self.rotation += direction * self.rotationSpeed
 
-    def move(self, direction=1):
-        dx = direction * math.sin(math.radians(self.rotation)) * self.speed
-        dy = direction * math.cos(math.radians(self.rotation)) * self.speed
+    def move(self, XDirection = 1, YDirection = 1):
+        dx = XDirection * math.sin(math.radians(self.rotation)) * self.speed
+        dy = YDirection * math.cos(math.radians(self.rotation)) * self.speed
         self.position.x += dx
         self.position.y += dy
 
