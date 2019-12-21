@@ -1,4 +1,5 @@
 from Vector import Vector
+import math
 
 class Transform(object):
 
@@ -15,10 +16,10 @@ class Transform(object):
         self.rotation += direction * self.rotationSpeed
 
     def move(self, direction=1):
-        dx = self.position.x + direction * math.sin(math.radians(self.rotation)) * speed
-        dy = self.position.y + direction * math.cos(math.radians(self.rotation)) * speed
-        self.position.x = dx
-        self.position.y = dy
+        dx = direction * math.sin(math.radians(self.rotation)) * self.speed
+        dy = direction * math.cos(math.radians(self.rotation)) * self.speed
+        self.position.x += dx
+        self.position.y += dy
 
 		
 		
