@@ -39,6 +39,12 @@
     <Compile Include="ObjectManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Renderer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SceneManager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>

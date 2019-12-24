@@ -1,13 +1,14 @@
 import ObjectFactory as factory
-
+import SceneManager
 # Responsible for creating , accessing and destroying objects
 class ObjectManager:
 
     Pool = []
-    def __init__(self):
-        print("Im here Boiiii")
+    def __init__(self,SceneManager: SceneManager):
         self.id = 0
-        self.factory = factory.ObjectFactory()
+        self.SceneManager = SceneManager
+        self.factory = factory.ObjectFactory(SceneManager)
+
 
     def Instantiate(self, type):
         #print("Instantiate")
@@ -36,5 +37,8 @@ class ObjectManager:
 
     def Destroy(self,id):
         temp = self.FindById(id)
-        self.Pool.remove(temp)
-
+        if temp != None:
+            self.SceneManager.scene.removeItem(temp.Render) 
+            self.Pool.remove(temp)
+        else:
+            print(f"Object with if {id} not found.")

@@ -21,9 +21,6 @@ class Transform(object):
         self.position.x += dx
         self.position.y += dy
 
-		
-		
-
 if __name__=="__main__":
     t = Transform()
     t1 = Transform(position=Vector(2,5))

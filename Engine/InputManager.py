@@ -19,7 +19,7 @@ class InputManager:
         self.gl.connect_to_update(self.GetInput)
         self.Command = InputCommandType.InputCommandType.none
 
-    def GetCommnad(self):
+    def GetCommand(self):
         return self.Command
 
     def GetInput(self):

@@ -1,13 +1,14 @@
 import GameLoop as gloop
 import InputManager as inputManager
 import ObjectManager as objMan
+import SceneManager as scene
 # Here start up StartUI
 if __name__ == "__main__":
     print("This is main")
     gameLoop = gloop.GameLoop()
     Input = inputManager.InputManager()
     ObjectManager = objMan.ObjectManager()
-    
+    SceneManager = scene.SceneManager()
     
     #====test=======
     gameLoop.start_loop()
