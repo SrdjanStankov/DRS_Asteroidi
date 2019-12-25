@@ -1,48 +1,40 @@
 import sys
 from Asteroid import Asteroid
 from Player import Player
-import math
-import time
-import typing
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal
-from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
-from PyQt5.Qt import Qt
-from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
+from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
-from time import sleep
 
-import InputManager as inputManager
-import ObjectManager as objMan
-import SceneManager as scene
 import InputCommandType as inputCommand
 import GameObject as gameObject
 
+import Managers as mgr
 
 # Example
 class SimpleGO(gameObject.GameObject):
     def __init__(self):
         super().__init__()
-        self.go1 = ObjectManager.Instantiate("Spaceship")
+        self.go1 =  mgr.Managers.getInstance().object.Instantiate("Spaceship")
     def update(self):
-        if Input.GetCommand() == inputCommand.InputCommandType.left:
+        if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
             print("Destroy")
-            ObjectManager.Destroy(self.go1.Id)
+            mgr.Managers.getInstance().object.Destroy(self.go1.Id)
 
 
-
-
+# method for canceling game loop thread
+def cancel():
+    gl.getInstance().cancel();
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     
-    loop = gl.getInstance()
-    Input = inputManager.InputManager()
-    SceneManager = scene.SceneManager()
+    # connect app exit signal to thread stop of game loop
+    app.aboutToQuit.connect(cancel)
+
+    Input = mgr.Managers.getInstance().input;
+    SceneManager = mgr.Managers.getInstance().scene;
     SceneManager.resize(1300, 700)
     SceneManager.show()
-    ObjectManager = objMan.ObjectManager(SceneManager)
+    ObjectManager = mgr.Managers.getInstance().object;
     
     go = SimpleGO()
-    #loop.cancel()
     sys.exit(app.exec_())
