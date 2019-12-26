@@ -7,8 +7,10 @@ if __name__ == "__main__":
     print("This is main")
     gameLoop = gloop.GameLoop()
     Input = inputManager.InputManager()
+    
     ObjectManager = objMan.ObjectManager()
     SceneManager = scene.SceneManager()
+    
     
     #====test=======
     gameLoop.start_loop()
