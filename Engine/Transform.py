@@ -15,11 +15,11 @@ class Transform(object):
     def rotate(self, direction = 1):
         self.rotation += direction * self.rotationSpeed
 
-    def move(self, XDirection = 1, YDirection = 1):
-        dx = XDirection * math.sin(math.radians(self.rotation)) * self.speed
-        dy = YDirection * math.cos(math.radians(self.rotation)) * self.speed
+    def move(self, Direction = 1):
+        dx = Direction * math.sin(math.radians(self.rotation)) * self.speed
+        dy = Direction * math.cos(math.radians(self.rotation)) * self.speed
         self.position.x += dx
-        self.position.y += dy
+        self.position.y -= dy
 
 if __name__=="__main__":
     t = Transform()

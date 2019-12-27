@@ -45,6 +45,6 @@ class ObjectFactory:
             QPointF(width, height),
             QPointF(width / 2, 0)])
 
-        self.go.Render = renderer.Renderer(50,50,polygon)
+        self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go

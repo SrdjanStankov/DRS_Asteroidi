@@ -16,8 +16,8 @@ class SimpleGO(gameObject.GameObject):
         self.go1 =  mgr.Managers.getInstance().object.Instantiate("Spaceship")
     def update(self):
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
-            print("Destroy")
-            mgr.Managers.getInstance().object.Destroy(self.go1.Id)
+            self.go1.transform.move(1)
+            self.go1.Render.moveItem()
 
 
 # method for canceling game loop thread
