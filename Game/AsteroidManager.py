@@ -10,6 +10,7 @@ import GameObject as gameObject
 
 import Managers as mgr
 import Vector as vector
+import threading
 
 class AsteroidBeh(gameObject.GameObject):
     def __init__(self, go):
@@ -18,18 +19,22 @@ class AsteroidBeh(gameObject.GameObject):
         self.destroyCounter = 0
 
     def update(self):
-        self.transform.rotate(1)
-        #self.transform.move(1)
-#try:
-        #    self.destroyCounter += 1
-        #    if(self.destroyCounter % 420):
-        #        mgr.Managers.getInstance().objects.Destroy(self.asteroid)
-        #except:
-        #    print("Property destroyCounter not found in AsteroidBeh.")
+       pass
+       self.asteroid.transform.speed=1
+       self.asteroid.transform.rotate(1)
+       self.asteroid.transform.move(1)
+       try:
+            self.destroyCounter += 1
+            if(self.destroyCounter % 420):
+                    mgr.Managers.getInstance().objects.Destroy(self.asteroid)
+       except:
+            print("Property destroyCounter not found in AsteroidBeh.")
 
 class AsteroidManager(gameObject.GameObject):
     def __init__(self):
         super().__init__()
+        print("AsteroidManager init--->{}".format(threading.currentThread()))
+
         self.count = 0
         self.asteroids = []
 

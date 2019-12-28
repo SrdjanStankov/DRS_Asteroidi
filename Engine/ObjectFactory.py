@@ -3,6 +3,7 @@ import SceneManager
 import Renderer as renderer
 import Transform as transform
 import Managers as mgr
+import threading
 
 
 import math
@@ -30,6 +31,7 @@ class ObjectFactory:
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self):
         #print("Asteroid")
+        print("Asteroid--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         self.go = gameObject.GameObject()
@@ -47,7 +49,7 @@ class ObjectFactory:
 
     # Here populate Spaceship with all his properties
     def _CreateSpaceShip(self):
-        #print("Spaceship")
+        print("Spaceship--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         self.go = gameObject.GameObject()
@@ -60,7 +62,5 @@ class ObjectFactory:
             QPointF(width / 2, 0)])
 
         self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
-        #mgr.Managers.getInstance().scene.
-      #  SceneManager.SceneManager.addSignal.emit(self.go.Render)
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go
