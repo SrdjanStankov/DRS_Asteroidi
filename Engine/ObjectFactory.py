@@ -2,6 +2,8 @@ import GameObject as gameObject
 import SceneManager
 import SceneManager
 import Renderer as renderer
+import Transform as transform
+import Managers as mgr
 
 import math
 import time
@@ -28,8 +30,19 @@ class ObjectFactory:
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self):
         #print("Asteroid")
-        self.go = gameObject.GameObject()
+        width = 50
+        height = 50
         self.go.Type = "Asteroid"
+        self.go = gameObject.GameObject()
+        self.go.transform = transform.Transform()
+        polygon = QtGui.QPolygonF([QPointF(0, 0),
+               QPointF(0, height),
+               QPointF(width, height),
+               QPointF(width, 0)])
+
+
+        self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
+        self.SceneManager.scene.addItem(self.go.Render)
         return self.go
 
     # Here populate Spaceship with all his properties
@@ -39,6 +52,7 @@ class ObjectFactory:
         height = 50
         self.go = gameObject.GameObject()
         self.go.Type = "Spaceship"
+        self.go.transform = transform.Transform()
         polygon = QtGui.QPolygonF([QPointF(width / 2, 0),
             QPointF(0, height),
             QPointF(width / 2, height * 0.75),
@@ -46,5 +60,7 @@ class ObjectFactory:
             QPointF(width / 2, 0)])
 
         self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
+        #mgr.Managers.getInstance().scene.
+      #  SceneManager.SceneManager.addSignal.emit(self.go.Render)
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go

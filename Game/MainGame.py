@@ -8,18 +8,18 @@ import InputCommandType as inputCommand
 import GameObject as gameObject
 
 import Managers as mgr
-
+import AsteroidManager as AsteroidManager
 # Example
 class SimpleGO(gameObject.GameObject):
     def __init__(self):
         super().__init__()
-        self.go1 = mgr.Managers.getInstance().object.Instantiate("Spaceship")
+        self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship")
     def update(self):
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
             self.go1.transform.rotate(1)
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.right:
             self.go1.transform.rotate(-1)
-        self.go1.transform.move(1)
+       # self.go1.transform.move(1)
 
 
 # method for canceling game loop thread
@@ -36,7 +36,8 @@ if __name__ == "__main__":
     SceneManager = mgr.Managers.getInstance().scene
     SceneManager.resize(1300, 700)
     SceneManager.show()
-    ObjectManager = mgr.Managers.getInstance().object
+    ObjectManager = mgr.Managers.getInstance().objects
     
     go = SimpleGO()
+    asteroidManager = AsteroidManager.AsteroidManager()
     sys.exit(app.exec_())

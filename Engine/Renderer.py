@@ -17,13 +17,11 @@ class Renderer(QtWidgets.QGraphicsItem):
         self.width = width
         self.height = height
         self.transform = transform
-        self.transform.speed = 2
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
         self.polygon = polygon
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
-        self.gl = loop.GameLoop.getInstance()
 
 
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',

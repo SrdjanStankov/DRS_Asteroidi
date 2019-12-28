@@ -17,6 +17,6 @@ class Managers():
             cls.__instance = super(Managers, cls).__new__(cls)
             cls.__instance.input = inputManager.InputManager();
             cls.__instance.scene = scene.SceneManager();
-            cls.__instance.object = objMan.ObjectManager(cls.__instance.scene);
+            cls.__instance.objects = objMan.ObjectManager(cls.__instance.scene);
         return cls.__instance
 

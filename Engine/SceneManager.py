@@ -8,6 +8,7 @@ from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from time import sleep
 import threading as th
+import Renderer as renderer
 
 
 class internalUpdate(QObject):
@@ -24,6 +25,9 @@ class internalUpdate(QObject):
             sleep(1 / 60)
 
 class SceneManager(QtWidgets.QMainWindow):
+
+    addSignal = pyqtSignal(renderer.Renderer)
+
     def __init__(self, parent=None):
         super(SceneManager, self).__init__(parent)
         self.scene = QtWidgets.QGraphicsScene(self)
@@ -34,10 +38,14 @@ class SceneManager(QtWidgets.QMainWindow):
         self.setCentralWidget(self.view)
         self.noti = internalUpdate()
         self.noti.update.connect(self.update)
+        self.addSignal.connect(self.AddItem)
 
     def update(self):
           for item in self.scene.items():
                 item.moveItem()
                 item.rotateItem()
+
+    def AddItem(self,renderer):
+        self.scene.addItem(renderer)    
 
     
