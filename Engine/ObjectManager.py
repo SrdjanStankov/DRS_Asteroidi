@@ -41,4 +41,4 @@ class ObjectManager:
             self.SceneManager.scene.removeItem(temp.Render) 
             self.Pool.remove(temp)
         else:
-            print(f"Object with id {id} not found.")
+            print(f"Object with id {self.id} not found.")
