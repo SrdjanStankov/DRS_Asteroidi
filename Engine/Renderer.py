@@ -7,6 +7,7 @@ from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from Transform import Transform
+import GameLoop as loop
 
 class Renderer(QtWidgets.QGraphicsItem):
     def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform, parent=None):
@@ -22,6 +23,8 @@ class Renderer(QtWidgets.QGraphicsItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
         self.polygon = polygon
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
+        self.gl = loop.GameLoop.getInstance()
+
 
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
         widget: typing.Optional[QWidget]=...) -> None:
@@ -38,5 +41,7 @@ class Renderer(QtWidgets.QGraphicsItem):
 
     def rotateItem(self):
         self.setRotation(self.transform.rotation)
+
+
 
 

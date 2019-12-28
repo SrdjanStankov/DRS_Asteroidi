@@ -3,7 +3,7 @@ import math
 
 class Transform(object):
 
-    def __init__(self, position = Vector(), rotation = 0, speed = 10, rotationSpeed = 10):
+    def __init__(self, position = Vector(), rotation = 0, speed = 10, rotationSpeed = 2):
         self.position = position
         self.rotation = rotation
         self.speed = speed

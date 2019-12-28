@@ -103,3 +103,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 .vs/Asteroids/v16/.suo
+/Game/.idea
