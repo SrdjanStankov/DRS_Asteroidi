@@ -3,6 +3,7 @@ from Asteroid import Asteroid
 from Player import Player
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
+import threading as th
 
 import InputCommandType as inputCommand
 import GameObject as gameObject
@@ -27,13 +28,16 @@ class AsteroidBeh(gameObject.GameObject):
         #    print("Property destroyCounter not found in AsteroidBeh.")
 
 class AsteroidManager(gameObject.GameObject):
-     def __init__(self):
+    def __init__(self):
         super().__init__()
         self.count = 0
-        self.asteroid = []
-     def update(self):
-         self.count += 1
-         if(self.count % 60 == 0):
-            self.asteroid = mgr.Managers.getInstance().objects.Instantiate("Asteroid")
-            self.asteroid.transform.position=vector.Vector(self.count,0)
-            self.asteroid.asteroidBeh = AsteroidBeh(self.asteroid)
+        self.asteroids = []
+
+    def update(self):
+        self.count += 1
+        if(self.count % 60 == 0):
+            mgr.Managers.getInstance().objects.instansiateSignal.emit("Asteroid")
+            a = mgr.Managers.getInstance().objects.GetInstantiatedObject()
+            a.transform.position=vector.Vector(self.count,0)
+            a.asteroidBeh = AsteroidBeh(a)
+            self.asteroids.append(a)

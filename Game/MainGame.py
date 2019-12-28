@@ -32,11 +32,11 @@ if __name__ == "__main__":
     # connect app exit signal to thread stop of game loop
     app.aboutToQuit.connect(cancel)
 
-    Input = mgr.Managers.getInstance().input
-    SceneManager = mgr.Managers.getInstance().scene
-    SceneManager.resize(1300, 700)
-    SceneManager.show()
-    ObjectManager = mgr.Managers.getInstance().objects
+    input = mgr.Managers.getInstance().input
+    sceneManager = mgr.Managers.getInstance().scene
+    sceneManager.resize(1300, 700)
+    sceneManager.show()
+    objectManager = mgr.Managers.getInstance().objects
     
     go = SimpleGO()
     asteroidManager = AsteroidManager.AsteroidManager()

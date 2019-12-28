@@ -1,9 +1,9 @@
 import GameObject as gameObject
 import SceneManager
-import SceneManager
 import Renderer as renderer
 import Transform as transform
 import Managers as mgr
+
 
 import math
 import time
@@ -32,8 +32,8 @@ class ObjectFactory:
         #print("Asteroid")
         width = 50
         height = 50
-        self.go.Type = "Asteroid"
         self.go = gameObject.GameObject()
+        self.go.Type = "Asteroid"
         self.go.transform = transform.Transform()
         polygon = QtGui.QPolygonF([QPointF(0, 0),
                QPointF(0, height),
