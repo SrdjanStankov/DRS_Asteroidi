@@ -32,8 +32,8 @@ class ObjectFactory:
         #print("Asteroid")
         width = 50
         height = 50
-        self.go.Type = "Asteroid"
         self.go = gameObject.GameObject()
+        self.go.Type = "Asteroid"
         self.go.transform = transform.Transform()
         polygon = QtGui.QPolygonF([QPointF(0, 0),
                QPointF(0, height),
@@ -60,7 +60,5 @@ class ObjectFactory:
             QPointF(width / 2, 0)])
 
         self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
-        #mgr.Managers.getInstance().scene.
-      #  SceneManager.SceneManager.addSignal.emit(self.go.Render)
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go

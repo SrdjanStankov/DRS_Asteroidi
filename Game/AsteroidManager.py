@@ -17,7 +17,8 @@ class AsteroidBeh(gameObject.GameObject):
         self.destroyCounter = 0
 
     def update(self):
-        self.transform.rotate(1)
+       pass
+       self.asteroid.transform.rotate(1)
         #self.transform.move(1)
 #try:
         #    self.destroyCounter += 1
