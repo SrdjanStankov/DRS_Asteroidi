@@ -12,7 +12,7 @@ class Transform(object):
         self.rotationSpeed = rotationSpeed
 
     def __str__(self):
-        return "" #"position: {}, rotation: {}".format(self.position, self.rotation)
+        return "position: {}, rotation: {}".format((self.x,self.y), self.rotation)
 
     def rotate(self, direction = 1):
         self.rotation += direction * self.rotationSpeed
@@ -20,8 +20,8 @@ class Transform(object):
     def move(self, Direction = 1):
         dx = Direction * math.sin(math.radians(self.rotation)) * self.speed
         dy = Direction * math.cos(math.radians(self.rotation)) * self.speed
-        self.x += dx
-        self.y -= dy
+        self.x = (self.x + dx) % 1300
+        self.y = (self.y - dy) % 700
 
 if __name__=="__main__":
     t = Transform()

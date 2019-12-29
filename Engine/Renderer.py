@@ -25,6 +25,7 @@ class Renderer(QtWidgets.QGraphicsItem):
 
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
         widget: typing.Optional[QWidget]=...) -> None:
+        painter.setClipRect(option.exposedRect)
         painter.setPen(QPen(Qt.red, 4, Qt.SolidLine))
 
         painter.setBrush(Qt.cyan)
