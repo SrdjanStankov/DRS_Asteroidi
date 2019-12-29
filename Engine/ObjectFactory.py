@@ -10,23 +10,25 @@ import math
 import time
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal
+from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QRectF
 from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 
 
-Types = ["Spaceship", "Asteroid"]    # ;)
+Types = ["Spaceship", "Asteroid", "Projectile"]    # ;)
 class ObjectFactory:
     def __init__(self,SceneManager:SceneManager):
         self.SceneManager = SceneManager
         print("Factory on duty.")
 
-    def Create(self,type):
+    def Create(self,type,**kwargs):
         if(type == Types[0]):
             return self._CreateSpaceShip()
         elif(type == Types[1]):
             return self._CreteAsteroid()
+        elif(type == Types[2]):
+            return self._CreateProjectile(**kwargs)
 
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self):
@@ -43,7 +45,7 @@ class ObjectFactory:
                QPointF(width, 0)])
 
 
-        self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
+        self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform,self.go.Type)
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go
 
@@ -55,12 +57,33 @@ class ObjectFactory:
         self.go = gameObject.GameObject()
         self.go.Type = "Spaceship"
         self.go.transform = transform.Transform()
+        self.go.name = "Dejan"
         polygon = QtGui.QPolygonF([QPointF(width / 2, 0),
             QPointF(0, height),
             QPointF(width / 2, height * 0.75),
             QPointF(width, height),
             QPointF(width / 2, 0)])
 
-        self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform)
+        self.go.Render = renderer.Renderer(50,50,polygon,self.go.transform,self.go.Type)
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go
+
+    def _CreateProjectile(self,**kwargs):
+        print("Projectile--->{}".format(threading.currentThread()))
+        width = 4
+        height = -7
+        go = gameObject.GameObject()
+        go.Type = "Projectile"
+        go.name = kwargs["name"]
+        go.transform.x = kwargs["transform"].x
+        go.transform.y = kwargs["transform"].y
+        go.transform.rotation = kwargs["transform"].rotation
+        go.transform.speed = kwargs["transform"].speed
+        go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
+        polygon = QtGui.QPolygonF(QRectF(0,0,width,height))
+        go.Render =  renderer.Renderer(width,height,polygon,go.transform,go.Type)
+        self.SceneManager.scene.addItem(go.Render)
+        go.Render.moveItem()
+        go.Render.rotateItem()
+
+        return go

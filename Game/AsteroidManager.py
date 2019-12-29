@@ -3,7 +3,6 @@ from Asteroid import Asteroid
 from Player import Player
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
-import threading as th
 
 import InputCommandType as inputCommand
 import GameObject as gameObject
@@ -19,16 +18,16 @@ class AsteroidBeh(gameObject.GameObject):
         self.destroyCounter = 0
 
     def update(self):
-       pass
-       self.asteroid.transform.speed=1
-       self.asteroid.transform.rotate(1)
-       self.asteroid.transform.move(1)
-       try:
-            self.destroyCounter += 1
-            if(self.destroyCounter % 420):
-                    mgr.Managers.getInstance().objects.Destroy(self.asteroid)
-       except:
-            print("Property destroyCounter not found in AsteroidBeh.")
+        pass
+       #self.asteroid.transform.speed=1
+       #self.asteroid.transform.rotate(1)
+       #self.asteroid.transform.move(1)
+       #try:
+       #     self.destroyCounter += 1
+       #     if(self.destroyCounter % 420):
+       #             mgr.Managers.getInstance().objects.Destroy(self.asteroid)
+       #except:
+       #     print("Property destroyCounter not found in AsteroidBeh.")
 
 class AsteroidManager(gameObject.GameObject):
     def __init__(self):
@@ -39,10 +38,11 @@ class AsteroidManager(gameObject.GameObject):
         self.asteroids = []
 
     def update(self):
-        self.count += 1
-        if(self.count % 60 == 0):
-            mgr.Managers.getInstance().objects.instansiateSignal.emit("Asteroid")
-            a = mgr.Managers.getInstance().objects.GetInstantiatedObject()
-            a.transform.position=vector.Vector(self.count,0)
-            a.asteroidBeh = AsteroidBeh(a)
-            self.asteroids.append(a)
+        pass
+        #self.count += 1
+        #if(self.count % 60 == 0):
+        #    mgr.Managers.getInstance().objects.instansiateSignal.emit("Asteroid")
+        #    a = mgr.Managers.getInstance().objects.GetInstantiatedObject()
+        #    a.transform.position=vector.Vector(self.count,0)
+        #    a.asteroidBeh = AsteroidBeh(a)
+        #    self.asteroids.append(a)

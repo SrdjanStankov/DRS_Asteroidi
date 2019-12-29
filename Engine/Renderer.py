@@ -10,12 +10,11 @@ from Transform import Transform
 import GameLoop as loop
 
 class Renderer(QtWidgets.QGraphicsItem):
-    def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform, parent=None):
+    def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform,type, parent=None):
         super(Renderer, self).__init__(parent)
-        self.currentRotation = 0
-        self.name = "Dejan"
         self.width = width
         self.height = height
+        self.itemType = type
         self.transform = transform
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
@@ -35,10 +34,16 @@ class Renderer(QtWidgets.QGraphicsItem):
         return QtCore.QRectF(0, 0, self.width, self.height)
 
     def moveItem(self):
-        self.setPos(self.transform.position.x,self.transform.position.y)
+        self.setPos(self.transform.x,self.transform.y)
 
     def rotateItem(self):
         self.setRotation(self.transform.rotation)
+
+    def getTopLeft(self):
+        return self.mapToScene(self.boundingRect().topLeft())
+
+    def getTopRight(self):
+        return self.mapToScene(self.boundingRect().topRight())
 
 
 

@@ -18,10 +18,10 @@ class ObjectManager(QObject):
         self.instansiateSignal.connect(self.Instantiate)
 
 
-    def Instantiate(self, type):
+    def Instantiate(self, type,**kwargs):
         
         #print("Instantiate")
-        go = self.factory.Create(type)
+        go = self.factory.Create(type,**kwargs)
         go.Id = self.id
         self.id += 1 
         self.Pool.append(go)

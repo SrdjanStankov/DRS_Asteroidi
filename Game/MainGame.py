@@ -11,13 +11,17 @@ import Managers as mgr
 import AsteroidManager as AsteroidManager
 import Vector as vector
 import Transform as transform
+import ProjectileManager as ProjectileManager
 from AsteroidManager import AsteroidBeh
 # Example
 class SimpleGO(gameObject.GameObject):
-    def __init__(self):
+    def __init__(self,projectileManager):
         super().__init__()
         self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship")
         self.go1.transform.speed=2
+        self.projectiles = []
+        self.projectileManager = projectileManager
+        
         #self.go1.transform = transform.Transform()
         #self.go1.transform.position = vector.Vector(60,0)
         #self.asteroid = mgr.Managers.getInstance().objects.Instantiate("Asteroid")
@@ -31,10 +35,17 @@ class SimpleGO(gameObject.GameObject):
         
     def update(self):
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
-            self.go1.transform.rotate(1)
-        if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.right:
             self.go1.transform.rotate(-1)
-        self.go1.transform.move(1)
+        if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.right:
+            self.go1.transform.rotate(1)
+        if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.up:
+            self.go1.transform.move(1)
+        if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.down:
+            self.go1.transform.move(-1)
+        if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.shoot:
+            self.projectileManager.createProjectile(self.go1)
+           
+            
 
 
 # method for canceling game loop thread
@@ -52,7 +63,7 @@ if __name__ == "__main__":
     sceneManager.resize(1300, 700)
     sceneManager.show()
     objectManager = mgr.Managers.getInstance().objects
-    
-    go = SimpleGO()
+    projectileManager = ProjectileManager.ProjectileManager()
+    go = SimpleGO(projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
     sys.exit(app.exec_())

@@ -40,10 +40,12 @@ class SceneManager(QtWidgets.QMainWindow):
         self.noti.update.connect(self.update)
         self.addSignal.connect(self.AddItem)
 
-    def update(self):
-          for item in self.scene.items():
-                item.moveItem()
+    def update(self):     
+        for item in self.scene.items():
+            if item.itemType == "Spaceship":
                 item.rotateItem()
+                item.moveItem()
+        self.scene.update()  
 
     def AddItem(self,renderer):
         self.scene.addItem(renderer)    

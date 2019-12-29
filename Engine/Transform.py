@@ -3,14 +3,16 @@ import math
 
 class Transform(object):
 
-    def __init__(self, position = Vector(), rotation = 0, speed = 10, rotationSpeed = 2):
-        self.position = position
+    def __init__(self, rotation = 0, speed = 10, rotationSpeed = 2):
+        self.x = 0
+        self.y = 0
+        #self.position = position
         self.rotation = rotation
         self.speed = speed
         self.rotationSpeed = rotationSpeed
 
     def __str__(self):
-        return "position: {}, rotation: {}".format(self.position, self.rotation)
+        return "" #"position: {}, rotation: {}".format(self.position, self.rotation)
 
     def rotate(self, direction = 1):
         self.rotation += direction * self.rotationSpeed
@@ -18,8 +20,8 @@ class Transform(object):
     def move(self, Direction = 1):
         dx = Direction * math.sin(math.radians(self.rotation)) * self.speed
         dy = Direction * math.cos(math.radians(self.rotation)) * self.speed
-        self.position.x += dx
-        self.position.y -= dy
+        self.x += dx
+        self.y -= dy
 
 if __name__=="__main__":
     t = Transform()
