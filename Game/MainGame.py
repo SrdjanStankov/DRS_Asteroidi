@@ -19,6 +19,9 @@ class SimpleGO(gameObject.GameObject):
         super().__init__()
         self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship")
         self.go1.transform.speed=2
+        self.go1.transform.x = 1000
+        self.go1.transform.y = 450
+        self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
         
@@ -34,6 +37,7 @@ class SimpleGO(gameObject.GameObject):
         #self.asteroid.asteroidBeh = AsteroidBeh(self.asteroid)
         
     def update(self):
+        self.shootCounter = (self.shootCounter + 1) % 60
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
             self.go1.transform.rotate(-1)
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.right:
@@ -43,7 +47,8 @@ class SimpleGO(gameObject.GameObject):
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.down:
             self.go1.transform.move(-1)
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.shoot:
-            self.projectileManager.createProjectile(self.go1)
+            if self.shootCounter != 0:
+                self.projectileManager.createProjectile(self.go1)
            
             
 

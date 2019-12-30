@@ -28,11 +28,7 @@ class Renderer(QtWidgets.QGraphicsItem):
         painter.setClipRect(option.exposedRect)
         painter.setPen(QPen(Qt.red, 1, Qt.SolidLine))
         painter.setBrush(Qt.cyan)
-        if self.itemType == "Spaceship":
-            painter.drawPolygon(self.polygon)
-        else:
-            painter.drawRect(QtCore.QRectF(0, 0, self.width, self.height))
-
+        painter.drawPolygon(self.polygon)
 
     def boundingRect(self) -> QtCore.QRectF:
         return QtCore.QRectF(0, 0, self.width, self.height)
