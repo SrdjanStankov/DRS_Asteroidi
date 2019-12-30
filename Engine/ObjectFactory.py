@@ -91,7 +91,7 @@ class ObjectFactory:
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         polygon = QtGui.QPolygonF(QRectF(0,0,width,height))
         go.Render =  renderer.Renderer(width,height,polygon,go.transform,go.Type)
-        #go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache) 
+        go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache) 
         self.SceneManager.scene.addItem(go.Render)
         go.Render.moveItem()
         go.Render.rotateItem()

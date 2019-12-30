@@ -26,10 +26,13 @@ class Renderer(QtWidgets.QGraphicsItem):
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
         widget: typing.Optional[QWidget]=...) -> None:
         painter.setClipRect(option.exposedRect)
-        painter.setPen(QPen(Qt.red, 4, Qt.SolidLine))
-
+        painter.setPen(QPen(Qt.red, 1, Qt.SolidLine))
         painter.setBrush(Qt.cyan)
-        painter.drawPolygon(self.polygon)
+        if self.itemType == "Spaceship":
+            painter.drawPolygon(self.polygon)
+        else:
+            painter.drawRect(QtCore.QRectF(0, 0, self.width, self.height))
+
 
     def boundingRect(self) -> QtCore.QRectF:
         return QtCore.QRectF(0, 0, self.width, self.height)

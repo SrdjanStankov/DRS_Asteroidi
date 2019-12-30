@@ -33,9 +33,6 @@
     <Compile Include="Main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MyScene.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ObjectFactory.py">
       <SubType>Code</SubType>
     </Compile>

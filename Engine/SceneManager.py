@@ -35,9 +35,8 @@ class SceneManager(QtWidgets.QMainWindow):
         self.scene.setBackgroundBrush(QBrush(QColor('yellow')))
         self.scene.setSceneRect(0, 0, 1300, 700)
         self.view = QtWidgets.QGraphicsView()
-        self.view.setViewport(OpenGL.QGLWidget(OpenGL.QGLFormat(OpenGL.QGL.SampleBuffers)))
         self.view.setSceneRect(70, 0, 1280, 680)
-        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
+        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
         self.view.setInteractive(False)
         self.view.setScene(self.scene)
         self.setCentralWidget(self.view)
@@ -53,8 +52,8 @@ class SceneManager(QtWidgets.QMainWindow):
                 item.rotateItem()
                 item.moveItem()
             else:
-                item.beh.update()
-        self.scene.update()  
+                item.beh.update() 
+        self.scene.update()
 
     def AddItem(self,renderer):
         self.scene.addItem(renderer)    
