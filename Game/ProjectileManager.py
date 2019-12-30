@@ -3,9 +3,8 @@ import Managers as mng
 import threading
 import Transform as transform
 
-class ProjectileBeh(gameObject.GameObject):
+class ProjectileBeh():
     def __init__(self,go):
-        super().__init__()
         self.projectile = go
 
     def update(self):
@@ -32,7 +31,7 @@ class ProjectileManager(gameObject.GameObject):
         tempTransform.rotation = shooter.transform.rotation
         tempTransform.speed = 6
         temp = mng.Managers.getInstance().objects.Instantiate("Projectile",transform = tempTransform,name = shooter.name)
-        temp.projectileBehaviour = ProjectileBeh(temp)
+        temp.Render.beh = ProjectileBeh(temp)
         self.projectiles.append(temp)
 
     def update(self):

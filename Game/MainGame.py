@@ -66,5 +66,6 @@ if __name__ == "__main__":
     projectileManager = ProjectileManager.ProjectileManager()
     go = SimpleGO(projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
-    asteroidManager.createAsteroid()
+    for i in range(1,30):
+        asteroidManager.createAsteroid(100 + 50*i,0,5)
     sys.exit(app.exec_())

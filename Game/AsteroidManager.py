@@ -11,15 +11,15 @@ import Managers as mng
 import Vector as vector
 import threading
 
-class AsteroidBeh(gameObject.GameObject):
+class AsteroidBeh():
     def __init__(self, go):
-        super().__init__()
         self.asteroid = go
-
+        self.asteroid.Render.rotateItem()
+    
     def update(self):
-       self.asteroid.transform.speed=5
-       self.asteroid.transform.move(-1)
-       self.asteroid.Render.moveItem()
+        self.asteroid.transform.speed=5
+        self.asteroid.transform.move(1)
+        self.asteroid.Render.moveItem()
 
 class AsteroidManager(gameObject.GameObject):
     def __init__(self):
@@ -29,14 +29,14 @@ class AsteroidManager(gameObject.GameObject):
         self.count = 0
         self.asteroids = []
 
-    def createAsteroid(self):
+    def createAsteroid(self,x,y,rotation):
         tempTransform = transform.Transform()
-        tempTransform.x = 100
-        tempTransform.y = 0
-        tempTransform.rotation = 0
+        tempTransform.x = x
+        tempTransform.y = y
+        tempTransform.rotation = rotation
         tempTransform.speed = 2
         temp = mng.Managers.getInstance().objects.Instantiate("Asteroid",transform = tempTransform,name = "")
-        temp.asteroidBehBehaviour = AsteroidBeh(temp)
+        temp.Render.beh = AsteroidBeh(temp)
         self.asteroids.append(temp)
 
     def update(self):

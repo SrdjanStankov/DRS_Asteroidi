@@ -33,7 +33,7 @@ class ObjectFactory:
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self,**kwargs):
         #print("Asteroid")
-        print("Asteroid--->{}".format(threading.currentThread()))
+        #print("Asteroid--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         go = gameObject.GameObject()
@@ -64,6 +64,8 @@ class ObjectFactory:
         self.go = gameObject.GameObject()
         self.go.Type = "Spaceship"
         self.go.transform = transform.Transform()
+        self.go.transform.x = 1000
+        self.go.transform.y = 450
         self.go.name = "Dejan"
         polygon = QtGui.QPolygonF([QPointF(width / 2, 0),
             QPointF(0, height),
@@ -76,7 +78,7 @@ class ObjectFactory:
         return self.go
 
     def _CreateProjectile(self,**kwargs):
-        print("Projectile--->{}".format(threading.currentThread()))
+        #print("Projectile--->{}".format(threading.currentThread()))
         width = 4
         height = -7
         go = gameObject.GameObject()
