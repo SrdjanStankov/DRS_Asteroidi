@@ -8,6 +8,7 @@ class GameObject():
         gl.GameLoop.getInstance().connect_to_update(self.update)
         self.transform = Transform.Transform()
         self.name = ""
+        self.collisionWithId = -1
     
     # Nesto se desava
     def update(self):
