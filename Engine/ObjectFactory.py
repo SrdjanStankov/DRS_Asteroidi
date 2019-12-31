@@ -33,7 +33,7 @@ class ObjectFactory:
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self,**kwargs):
         #print("Asteroid")
-        print("Asteroid--->{}".format(threading.currentThread()))
+       # print("Asteroid--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         go = gameObject.GameObject()
@@ -57,7 +57,7 @@ class ObjectFactory:
 
     # Here populate Spaceship with all his properties
     def _CreateSpaceShip(self):
-        print("Spaceship--->{}".format(threading.currentThread()))
+        #print("Spaceship--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         self.go = gameObject.GameObject()

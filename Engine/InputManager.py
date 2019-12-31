@@ -20,25 +20,25 @@ class InputManager:
     def __init__(self):
         self.gl = loop.GameLoop.getInstance()
         self.gl.connect_to_update(self.GetInput)
-        self.Command = InputCommandType.InputCommandType.none
+        self.Command = []
 
     def GetCommand(self):
         return self.Command
 
     def GetInput(self):
+        self.Command = []
         if keyboard.is_pressed(shoot):
-            self.Command = InputCommandType.InputCommandType.shoot
-        elif keyboard.is_pressed(left):
-            self.Command = InputCommandType.InputCommandType.left
+            self.Command.append(InputCommandType.InputCommandType.shoot)
+        if keyboard.is_pressed(left):
+            self.Command.append(InputCommandType.InputCommandType.left)
 
-        elif keyboard.is_pressed(right):
-            self.Command = InputCommandType.InputCommandType.right
+        if keyboard.is_pressed(right):
+            self.Command.append(InputCommandType.InputCommandType.right)
 
-        elif keyboard.is_pressed(up):
-            self.Command = InputCommandType.InputCommandType.up
+        if keyboard.is_pressed(up):
+            self.Command.append(InputCommandType.InputCommandType.up)
         
-        elif keyboard.is_pressed(down):
-            self.Command = InputCommandType.InputCommandType.down
-        else:
-            self.Command = InputCommandType.InputCommandType.none
+        if keyboard.is_pressed(down):
+            self.Command.append(InputCommandType.InputCommandType.down)
+       
        # print(self.Command) #test

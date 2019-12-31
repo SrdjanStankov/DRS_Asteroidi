@@ -24,7 +24,7 @@ class AsteroidBeh():
 class AsteroidManager(gameObject.GameObject):
     def __init__(self):
         super().__init__()
-        print("AsteroidManager init--->{}".format(threading.currentThread()))
+      #  print("AsteroidManager init--->{}".format(threading.currentThread()))
 
         self.count = 0
         self.asteroids = []
