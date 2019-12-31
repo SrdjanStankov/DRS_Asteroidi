@@ -1,10 +1,6 @@
-import sys
 import GameLoop as loop
 import keyboard
 import InputCommandType
-from time import sleep
-from threading import Thread
-from queue import Queue
 
 
 #Set desired input for commands

@@ -1,15 +1,7 @@
-import sys
-from Asteroid import Asteroid
-from Player import Player
-from PyQt5 import QtWidgets
-from GameLoop import GameLoop as gl
 import Transform as transform
-import InputCommandType as inputCommand
 import GameObject as gameObject
 
 import Managers as mng
-import Vector as vector
-import threading
 
 class AsteroidBeh():
     def __init__(self, go):
@@ -17,8 +9,8 @@ class AsteroidBeh():
         self.asteroid.Render.rotateItem()
     
     def update(self):
-        if self.asteroid.active == False:
-            return
+        #if self.asteroid.active == False:
+        #    return
         self.asteroid.transform.speed=5
         self.asteroid.transform.move(1)
         self.asteroid.Render.moveItem()
