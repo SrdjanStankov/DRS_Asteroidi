@@ -9,6 +9,7 @@ class GameObject():
         self.transform = Transform.Transform()
         self.name = ""
         self.collisionWithId = -1
+        self.active = True
     
     # Nesto se desava
     def update(self):

@@ -17,6 +17,8 @@ class AsteroidBeh():
         self.asteroid.Render.rotateItem()
     
     def update(self):
+        if self.asteroid.active == False:
+            return
         self.asteroid.transform.speed=5
         self.asteroid.transform.move(1)
         self.asteroid.Render.moveItem()
@@ -41,11 +43,3 @@ class AsteroidManager(gameObject.GameObject):
 
     def update(self):
         pass
-        #self.count += 1
-        #if(self.count % 60 == 0):
-        #    mgr.Managers.getInstance().objects.instansiateSignal.emit("Asteroid")
-        #    a = mgr.Managers.getInstance().objects.GetInstantiatedObject()
-        #    a.transform.x = self.count
-        #    a.transform.y = -50
-        #    a.asteroidBeh = AsteroidBeh(a)
-        #    self.asteroids.append(a)

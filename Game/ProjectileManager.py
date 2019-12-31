@@ -8,6 +8,8 @@ class ProjectileBeh():
         self.projectile = go
 
     def update(self):
+        if self.projectile.active == False:
+            return
         if self.projectile.transform.x >= 1280 or self.projectile.transform.y >= 680 :
             mng.Managers.getInstance().objects.Destroy(self.projectile.Id)
         else:
