@@ -18,13 +18,14 @@ class SimpleGO(gameObject.GameObject):
     def __init__(self,projectileManager):
         super().__init__()
         self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship")
-        self.go1.transform.speed=2
+        self.go1.transform.speed = 2
         self.go1.transform.x = 1000
         self.go1.transform.y = 450
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
         
+<<<<<<< HEAD
     def update(self):
         self.shootCounter = (self.shootCounter + 1) % 150
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
@@ -38,6 +39,35 @@ class SimpleGO(gameObject.GameObject):
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.shoot:
             if self.shootCounter != 0:
                 self.projectileManager.createProjectile(self.go1)
+=======
+        #self.go1.transform = transform.Transform()
+        #self.go1.transform.position = vector.Vector(60,0)
+        #self.asteroid =
+        #mgr.Managers.getInstance().objects.Instantiate("Asteroid")
+        #self.asteroid.transform.position = vector.Vector(60,0)
+        #self.asteroid.asteroidBeh = AsteroidBeh(self.asteroid)
+
+
+        #self.asteroid =
+        #mgr.Managers.getInstance().objects.Instantiate("Asteroid")
+        #self.asteroid.transform.position = vector.Vector(160,0)
+        #self.asteroid.asteroidBeh = AsteroidBeh(self.asteroid)
+        
+    def update(self):
+        self.shootCounter = (self.shootCounter + 1) % 60
+        for cmd in mgr.Managers.getInstance().input.GetCommand():
+            if cmd == inputCommand.InputCommandType.left:
+                self.go1.transform.rotate(-1)
+            if cmd == inputCommand.InputCommandType.right:
+                self.go1.transform.rotate(1)
+            if cmd == inputCommand.InputCommandType.up:
+                 self.go1.transform.move(1)
+            if cmd == inputCommand.InputCommandType.down:
+                  self.go1.transform.move(-1)
+            if cmd == inputCommand.InputCommandType.shoot:
+                  if self.shootCounter != 0:
+                    self.projectileManager.createProjectile(self.go1)
+>>>>>>> 3780d3175f76cb3788ed53f1e3c3dab9e30ad68f
            
             
 
@@ -60,6 +90,11 @@ if __name__ == "__main__":
     projectileManager = ProjectileManager.ProjectileManager()
     go = SimpleGO(projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
+<<<<<<< HEAD
     for i in range(1,5):
         asteroidManager.createAsteroid(100 + 50*i,0,5)
+=======
+    for i in range(1,30):
+        asteroidManager.createAsteroid(100 + 50 * i,0,5)
+>>>>>>> 3780d3175f76cb3788ed53f1e3c3dab9e30ad68f
     sys.exit(app.exec_())

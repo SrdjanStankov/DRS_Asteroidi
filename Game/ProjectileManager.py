@@ -1,6 +1,5 @@
 import GameObject as gameObject
 import Managers as mng
-import threading
 import Transform as transform
 from Projectile import Projectile
 
@@ -9,6 +8,8 @@ class ProjectileBeh():
         self.projectile = go
 
     def update(self):
+        #if self.projectile.active == False:
+        #    return
         if self.projectile.transform.x >= 1280 or self.projectile.transform.y >= 680 :
             mng.Managers.getInstance().objects.Destroy(self.projectile.Id)
         else:
@@ -19,7 +20,7 @@ class ProjectileBeh():
 class ProjectileManager(gameObject.GameObject):
     def __init__(self):
         super().__init__()
-        print("ProjectileManager init--->{}".format(threading.currentThread()))
+        #print("ProjectileManager init--->{}".format(threading.currentThread()))
 
         self.projectiles = []
 

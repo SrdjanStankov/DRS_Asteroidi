@@ -1,13 +1,9 @@
-import math
-import time
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal
-from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
+from PyQt5.QtGui import QPen
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from Transform import Transform
-import GameLoop as loop
 
 class Renderer(QtWidgets.QGraphicsItem):
     def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform,type, parent=None):

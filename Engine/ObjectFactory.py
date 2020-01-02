@@ -2,18 +2,10 @@ import GameObject as gameObject
 import SceneManager
 import Renderer as renderer
 import Transform as transform
-import Managers as mgr
-import threading
 
 
-import math
-import time
-import typing
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QRectF
-from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
-from PyQt5.Qt import Qt
-from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem, QGraphicsItem
+from PyQt5 import QtGui
+from PyQt5.QtCore import QPointF, QRectF
 
 
 Types = ["Spaceship", "Asteroid", "Projectile"]    # ;)
@@ -32,8 +24,6 @@ class ObjectFactory:
 
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self,**kwargs):
-        #print("Asteroid")
-        print("Asteroid--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         go = gameObject.GameObject(kwargs["callable"])
@@ -57,7 +47,6 @@ class ObjectFactory:
 
     # Here populate Spaceship with all his properties
     def _CreateSpaceShip(self):
-        print("Spaceship--->{}".format(threading.currentThread()))
         width = 50
         height = 50
         self.go = gameObject.GameObject()
@@ -74,6 +63,7 @@ class ObjectFactory:
         self.SceneManager.scene.addItem(self.go.Render)
         return self.go
 
+    # Here populate Projectile with all his properties
     def _CreateProjectile(self,**kwargs):
         width = 4
         height = -7

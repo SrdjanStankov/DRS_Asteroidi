@@ -1,12 +1,7 @@
-import math
-import time
-import typing
-from PyQt5 import QtCore, QtGui, QtWidgets, QtOpenGL
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QObject
-from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import pyqtSignal, QObject
+from PyQt5.QtGui import QBrush, QColor
 from PyQt5.Qt import Qt
-from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
-import PyQt5.QtOpenGL as OpenGL
 from time import sleep
 import threading as th
 import Renderer as renderer
@@ -52,7 +47,14 @@ class SceneManager(QtWidgets.QMainWindow):
                 item.rotateItem()
                 item.moveItem()
             else:
+<<<<<<< HEAD
                 item.moveItem()
+=======
+                #try:
+                    item.beh.update()
+                #except:
+                #    pass
+>>>>>>> 3780d3175f76cb3788ed53f1e3c3dab9e30ad68f
         self.scene.update()
 
     def AddItem(self,renderer):
