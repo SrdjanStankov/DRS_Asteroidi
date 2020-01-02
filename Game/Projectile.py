@@ -14,7 +14,6 @@ class Projectile():
         tempTransform.rotation = shooter.transform.rotation
         tempTransform.speed = 6
         self.projectile = mng.Managers.getInstance().objects.Instantiate("Projectile",transform = tempTransform,name = shooter.name,callable = self.update)
-        self.projectile.update = self.update
 
     def update(self):
         if self.projectile.transform.x >= 1280 or self.projectile.transform.y >= 680 :

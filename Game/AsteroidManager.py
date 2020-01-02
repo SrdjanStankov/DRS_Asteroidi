@@ -1,6 +1,6 @@
 import Transform as transform
 import GameObject as gameObject
-
+from Asteroid import Asteroid
 import Managers as mng
 
 class AsteroidBeh():
@@ -13,7 +13,6 @@ class AsteroidBeh():
         #    return
         self.asteroid.transform.speed=5
         self.asteroid.transform.move(1)
-        self.asteroid.Render.moveItem()
 
 class AsteroidManager(gameObject.GameObject):
     def __init__(self):

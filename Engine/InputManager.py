@@ -19,7 +19,12 @@ class InputManager:
         self.Command = []
 
     def GetCommand(self):
-        return self.Command
+        if len(self.Command) > 0:
+            command = self.Command[-1]
+            del self.Command[-1]
+            return command
+        else:
+            return InputCommandType.InputCommandType.none
 
     def GetInput(self):
         self.Command = []

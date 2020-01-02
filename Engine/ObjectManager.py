@@ -1,11 +1,8 @@
 import ObjectFactory as factory
 import SceneManager
-<<<<<<< HEAD
 import threading as th
 import GameLoop as gl
-=======
-#import Transform
->>>>>>> 3780d3175f76cb3788ed53f1e3c3dab9e30ad68f
+import Transform
 from PyQt5.QtCore import pyqtSignal, QObject
 # Responsible for creating , accessing and destroying objects
 class ObjectManager(QObject):
@@ -129,14 +126,9 @@ class ObjectManager(QObject):
     
     def Destroy(self,id):
         temp = self.FindById(id)
-<<<<<<< HEAD
         if temp is not None:
             self.SceneManager.scene.removeItem(temp.Render) 
             gl.GameLoop.getInstance().disconnect_from_update(temp.callable)
-=======
-        if temp != None:
-            self.SceneManager.scene.removeItem(temp.Render)
->>>>>>> 3780d3175f76cb3788ed53f1e3c3dab9e30ad68f
             self.Pool.remove(temp)
             #temp.active = False
             #temp.transform = Transform.Transform(x = -100, y = -100)
