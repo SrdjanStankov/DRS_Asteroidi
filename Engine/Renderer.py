@@ -1,7 +1,6 @@
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPen
-from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from Transform import Transform
 
@@ -22,8 +21,8 @@ class Renderer(QtWidgets.QGraphicsItem):
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
         widget: typing.Optional[QWidget]=...) -> None:
         painter.setClipRect(option.exposedRect)
-        painter.setPen(QPen(Qt.red, 1, Qt.SolidLine))
-        painter.setBrush(Qt.cyan)
+        painter.setPen(QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine))
+        painter.setBrush(QtCore.Qt.cyan)
         painter.drawPolygon(self.polygon)
 
     def boundingRect(self) -> QtCore.QRectF:
