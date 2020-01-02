@@ -25,19 +25,8 @@ class SimpleGO(gameObject.GameObject):
         self.projectiles = []
         self.projectileManager = projectileManager
         
-        #self.go1.transform = transform.Transform()
-        #self.go1.transform.position = vector.Vector(60,0)
-        #self.asteroid = mgr.Managers.getInstance().objects.Instantiate("Asteroid")
-        #self.asteroid.transform.position = vector.Vector(60,0)
-        #self.asteroid.asteroidBeh = AsteroidBeh(self.asteroid)
-
-
-        #self.asteroid = mgr.Managers.getInstance().objects.Instantiate("Asteroid")
-        #self.asteroid.transform.position = vector.Vector(160,0)
-        #self.asteroid.asteroidBeh = AsteroidBeh(self.asteroid)
-        
     def update(self):
-        self.shootCounter = (self.shootCounter + 1) % 60
+        self.shootCounter = (self.shootCounter + 1) % 150
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.left:
             self.go1.transform.rotate(-1)
         if mgr.Managers.getInstance().input.GetCommand() == inputCommand.InputCommandType.right:
@@ -71,6 +60,6 @@ if __name__ == "__main__":
     projectileManager = ProjectileManager.ProjectileManager()
     go = SimpleGO(projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
-    for i in range(1,30):
+    for i in range(1,5):
         asteroidManager.createAsteroid(100 + 50*i,0,5)
     sys.exit(app.exec_())

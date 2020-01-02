@@ -32,6 +32,9 @@ class GameLoop():
         """Use this method to connect your method to primary game loop"""
         self._update_signal.connect(method)
 
+    def disconnect_from_update(self,method):
+        self._update_signal.disconnect(method)
+
     def _start_loop(self):
         """
         Starts the game loop.

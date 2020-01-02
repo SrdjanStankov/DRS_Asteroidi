@@ -36,7 +36,7 @@ class ObjectFactory:
         print("Asteroid--->{}".format(threading.currentThread()))
         width = 50
         height = 50
-        go = gameObject.GameObject()
+        go = gameObject.GameObject(kwargs["callable"])
         go.Type = "Asteroid"
         go.transform = transform.Transform()
         go.transform.x = kwargs["transform"].x
@@ -77,7 +77,7 @@ class ObjectFactory:
     def _CreateProjectile(self,**kwargs):
         width = 4
         height = -7
-        go = gameObject.GameObject()
+        go = gameObject.GameObject(kwargs["callable"])
         go.Type = "Projectile"
         go.name = kwargs["name"]
         go.transform.x = kwargs["transform"].x

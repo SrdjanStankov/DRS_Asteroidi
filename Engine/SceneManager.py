@@ -52,7 +52,7 @@ class SceneManager(QtWidgets.QMainWindow):
                 item.rotateItem()
                 item.moveItem()
             else:
-                item.beh.update() 
+                item.moveItem()
         self.scene.update()
 
     def AddItem(self,renderer):

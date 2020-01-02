@@ -33,6 +33,9 @@
     <Compile Include="Player.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Projectile.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProjectileManager.py">
       <SubType>Code</SubType>
     </Compile>

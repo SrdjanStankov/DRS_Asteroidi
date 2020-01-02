@@ -30,14 +30,8 @@ class AsteroidManager(gameObject.GameObject):
         self.asteroids = []
 
     def createAsteroid(self,x,y,rotation):
-        tempTransform = transform.Transform()
-        tempTransform.x = x
-        tempTransform.y = y
-        tempTransform.rotation = rotation
-        tempTransform.speed = 2
-        temp = mng.Managers.getInstance().objects.Instantiate("Asteroid",transform = tempTransform,name = "")
-        temp.Render.beh = AsteroidBeh(temp)
-        self.asteroids.append(temp)
+        temp = Asteroid(x,y,rotation)
+        #self.asteroids.append(temp)
 
     def update(self):
         pass
