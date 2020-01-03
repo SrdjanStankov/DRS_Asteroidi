@@ -2,7 +2,6 @@ import time
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSignal, QObject
 from PyQt5.QtGui import QBrush, QColor
-from PyQt5.Qt import Qt
 from time import sleep
 import threading as th
 import Renderer as renderer
