@@ -31,7 +31,7 @@ class SceneManager(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(SceneManager, self).__init__(parent)
         self.scene = QtWidgets.QGraphicsScene(self)
-        self.scene.setBackgroundBrush(QBrush(QColor('yellow')))
+        self.scene.setBackgroundBrush(QBrush(QColor('black')))
         self.scene.setSceneRect(0, 0, 1300, 700)
         self.view = QtWidgets.QGraphicsView(self.scene)
         self.view.setSceneRect(70, 0, 1280, 680)
