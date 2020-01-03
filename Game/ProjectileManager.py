@@ -18,7 +18,7 @@ class ProjectileBeh():
 class ProjectileManager(gameObject.GameObject):
     def __init__(self):
         super().__init__()
-        #print("ProjectileManager init--->{}".format(threading.currentThread()))
+        print("ProjectileManager init--->{}".format(threading.currentThread()))
 
         self.projectiles = []
 
