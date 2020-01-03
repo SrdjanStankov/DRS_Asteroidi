@@ -7,8 +7,8 @@ class ObjectManager(QObject):
 
     instansiateSignal = pyqtSignal(object)
     instantiatedObjects = []
-
     Pool = []
+
     def __init__(self,SceneManager: SceneManager):
         super(ObjectManager, self).__init__()
         
@@ -17,10 +17,7 @@ class ObjectManager(QObject):
         self.factory = factory.ObjectFactory(SceneManager)
         self.instansiateSignal.connect(self.Instantiate)
 
-
     def Instantiate(self, type,**kwargs):
-        
-        #print("Instantiate")
         go = self.factory.Create(type,**kwargs)
         go.Id = self.id
         self.id += 1 
@@ -48,7 +45,6 @@ class ObjectManager(QObject):
         for i in self.Pool:
             if i.Type == type:
                 self.result.append(i)
-
         return self.result
 
     def Destroy(self,id):
@@ -57,4 +53,5 @@ class ObjectManager(QObject):
             self.SceneManager.scene.removeItem(temp.Render) 
             self.Pool.remove(temp)
         else:
-            print(f"Object with id {self.id} not found.")
+            pass
+            #print(f"Object with id {self.id} not found.") 

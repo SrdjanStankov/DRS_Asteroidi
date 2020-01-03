@@ -3,11 +3,18 @@ import Transform
 
 class GameObject():
 
-    def __init__(self):
+    def __init__(self,callable = None):
         """If you are defining something inside here be sure to call __init__ of base class"""
-        gl.GameLoop.getInstance().connect_to_update(self.update)
+        if callable is not None:
+           self.callable = callable
+        else:
+            self.callable = self.update
+        gl.GameLoop.getInstance().connect_to_update(self.callable)
         self.transform = Transform.Transform()
         self.name = ""
+        self.collisions = []
+        self.collisionsType = []
+        self.radius = 20
     
     # Nesto se desava
     def update(self):
