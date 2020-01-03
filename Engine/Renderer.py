@@ -2,8 +2,12 @@ import math
 import time
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
+<<<<<<< HEAD
 from PyQt5.QtCore import QPointF, QThread, pyqtSignal
 from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
+=======
+from PyQt5.QtGui import QPen
+>>>>>>> parent of 9a9f7b4... Builded game
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from Transform import Transform
