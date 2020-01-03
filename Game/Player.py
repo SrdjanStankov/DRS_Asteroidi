@@ -5,9 +5,9 @@ import time
 
 class Player(GameObject):
 
-    def __init__(self,projectileManager):
+    def __init__(self,name,projectileManager):
         super().__init__()
-        self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship")
+        self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship",name = name)
         self.go1.transform.speed = 2
         self.go1.transform.x = 1000
         self.go1.transform.y = 450

@@ -23,7 +23,7 @@ if __name__ == "__main__":
     sceneManager.show()
     objectManager = mgr.Managers.getInstance().objects
     projectileManager = ProjectileManager.ProjectileManager()
-    go = Player(projectileManager)
+    go = Player("Dejan",projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
     collisionManager = CollisionDetection(objectManager)
     for i in range(1,10):

@@ -17,3 +17,9 @@ class Asteroid():
 
     def update(self):
         self.asteroid.transform.move(1)
+        for item in self.asteroid.collisionsType:
+            if item == "Projectile":
+                try:
+                    mng.Managers.getInstance().objects.Destroy(self.asteroid.Id)
+                except:
+                    pass
