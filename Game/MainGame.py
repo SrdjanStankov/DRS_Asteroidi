@@ -13,6 +13,7 @@ import Vector as vector
 import Transform as transform
 import ProjectileManager as ProjectileManager
 from AsteroidManager import AsteroidBeh
+from CollisionDetection import CollisionDetection 
 # Example
 class SimpleGO(gameObject.GameObject):
     def __init__(self,projectileManager):
@@ -74,6 +75,7 @@ if __name__ == "__main__":
     projectileManager = ProjectileManager.ProjectileManager()
     go = SimpleGO(projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
+    collisionManager = CollisionDetection(objectManager)
     for i in range(1,30):
         asteroidManager.createAsteroid(100 + 50 * i,0,5)
     sys.exit(app.exec_())
