@@ -23,11 +23,9 @@ class Renderer(QtWidgets.QGraphicsItem):
             self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
             self.draw = self.drawRectFunction
 
-
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
         widget: typing.Optional[QWidget]=...) -> None:
         self.draw(painter)
-
 
     def boundingRect(self) -> QtCore.QRectF:
         return QtCore.QRectF(0, 0, self.width, self.height)

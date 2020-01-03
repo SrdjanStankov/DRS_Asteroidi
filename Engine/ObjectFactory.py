@@ -3,7 +3,6 @@ import SceneManager
 import Renderer as renderer
 import Transform as transform
 
-
 from PyQt5 import QtGui
 from PyQt5.QtCore import QPointF, QRectF
 from PyQt5.QtWidgets import QGraphicsItem
@@ -48,7 +47,6 @@ class ObjectFactory:
         self.spaceshipPath.addPolygon(polygonSpaceship)
         self.spaceshipPath.closeSubpath()
 
-
     def Create(self,type,**kwargs):
         if(type == Types[0]):
             return self._CreateSpaceShip(**kwargs)
@@ -69,6 +67,7 @@ class ObjectFactory:
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed     
         go.Render = renderer.Renderer(self.asteroidWidth,self.asteroidHeight,self.asteroidPath,go.transform,self.imageAsteroid,go.Type)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
+
         self.SceneManager.scene.addItem(go.Render)
         
         return go
@@ -84,6 +83,7 @@ class ObjectFactory:
         return self.go
 
     def _CreateProjectile(self,**kwargs):
+
         width = 4
         height = -12
         go = gameObject.GameObject(kwargs["callable"])
