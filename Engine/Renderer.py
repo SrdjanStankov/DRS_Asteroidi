@@ -10,7 +10,7 @@ from Transform import Transform
 import GameLoop as loop
 
 class Renderer(QtWidgets.QGraphicsItem):
-    def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform,type, parent=None):
+    def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform,image:QtGui.QImage,type, parent=None):
         super(Renderer, self).__init__(parent)
         self.width = width
         self.height = height
@@ -21,15 +21,25 @@ class Renderer(QtWidgets.QGraphicsItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)
         self.polygon = polygon
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
+        self.image = image
 
 
-    def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
-        widget: typing.Optional[QWidget]=...) -> None:
-        painter.setClipRect(option.exposedRect)
-        painter.setPen(QPen(Qt.red, 4, Qt.SolidLine))
+    def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem', widget: typing.Optional[QWidget]=...) -> None:
+        if self.image is not None:
+            output = QtGui.QImage(self.image.size(), QtGui.QImage.Format_ARGB32)
+            output.fill(QtCore.Qt.transparent)
+            painter.begin(output)
+            path = QtGui.QPainterPath()
+            path.addPolygon(self.polygon)
+            painter.setClipPath(path)
+            painter.drawImage(QtCore.QPoint(), output)
+            painter.drawImage(QtCore.QPoint(), self.image)
+        else:
+            painter.setClipRect(option.exposedRect)
+            painter.setPen(QPen(Qt.red, 4, Qt.SolidLine))
+            painter.setBrush(Qt.cyan)
+            painter.drawPolygon(self.polygon)
 
-        painter.setBrush(Qt.cyan)
-        painter.drawPolygon(self.polygon)
 
     def boundingRect(self) -> QtCore.QRectF:
         return QtCore.QRectF(0, 0, self.width, self.height)
