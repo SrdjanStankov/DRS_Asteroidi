@@ -1,17 +1,8 @@
-import math
-import time
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
-<<<<<<< HEAD
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal
-from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
-=======
 from PyQt5.QtGui import QPen
->>>>>>> parent of 9a9f7b4... Builded game
-from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from Transform import Transform
-import GameLoop as loop
 
 class Renderer(QtWidgets.QGraphicsItem):
     def __init__(self, width, height,polygon:QtGui.QPolygonF,transform:Transform,type, parent=None):
@@ -30,8 +21,8 @@ class Renderer(QtWidgets.QGraphicsItem):
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
         widget: typing.Optional[QWidget]=...) -> None:
         painter.setClipRect(option.exposedRect)
-        painter.setPen(QPen(Qt.red, 1, Qt.SolidLine))
-        painter.setBrush(Qt.cyan)
+        painter.setPen(QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine))
+        painter.setBrush(QtCore.Qt.cyan)
         painter.drawPolygon(self.polygon)
 
     def boundingRect(self) -> QtCore.QRectF:
@@ -48,7 +39,3 @@ class Renderer(QtWidgets.QGraphicsItem):
 
     def getTopRight(self):
         return self.mapToScene(self.boundingRect().topRight())
-
-
-
-

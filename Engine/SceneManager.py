@@ -1,19 +1,8 @@
-<<<<<<< HEAD
-import math
 import time
-import typing
-from PyQt5 import QtCore, QtGui, QtWidgets, QtOpenGL
-from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QObject
-from PyQt5.QtGui import QBrush, QColor, QPen, QPainterPath, QPixmap
-from PyQt5.Qt import Qt
-from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
-import PyQt5.QtOpenGL as OpenGL
-=======
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSignal, QObject
 from PyQt5.QtGui import QBrush, QColor
 from PyQt5.Qt import Qt
->>>>>>> parent of 9a9f7b4... Builded game
 from time import sleep
 import threading as th
 import Renderer as renderer
