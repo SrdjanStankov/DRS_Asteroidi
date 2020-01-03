@@ -3,6 +3,7 @@ from Asteroid import Asteroid
 from Player import Player
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
+from CollisionDetection import CollisionDetection
 
 import InputCommandType as inputCommand
 import GameObject as gameObject
@@ -74,6 +75,7 @@ if __name__ == "__main__":
     projectileManager = ProjectileManager.ProjectileManager()
     go = SimpleGO(projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
+    collisions = CollisionDetection(mgr.Managers.getInstance().objects)
     for i in range(1,30):
         asteroidManager.createAsteroid(100 + 50 * i,0,5)
     sys.exit(app.exec_())
