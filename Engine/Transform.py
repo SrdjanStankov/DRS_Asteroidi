@@ -3,10 +3,9 @@ import math
 
 class Transform(object):
 
-    def __init__(self, rotation = 0, speed = 10, rotationSpeed = 2):
-        self.x = 0
-        self.y = 0
-        #self.position = position
+    def __init__(self, rotation = 0, speed = 10, rotationSpeed = 2, x = 0, y = 0):
+        self.x = x
+        self.y = y
         self.rotation = rotation
         self.speed = speed
         self.rotationSpeed = rotationSpeed

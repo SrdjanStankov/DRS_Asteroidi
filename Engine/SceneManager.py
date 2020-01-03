@@ -1,4 +1,3 @@
-import time
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSignal, QObject
 from PyQt5.QtGui import QBrush, QColor
@@ -6,15 +5,12 @@ from time import sleep
 import threading as th
 import Renderer as renderer
 
-
 class internalUpdate(QObject):
     update = pyqtSignal()
-
     def __init__(self):
         super(internalUpdate, self).__init__()
         self.t = th.Thread(target=self.loop)
         self.t.start()
-
     def loop(self):
         while True:
             self.update.emit()
@@ -40,16 +36,14 @@ class SceneManager(QtWidgets.QMainWindow):
         self.noti.update.connect(self.update)
         self.addSignal.connect(self.AddItem)
 
-
     def update(self):     
         for item in self.scene.items():
             if item.itemType == "Spaceship":
                 item.rotateItem()
                 item.moveItem()
             else:
-                item.beh.update() 
+                item.moveItem()
         self.scene.update()
 
     def AddItem(self,renderer):
         self.scene.addItem(renderer)    
-    

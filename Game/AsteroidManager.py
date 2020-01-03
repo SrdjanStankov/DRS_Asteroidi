@@ -1,15 +1,7 @@
-import sys
-from Asteroid import Asteroid
-from Player import Player
-from PyQt5 import QtWidgets
-from GameLoop import GameLoop as gl
 import Transform as transform
-import InputCommandType as inputCommand
 import GameObject as gameObject
-
 import Managers as mng
-import Vector as vector
-import threading
+from Asteroid import Asteroid
 
 class AsteroidBeh():
     def __init__(self, go):
@@ -30,28 +22,13 @@ class AsteroidBeh():
 class AsteroidManager(gameObject.GameObject):
     def __init__(self):
         super().__init__()
-      #  print("AsteroidManager init--->{}".format(threading.currentThread()))
 
         self.count = 0
         self.asteroids = []
 
     def createAsteroid(self,x,y,rotation):
-        tempTransform = transform.Transform()
-        tempTransform.x = x
-        tempTransform.y = y
-        tempTransform.rotation = rotation
-        tempTransform.speed = 2
-        temp = mng.Managers.getInstance().objects.Instantiate("Asteroid",transform = tempTransform,name = "")
-        temp.Render.beh = AsteroidBeh(temp)
-        self.asteroids.append(temp)
+        temp = Asteroid(x,y,rotation)
 
     def update(self):
         pass
-        #self.count += 1
-        #if(self.count % 60 == 0):
-        #    mgr.Managers.getInstance().objects.instansiateSignal.emit("Asteroid")
-        #    a = mgr.Managers.getInstance().objects.GetInstantiatedObject()
-        #    a.transform.x = self.count
-        #    a.transform.y = -50
-        #    a.asteroidBeh = AsteroidBeh(a)
-        #    self.asteroids.append(a)
+

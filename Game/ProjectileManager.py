@@ -1,6 +1,7 @@
 import GameObject as gameObject
 import Managers as mng
 import Transform as transform
+from Projectile import Projectile
 
 class ProjectileBeh():
     def __init__(self,go):
@@ -21,16 +22,7 @@ class ProjectileManager(gameObject.GameObject):
         self.projectiles = []
 
     def createProjectile(self,shooter:gameObject.GameObject):
-        topLeft = shooter.Render.getTopLeft()
-        topRight = shooter.Render.getTopRight()
-        tempTransform = transform.Transform()
-        tempTransform.x = (topLeft.x() + topRight.x()) / 2
-        tempTransform.y = (topLeft.y() + topRight.y()) / 2
-        tempTransform.rotation = shooter.transform.rotation
-        tempTransform.speed = 6
-        temp = mng.Managers.getInstance().objects.Instantiate("Projectile",transform = tempTransform,name = shooter.name)
-        temp.Render.beh = ProjectileBeh(temp)
-        self.projectiles.append(temp)
+        temp = Projectile(shooter)
 
     def update(self):
         pass

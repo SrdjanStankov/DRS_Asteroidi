@@ -50,4 +50,4 @@ class CollisionDetection:
                             self.objMan.Pool[j].collisionsType.append(self.objMan.Pool[i].Type)
                            # print(self.objMan.Pool[i].Id)
                        # print("with")
-                       # print(self.objMan.Pool[j].Id)
+                       # print(self.objMan.Pool[j].Id) 

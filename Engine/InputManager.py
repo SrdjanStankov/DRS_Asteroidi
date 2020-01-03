@@ -1,10 +1,6 @@
-import sys
 import GameLoop as loop
 import keyboard
 import InputCommandType
-from time import sleep
-from threading import Thread
-from queue import Queue
 
 
 #Set desired input for commands
@@ -23,12 +19,18 @@ class InputManager:
         self.Command = []
 
     def GetCommand(self):
-        return self.Command
+        if len(self.Command) > 0:
+            command = self.Command[-1]
+            del self.Command[-1]
+            return command
+        else:
+            return InputCommandType.InputCommandType.none
 
     def GetInput(self):
         self.Command = []
         if keyboard.is_pressed(shoot):
             self.Command.append(InputCommandType.InputCommandType.shoot)
+
         if keyboard.is_pressed(left):
             self.Command.append(InputCommandType.InputCommandType.left)
 
