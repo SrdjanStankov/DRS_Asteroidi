@@ -1,8 +1,11 @@
 import GameLoop as gameLoop
 from AsteroidAndPlayerTypes import AsteroidType
 import Managers as mng
+import time
 from random import seed,randint
 from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QObject
+
+
 
 
 class GameManager(QObject):
@@ -37,12 +40,14 @@ class GameManager(QObject):
     def spaceshipAction(self,playerId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
         if player is not None:
-            if player.lives > 1:
-                player.transform.x = 1000
-                player.transform.y = 450
-                player.lives -= 1
-            else:
-                mng.Managers.getInstance().objects.Destroy(playerId)
+            if time.time() > player.nextAliveTime:
+                player.nextAliveTime = time.time() + player.invulnerableTime
+                if player.lives > 1:
+                    player.transform.x = 1000
+                    player.transform.y = 450
+                    player.lives -= 1
+                else:
+                    mng.Managers.getInstance().objects.Destroy(playerId)
 
 
 

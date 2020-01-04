@@ -18,6 +18,8 @@ class Player(GameObject):
         self.projectileManager = projectileManager
         self.shootInterval = 0.2
         self.nextShootTime = time.time()
+        self.player.invulnerableTime = 4
+        self.player.nextAliveTime = time.time()
 
     def update(self):
         command = mng.Managers.getInstance().input.GetCommand() 
