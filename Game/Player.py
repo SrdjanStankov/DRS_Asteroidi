@@ -22,15 +22,15 @@ class Player(GameObject):
         self.player.nextAliveTime = time.time()
 
     def update(self):
-        command = mng.Managers.getInstance().input.GetCommand() 
-        if command == inputCommand.InputCommandType.left:
-            self.player.transform.rotate(-1)
-        if command == inputCommand.InputCommandType.right:
-            self.player.transform.rotate(1)
-        if command == inputCommand.InputCommandType.up:
-            self.player.transform.move(1)
-        if command == inputCommand.InputCommandType.down:
-            self.player.transform.move(-1)
-        if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
-            self.projectileManager.createProjectile(self.player)
-            self.nextShootTime = time.time() + self.shootInterval 
+        for command in mng.Managers.getInstance().input.Command: 
+            if command == inputCommand.InputCommandType.left:
+                self.player.transform.rotate(-1)
+            if command == inputCommand.InputCommandType.right:
+                self.player.transform.rotate(1)
+            if command == inputCommand.InputCommandType.up:
+                self.player.transform.move(1)
+            if command == inputCommand.InputCommandType.down:
+                self.player.transform.move(-1)
+            if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
+                self.projectileManager.createProjectile(self.player)
+                self.nextShootTime = time.time() + self.shootInterval 
