@@ -26,7 +26,7 @@ class SceneManager(QtWidgets.QMainWindow):
         self.scene.setBackgroundBrush(QBrush(QColor('black')))
         self.scene.setSceneRect(0, 0, 1300, 700)
         self.view = QtWidgets.QGraphicsView(self.scene)
-        self.view.setSceneRect(70, 0, 1280, 680)
+        self.view.setSceneRect(70, 0, 1100, 680)
         self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
