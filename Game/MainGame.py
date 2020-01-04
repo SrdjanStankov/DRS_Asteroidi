@@ -7,6 +7,7 @@ import Managers as mgr
 import AsteroidManager as AsteroidManager
 import ProjectileManager as ProjectileManager
 from CollisionDetection import CollisionDetection
+from GameManager import GameManager
             
 # method for canceling game loop thread
 def cancel():
@@ -26,6 +27,10 @@ if __name__ == "__main__":
     go = Player("Dejan",projectileManager)
     asteroidManager = AsteroidManager.AsteroidManager()
     collisionManager = CollisionDetection(objectManager)
+    gm = GameManager(asteroidManager,projectileManager)
+    projectileManager.gameSignal = gm.asteroidDestroyed
+    asteroidManager.gameSignal = gm.spaceshipDestroyed
+
     for i in range(1,10):
         asteroidManager.createAsteroid(100 + 50*i,0,5)
     sys.exit(app.exec_())

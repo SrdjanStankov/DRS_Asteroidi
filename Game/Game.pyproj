@@ -26,6 +26,9 @@
     <Compile Include="AsteroidManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GameManager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MainGame.py" />
     <Compile Include="Managers.py">
       <SubType>Code</SubType>
@@ -33,7 +36,7 @@
     <Compile Include="Player.py">
       <SubType>Code</SubType>
     </Compile>
-	<Compile Include="Projectile.py">
+    <Compile Include="Projectile.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProjectileManager.py">

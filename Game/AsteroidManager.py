@@ -12,7 +12,7 @@ class AsteroidManager(gameObject.GameObject):
         self.asteroids = []
 
     def createAsteroid(self,x,y,rotation):
-        temp = Asteroid(x,y,rotation)
+        temp = Asteroid(x,y,rotation,self.gameSignal)
 
     def update(self):
         pass

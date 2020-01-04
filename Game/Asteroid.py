@@ -1,11 +1,13 @@
 from GameObject import GameObject
+from PyQt5.QtCore import QObject
 import types
 import Transform as transform
 import Managers as mng
 
 class Asteroid():
 
-    def __init__(self,x,y,rotation):
+    def __init__(self,x,y,rotation,gameSignal):
+        super(Asteroid,self).__init__()
         tempTransform = transform.Transform()
         tempTransform.x = x
         tempTransform.y = y
@@ -13,13 +15,14 @@ class Asteroid():
         tempTransform.speed = 2
         self.asteroid = mng.Managers.getInstance().objects.Instantiate("Asteroid",transform = tempTransform,name = "",callable = self.update)
         self.asteroid.Render.rotateItem()
+        self.gameSignal = gameSignal
 
 
     def update(self):
         self.asteroid.transform.move(1)
-        for item in self.asteroid.collisionsType:
-            if item == "Projectile":
-                try:
-                    mng.Managers.getInstance().objects.Destroy(self.asteroid.Id)
-                except:
-                    pass
+        for ind,item in enumerate(self.asteroid.collisionsType):
+            if item == "Spaceship":
+                #try:
+                    self.gameSignal.emit(self.asteroid.collisions[ind])
+                #except:
+                #    pass

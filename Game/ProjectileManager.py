@@ -11,7 +11,7 @@ class ProjectileManager(gameObject.GameObject):
         self.projectiles = []
 
     def createProjectile(self,shooter:gameObject.GameObject):
-        temp = Projectile(shooter)
+        temp = Projectile(shooter,self.gameSignal)
 
     def update(self):
         pass

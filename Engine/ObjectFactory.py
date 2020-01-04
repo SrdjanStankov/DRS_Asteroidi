@@ -2,7 +2,7 @@ import GameObject as gameObject
 import SceneManager
 import Renderer as renderer
 import Transform as transform
-import enum
+from AsteroidAndPlayerTypes import AsteroidType, PlayerType
 from PyQt5 import QtGui
 from PyQt5.QtCore import QPointF, QRectF
 from PyQt5.QtWidgets import QGraphicsItem
@@ -30,6 +30,7 @@ class ObjectFactory:
     def _CreteAsteroid(self,**kwargs):
         go = gameObject.GameObject(kwargs["callable"])
         go.Type = "Asteroid"
+        go.asteroidType = AsteroidType.large
         go.transform = transform.Transform()
         go.transform.x = kwargs["transform"].x
         go.transform.y = kwargs["transform"].y
@@ -73,13 +74,7 @@ class ObjectFactory:
 
         return go
 
-class AsteroidType(enum.Enum):
-    large = 0
-    medium = 1
-    small = 2
 
-class PlayerType(enum.Enum):
-    player1 = 0
 
 class ItemFactory():
     def __init__(self,**kwargs):

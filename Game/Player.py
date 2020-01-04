@@ -1,5 +1,5 @@
 from GameObject import GameObject
-import Managers as mgr
+import Managers as mng
 import InputCommandType as inputCommand
 import time
 
@@ -7,10 +7,12 @@ class Player(GameObject):
 
     def __init__(self,name,projectileManager):
         super().__init__()
-        self.go1 = mgr.Managers.getInstance().objects.Instantiate("Spaceship",name = name)
-        self.go1.transform.speed = 2
-        self.go1.transform.x = 1000
-        self.go1.transform.y = 450
+        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship",name = name)
+        self.player.lives = 3
+        self.player.points = 0
+        self.player.transform.speed = 2
+        self.player.transform.x = 1000
+        self.player.transform.y = 450
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
@@ -18,15 +20,15 @@ class Player(GameObject):
         self.nextShootTime = time.time()
 
     def update(self):
-        command = mgr.Managers.getInstance().input.GetCommand() 
+        command = mng.Managers.getInstance().input.GetCommand() 
         if command == inputCommand.InputCommandType.left:
-            self.go1.transform.rotate(-1)
+            self.player.transform.rotate(-1)
         if command == inputCommand.InputCommandType.right:
-            self.go1.transform.rotate(1)
+            self.player.transform.rotate(1)
         if command == inputCommand.InputCommandType.up:
-            self.go1.transform.move(1)
+            self.player.transform.move(1)
         if command == inputCommand.InputCommandType.down:
-            self.go1.transform.move(-1)
+            self.player.transform.move(-1)
         if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
-            self.projectileManager.createProjectile(self.go1)
+            self.projectileManager.createProjectile(self.player)
             self.nextShootTime = time.time() + self.shootInterval 
