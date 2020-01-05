@@ -2,12 +2,14 @@ import sys
 from Player import Player
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
-
+from AsteroidAndPlayerTypes import AsteroidType
 import Managers as mgr
 import AsteroidManager as AsteroidManager
 import ProjectileManager as ProjectileManager
 from CollisionDetection import CollisionDetection
 from GameManager import GameManager
+from ScreenSides import ScreenSide  
+from random import seed,randint
             
 # method for canceling game loop thread
 def cancel():
@@ -20,7 +22,7 @@ if __name__ == "__main__":
 
     input = mgr.Managers.getInstance().input
     sceneManager = mgr.Managers.getInstance().scene
-    sceneManager.resize(1300, 700)
+    sceneManager.resize(1300, 768)
     sceneManager.show()
     objectManager = mgr.Managers.getInstance().objects
     projectileManager = ProjectileManager.ProjectileManager()
@@ -29,8 +31,9 @@ if __name__ == "__main__":
     collisionManager = CollisionDetection(objectManager)
     gm = GameManager(asteroidManager,projectileManager)
     projectileManager.gameSignal = gm.asteroidDestroyed
-    asteroidManager.gameSignal = gm.spaceshipDestroyed
-
+    asteroidManager.signalCollision = gm.spaceshipDestroyed
+    asteroidManager.signalMapEnd = gm.asteroidEnd   
     for i in range(1,10):
-        asteroidManager.createAsteroid(100 + 50*i,0,5)
+        side = ScreenSide(randint(0,3))
+        asteroidManager.createAsteroid(side)
     sys.exit(app.exec_())

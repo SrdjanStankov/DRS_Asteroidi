@@ -1,13 +1,13 @@
-from GameObject import GameObject
+from PyQt5.QtCore import QObject
 import Managers as mng
 import InputCommandType as inputCommand
 import time
 
-class Player(GameObject):
+class Player(QObject):
 
     def __init__(self,name,projectileManager):
-        super().__init__()
-        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship",name = name)
+        super(Player,self).__init__()
+        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship",name = name,callable = self.update)
         self.player.lives = 3
         self.player.points = 0
         self.player.transform.speed = 2
