@@ -43,6 +43,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ScreenSides.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SpeedUp.py">
       <SubType>Code</SubType>
     </Compile>
