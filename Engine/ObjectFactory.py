@@ -7,7 +7,7 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import QPointF, QRectF
 from PyQt5.QtWidgets import QGraphicsItem
 
-Types = ["Spaceship", "Asteroid", "Projectile"]    # ;)
+Types = ["Spaceship", "Asteroid", "Projectile", "SpeedUp"]    # ;)
 class ObjectFactory:
     def __init__(self,SceneManager:SceneManager):
         self.SceneManager = SceneManager
@@ -25,6 +25,24 @@ class ObjectFactory:
             return self._CreteAsteroid(**kwargs)
         elif(type == Types[2]):
             return self._CreateProjectile(**kwargs)
+        elif(type == Types[3]):
+            return self._CreateSpeedUp(**kwargs)
+
+    def _CreateSpeedUp(self, **kwargs):
+        go = gameObject.GameObject()
+        go.Type = "SpeedUp"
+        go.transform = transform.Transform()
+        go.transform.x = kwargs["transform"].x
+        go.transform.y = kwargs["transform"].y
+        go.transform.speed = kwargs["transform"].speed
+        go.transform.rotation = kwargs["transform"].rotation
+        go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=None, image=None)
+        go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
+
+        self.SceneManager.scene.addItem(go.Render)
+
+        return go
 
     # Here populate Asteroid with all his properties
     def _CreteAsteroid(self,**kwargs):

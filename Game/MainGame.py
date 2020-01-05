@@ -1,5 +1,6 @@
 import sys
 from Player import Player
+from SpeedUp import SpeedUp
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
 
@@ -33,4 +34,6 @@ if __name__ == "__main__":
 
     for i in range(1,10):
         asteroidManager.createAsteroid(100 + 50*i,0,5)
+
+    SpeedUp(1000, 350)
     sys.exit(app.exec_())
