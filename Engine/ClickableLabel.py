@@ -16,9 +16,9 @@ class ClickableQLabel(QLabel):
         self.clicked.connect(method)
 
     def enterEvent(self, event):
-        self.setStyleSheet("color: yellow; font-size: 40px")
+        self.setStyleSheet("color: yellow; font-size: 40px; background-color: rgba(0,0,0,0%)")
 
     def leaveEvent(self, event):
-        self.setStyleSheet("color: white; font-size: 40px")
+        self.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
 
 
