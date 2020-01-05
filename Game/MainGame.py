@@ -1,5 +1,6 @@
 import sys
 from Player import Player
+from SpeedUp import SpeedUp
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
 from AsteroidAndPlayerTypes import AsteroidType
@@ -34,6 +35,5 @@ if __name__ == "__main__":
     asteroidManager.signalCollision = gm.spaceshipDestroyed
     asteroidManager.signalMapEnd = gm.asteroidEnd   
     for i in range(1,10):
-        side = ScreenSide(randint(0,3))
-        asteroidManager.createAsteroid(side)
+        asteroidManager.createAsteroid(ScreenSide(randint(0,3))
     sys.exit(app.exec_())
