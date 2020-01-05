@@ -18,13 +18,8 @@ class InputManager:
         self.gl.connect_to_update(self.GetInput)
         self.Command = []
 
-    def GetCommand(self):
-        if len(self.Command) > 0:
-            command = self.Command[-1]
-            del self.Command[-1]
-            return command
-        else:
-            return InputCommandType.InputCommandType.none
+    def GetCommands(self):
+        return self.Command
 
     def GetInput(self):
         self.Command = []

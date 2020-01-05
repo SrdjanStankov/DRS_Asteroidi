@@ -22,7 +22,7 @@ class Player(QObject):
         self.player.nextAliveTime = time.time()
 
     def update(self):
-        for command in mng.Managers.getInstance().input.Command: 
+        for command in mng.Managers.getInstance().input.GetCommands(): 
             if command == inputCommand.InputCommandType.left:
                 self.player.transform.rotate(-1)
             if command == inputCommand.InputCommandType.right:

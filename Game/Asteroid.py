@@ -6,13 +6,13 @@ import Managers as mng
 
 class Asteroid(QObject):
 
-    def __init__(self,type,x,y,rotation,signalCollision,signalMapEnd):
+    def __init__(self,type,x,y,rotation,speed,signalCollision,signalMapEnd):
         super(Asteroid,self).__init__()
         tempTransform = transform.Transform()
         tempTransform.x = x
         tempTransform.y = y
         tempTransform.rotation = rotation
-        tempTransform.speed = 2
+        tempTransform.speed = speed
         self.asteroid = mng.Managers.getInstance().objects.Instantiate("Asteroid",asteroidType = type,transform = tempTransform,name = "",callable = self.update)
         self.asteroid.Render.rotateItem()
         self.signalCollision = signalCollision

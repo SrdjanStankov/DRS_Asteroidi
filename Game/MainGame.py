@@ -34,7 +34,5 @@ if __name__ == "__main__":
     projectileManager.gameSignal = gm.asteroidDestroyed
     asteroidManager.signalCollision = gm.spaceshipDestroyed
     asteroidManager.signalMapEnd = gm.asteroidEnd   
-    for i in range(1,10):
-        asteroidManager.createAsteroid(ScreenSide(randint(0,3)))
     SpeedUp(1000, 350)
     sys.exit(app.exec_())

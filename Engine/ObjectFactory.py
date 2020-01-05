@@ -60,8 +60,10 @@ class ObjectFactory:
         if go.asteroidType is AsteroidType.large:
             go.Render = renderer.Renderer(80,80,path,go.transform,image,go.Type)
         elif go.asteroidType is AsteroidType.medium:
+            go.transform.speed += 0.2
             go.Render = renderer.Renderer(50,50,path,go.transform,image,go.Type)
         else:
+            go.transform.speed += 0.4
             go.Render = renderer.Renderer(30,30,path,go.transform,image,go.Type)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 

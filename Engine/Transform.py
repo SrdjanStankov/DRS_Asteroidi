@@ -21,7 +21,7 @@ class Transform(object):
         dy = Direction * math.cos(math.radians(self.rotation)) * self.speed
         self.x += dx
         self.y -= dy
-        if self.x >= 1400 or self.x < -100 or self.y >= 868 or self.y < -100:
+        if self.x >= 1400 or self.x < -110 or self.y >= 880 or self.y < -110:
             return False
         else:
             return True
