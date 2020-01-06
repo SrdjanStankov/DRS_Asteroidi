@@ -56,9 +56,15 @@ class GameManager(QObject):
             if type is AsteroidType.large:
                 player.points += 100
                 self.createSmallerAsteroids(x,y,AsteroidType.medium)
+                self.lock.acquire()
+                self.asteroidsToDestroy += 2
+                self.lock.release()
             elif type is AsteroidType.medium:
                 player.points += 150
                 self.createSmallerAsteroids(x,y,AsteroidType.small)
+                self.lock.acquire()
+                self.asteroidsToDestroy += 2
+                self.lock.release()
             else:
                 player.points += 200
 

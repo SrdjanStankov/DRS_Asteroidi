@@ -71,7 +71,6 @@ class ObjectFactory:
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
-        
         return go
 
     # Here populate Spaceship with all his properties
