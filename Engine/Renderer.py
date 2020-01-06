@@ -45,8 +45,7 @@ class Renderer(QtWidgets.QGraphicsItem):
     def rotateItem(self):
         self.setRotation(self.transform.rotation)
 
-    def getTopLeft(self):
-        return self.mapToScene(self.boundingRect().topLeft())
-
-    def getTopRight(self):
-        return self.mapToScene(self.boundingRect().topRight())
+    def getTopCenter(self):
+        topLeft = self.mapToScene(self.boundingRect().topLeft())
+        topRight = self.mapToScene(self.boundingRect().topRight())
+        return (topLeft.x() + topRight.x()) / 2, (topLeft.y() + topRight.y()) / 2

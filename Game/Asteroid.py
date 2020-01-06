@@ -20,13 +20,13 @@ class Asteroid(QObject):
 
 
     def update(self):
-        if self.asteroid.transform.move(1):
-            for ind,item in enumerate(self.asteroid.collisionsType):
-                if item == "Spaceship":
-                    #try:
+        try:
+            if self.asteroid.transform.move(1):
+                for ind,item in enumerate(self.asteroid.collisionsType):
+                    if item == "Spaceship":
                         self.signalCollision.emit(self.asteroid.collisions[ind])
-                    #except:
-                    #    pass
-        else:
-            mng.Managers.getInstance().objects.Destroy(self.asteroid.Id)
-            self.signalMapEnd.emit()
+            else:
+                mng.Managers.getInstance().objects.Destroy(self.asteroid.Id)
+                self.signalMapEnd.emit()
+        except:
+            pass

@@ -58,12 +58,15 @@ class ObjectFactory:
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image,path = self.itemFactory.getAsteroid(AsteroidType.large)
         if go.asteroidType is AsteroidType.large:
+            go.radius = 40
             go.Render = renderer.Renderer(80,80,path,go.transform,image,go.Type)
         elif go.asteroidType is AsteroidType.medium:
+            go.radius = 25
             go.transform.speed += 0.2
             go.Render = renderer.Renderer(50,50,path,go.transform,image,go.Type)
         else:
             go.transform.speed += 0.4
+            go.radius = 15
             go.Render = renderer.Renderer(30,30,path,go.transform,image,go.Type)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 

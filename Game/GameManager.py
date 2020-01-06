@@ -19,7 +19,7 @@ class gameStateUpdate(QObject):
     def loop(self):
         while True:
             self.update.emit()
-            time.sleep(1 / 150)
+            time.sleep(2)
 
 
 
@@ -39,12 +39,15 @@ class GameManager(QObject):
         self.currentLevel = 0
         self.noti = gameStateUpdate()
         self.noti.update.connect(self.update)
+        self.lock = th.Lock()
 
     def asteroidAction(self,asteroidId,playerId,projectileId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
         asteroid = mng.Managers.getInstance().objects.FindById(asteroidId)
         if player is not None and asteroid is not None:
+            self.lock.acquire()
             self.asteroidsToDestroy -= 1
+            self.lock.release()
             mng.Managers.getInstance().objects.Destroy(projectileId)
             x = asteroid.transform.x
             y = asteroid.transform.y
@@ -84,9 +87,11 @@ class GameManager(QObject):
 
     def startLevel(self):
         print(f"Starting level {self.currentLevel + 1}")
+        self.lock.acquire()
         self.currentLevel += 1
         self.asteroidsToDestroy = 2 * self.currentLevel + 1
         self.currentAsteroidSpeed += 0.2
+        self.lock.release()
         if self.currentLevel % 4 == 0:
             for item  in mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship"):
                 item.transform.speed += 0.2
@@ -95,5 +100,8 @@ class GameManager(QObject):
             self.asteroidManager.createAsteroid(ScreenSide(randint(0,3)),self.currentAsteroidSpeed)
 
     def update(self):
-        if self.asteroidsToDestroy <= 0:
-            self.startLevel()
+        if len(mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship")) > 0:
+            if self.asteroidsToDestroy <= 0:
+                self.startLevel()
+        else:
+            pass # game over logika
