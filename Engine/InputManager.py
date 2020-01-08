@@ -27,25 +27,31 @@ class InputManager:
         self.pipeIn = read
        
     def GetCommands(self):
-        return self.Command
+       if len(self.Command) > 0:
+            command = self.Command[-1]
+            del self.Command[-1]
+            return command
+       else:
+            return InputCommandType.InputCommandType.none
 
     def GetInput(self):
         #if self.pipeIn is not None:
         #    self.Command = json.loads(self.pipeIn.recv())
-        self.Command_internal = []
+        #self.Command_internal = []
+        self.Command = []
         if keyboard.is_pressed(shoot):
-            self.Command_internal.append(InputCommandType.InputCommandType.shoot)
+            self.Command.append(InputCommandType.InputCommandType.shoot)
 
         if keyboard.is_pressed(left):
-            self.Command_internal.append(InputCommandType.InputCommandType.left)
+            self.Command.append(InputCommandType.InputCommandType.left)
 
         if keyboard.is_pressed(right):
-            self.Command_internal.append(InputCommandType.InputCommandType.right)
+            self.Command.append(InputCommandType.InputCommandType.right)
 
         if keyboard.is_pressed(up):
-            self.Command_internal.append(InputCommandType.InputCommandType.up)
+            self.Command.append(InputCommandType.InputCommandType.up)
         
         if keyboard.is_pressed(down):
-            self.Command_internal.append(InputCommandType.InputCommandType.down)
+            self.Command.append(InputCommandType.InputCommandType.down)
         #if self.pipeOut is not None:
         #    self.pipeOut.send(json.dumps(self.Command_internal))
