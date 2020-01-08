@@ -27,7 +27,6 @@ class SpeedUp(GameObject):
                     self.expirationTime = time() + self.durationTime
                     mgr.Managers.getInstance().objects.Destroy(self.obj.Id)
                     self.collected = True
-                    print("colected")
         
         if self.collected and (time() >= self.expirationTime):
             try:
