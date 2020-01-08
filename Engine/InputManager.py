@@ -26,13 +26,8 @@ class InputManager:
         self.pipeOut = write
         self.pipeIn = read
        
-    def GetCommand(self):
-        if len(self.Command) > 0:
-            command = self.Command[-1]
-            del self.Command[-1]
-            return command
-        else:
-            return InputCommandType.InputCommandType.none
+    def GetCommands(self):
+        return self.Command
 
     def GetInput(self):
         if self.pipeIn is not None:

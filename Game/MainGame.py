@@ -61,8 +61,6 @@ if __name__ == "__main__":
     projectileManager.gameSignal = gm.asteroidDestroyed
     asteroidManager.gameSignal = gm.spaceshipDestroyed
 
-    for i in range(1,10):
-        asteroidManager.createAsteroid(100 + 50 * i,0,5)
 
 
     cl_in,cl_out = mp.Pipe()
