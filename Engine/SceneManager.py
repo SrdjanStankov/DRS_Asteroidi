@@ -4,6 +4,7 @@ from PyQt5.QtGui import QBrush, QColor
 from time import sleep
 import threading as th
 import Renderer as renderer
+import GameLoop as gameLoop
 
 class internalUpdate(QObject):
     update = pyqtSignal()
@@ -13,6 +14,8 @@ class internalUpdate(QObject):
         self.t.start()
     def loop(self):
         while True:
+            if gameLoop.GameLoop.getInstance()._cancelation_token==True:
+                break
             self.update.emit()
             sleep(1 / 60)
 

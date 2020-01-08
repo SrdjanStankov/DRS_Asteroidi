@@ -18,6 +18,8 @@ class gameStateUpdate(QObject):
 
     def loop(self):
         while True:
+            if gameLoop.GameLoop.getInstance()._cancelation_token==True:
+                break
             self.update.emit()
             time.sleep(2)
 
