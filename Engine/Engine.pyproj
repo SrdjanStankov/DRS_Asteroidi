@@ -28,6 +28,9 @@
     <Compile Include="CollisionDetection.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommandMapper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GameLoop.py">
       <SubType>Code</SubType>
     </Compile>
@@ -54,6 +57,8 @@
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="socket_listen.py" />
+    <Compile Include="socket_send.py" />
     <Compile Include="Transform.py">
       <SubType>Code</SubType>
     </Compile>

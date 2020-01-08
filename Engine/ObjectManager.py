@@ -54,4 +54,15 @@ class ObjectManager(QObject):
             self.Pool.remove(temp)
         else:
             pass
-            #print(f"Object with id {self.id} not found.") 
+            #print(f"Object with id {self.id} not found.")
+
+
+
+    def internalInstantiate():
+        pass
+    def internalDestroy():
+        pass
+
+   # This is should be attached to client pipe
+    def Update(data):
+        pass

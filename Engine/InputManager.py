@@ -1,6 +1,8 @@
 import GameLoop as loop
 import keyboard
 import InputCommandType
+import json
+from enum import IntEnum
 
 
 #Set desired input for commands
@@ -17,7 +19,13 @@ class InputManager:
         self.gl = loop.GameLoop.getInstance()
         self.gl.connect_to_update(self.GetInput)
         self.Command = []
-
+        self.pipeOut = None
+        self.pipeIn = None
+    
+    def SetPipes(self,write,read):
+        self.pipeOut = write
+        self.pipeIn = read
+       
     def GetCommand(self):
         if len(self.Command) > 0:
             command = self.Command[-1]
@@ -27,20 +35,22 @@ class InputManager:
             return InputCommandType.InputCommandType.none
 
     def GetInput(self):
-        self.Command = []
+        if self.pipeIn is not None:
+            self.Command = json.loads(self.pipeIn.recv())
+        self.Command_internal = []
         if keyboard.is_pressed(shoot):
-            self.Command.append(InputCommandType.InputCommandType.shoot)
+            self.Command_internal.append(InputCommandType.InputCommandType.shoot)
 
         if keyboard.is_pressed(left):
-            self.Command.append(InputCommandType.InputCommandType.left)
+            self.Command_internal.append(InputCommandType.InputCommandType.left)
 
         if keyboard.is_pressed(right):
-            self.Command.append(InputCommandType.InputCommandType.right)
+            self.Command_internal.append(InputCommandType.InputCommandType.right)
 
         if keyboard.is_pressed(up):
-            self.Command.append(InputCommandType.InputCommandType.up)
+            self.Command_internal.append(InputCommandType.InputCommandType.up)
         
         if keyboard.is_pressed(down):
-            self.Command.append(InputCommandType.InputCommandType.down)
-       
-       # print(self.Command) #test
+            self.Command_internal.append(InputCommandType.InputCommandType.down)
+        if self.pipeOut is not None:
+            self.pipeOut.send(json.dumps(self.Command_internal))
