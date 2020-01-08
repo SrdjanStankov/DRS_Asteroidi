@@ -59,8 +59,8 @@ if __name__ == "__main__":
     collisionManager = CollisionDetection(objectManager)
     gm = GameManager(asteroidManager,projectileManager)
     projectileManager.gameSignal = gm.asteroidDestroyed
-    asteroidManager.gameSignal = gm.spaceshipDestroyed
-
+    asteroidManager.signalCollision = gm.spaceshipDestroyed
+    asteroidManager.signalMapEnd = gm.asteroidEnd
 
 
     cl_in,cl_out = mp.Pipe()
