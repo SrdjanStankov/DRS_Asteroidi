@@ -1,8 +1,9 @@
 import sys
 from Player import Player
+from SpeedUp import SpeedUp
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
-
+from AsteroidAndPlayerTypes import AsteroidType
 import Managers as mgr
 import AsteroidManager as AsteroidManager
 import ProjectileManager as ProjectileManager
@@ -49,7 +50,7 @@ if __name__ == "__main__":
 
     input = mgr.Managers.getInstance().input
     sceneManager = mgr.Managers.getInstance().scene
-    sceneManager.resize(1300, 700)
+    sceneManager.resize(1300, 768)
     sceneManager.show()
     objectManager = mgr.Managers.getInstance().objects
     projectileManager = ProjectileManager.ProjectileManager()

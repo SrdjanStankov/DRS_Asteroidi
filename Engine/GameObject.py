@@ -20,3 +20,11 @@ class GameObject():
     def update(self):
         """This method will be automatically called inside Game Loop when defined."""
         pass
+
+    def destroy(self):
+        gl.GameLoop.getInstance().disconnect_from_update(self.callable)
+        try:
+            for x in range(100):
+                del self
+        except :
+            pass

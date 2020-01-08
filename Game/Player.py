@@ -1,13 +1,13 @@
-from GameObject import GameObject
+from PyQt5.QtCore import QObject
 import Managers as mng
 import InputCommandType as inputCommand
 import time
 
-class Player(GameObject):
+class Player(QObject):
 
     def __init__(self,name,projectileManager):
-        super().__init__()
-        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship",name = name)
+        super(Player,self).__init__()
+        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship",name = name,callable = self.update)
         self.player.lives = 3
         self.player.points = 0
         self.player.transform.speed = 2
@@ -22,15 +22,19 @@ class Player(GameObject):
         self.player.nextAliveTime = time.time()
 
     def update(self):
-        for command in mng.Managers.getInstance().input.Command: 
+        for command in mng.Managers.getInstance().input.GetCommands(): 
             if command == inputCommand.InputCommandType.left:
                 self.player.transform.rotate(-1)
             if command == inputCommand.InputCommandType.right:
                 self.player.transform.rotate(1)
             if command == inputCommand.InputCommandType.up:
-                self.player.transform.move(1)
-            if command == inputCommand.InputCommandType.down:
-                self.player.transform.move(-1)
+                topCenter = self.player.Render.getTopCenter()
+                if topCenter[0] <= 1300 and topCenter[1] <= 753  and topCenter[0] > 0 and topCenter[1] > 0:
+                    self.player.transform.move(1)
+            #if command == inputCommand.InputCommandType.down:
+            #    topCenter = self.player.Render.getTopCenter()
+            #    if topCenter[0] <= 1300 and topCenter[1] <= 753 and topCenter[0] > 0 and topCenter[1] > 0:
+            #        self.player.transform.move(-1)
             if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
                 self.projectileManager.createProjectile(self.player)
                 self.nextShootTime = time.time() + self.shootInterval 

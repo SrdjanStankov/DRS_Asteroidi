@@ -39,6 +39,9 @@
     </Compile>
     <Compile Include="InputCommandType.py" />
     <Compile Include="InputManager.py" />
+    <Compile Include="ItemFactory.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Main.py">
       <SubType>Code</SubType>
     </Compile>
