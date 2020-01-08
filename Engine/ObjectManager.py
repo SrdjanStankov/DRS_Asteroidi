@@ -1,6 +1,5 @@
 import ObjectFactory as factory
 import SceneManager
-import threading as th
 import GameLoop as gl
 from PyQt5.QtCore import pyqtSignal, QObject
 # Responsible for creating , accessing and destroying objects
@@ -56,7 +55,6 @@ class ObjectManager(QObject):
             self.Pool.remove(temp)
         else:
             pass
-            #print(f"Object with id {self.id} not found.")
 
 
 
@@ -65,6 +63,5 @@ class ObjectManager(QObject):
     def internalDestroy():
         pass
 
-   # This is should be attached to client pipe
     def Update(data):
         pass

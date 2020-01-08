@@ -17,6 +17,8 @@ class internalUpdate(QObject):
 
     def loop(self):
         while True:
+            if gameLoop.GameLoop.getInstance()._cancelation_token==True:
+                break
             self.update.emit()
             sleep(1 / 10)
 
