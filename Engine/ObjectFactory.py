@@ -18,9 +18,9 @@ class ObjectFactory:
             mediumAsteroidWidth=50, mediumAsteroidHeight=50,
             smallAsteroidWidth=30, smallAsteroidHeight=30,
             player1Width=80, player1Height=100,
-            speedUpWidth=80, speedUpHeight=80,
-            fireRateSpeedUpWidth=80, fireRateSpeedUpHeight=80,
-            extraLifeWidth=80, extraLifeHeight=80)
+            speedUpWidth=40, speedUpHeight=110,
+            fireRateSpeedUpWidth=40, fireRateSpeedUpHeight=80,
+            extraLifeWidth=50, extraLifeHeight=50)
 
     def Create(self,type,**kwargs):
         if(type == Types[0]):

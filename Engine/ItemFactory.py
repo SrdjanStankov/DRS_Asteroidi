@@ -61,8 +61,8 @@ class ItemFactory():
 
     def makeAsteroid(self,width,height,imageName):
         img3 = QtGui.QImage(imageName)
-        img4 = img3.scaledToHeight(width)
-        imageAsteroid = img4.scaledToWidth(height)
+        img4 = img3.scaledToHeight(height)
+        imageAsteroid = img4.scaledToWidth(width)
         imageAsteroid.convertToFormat(QtGui.QImage.Format_ARGB32)
         polygonAsteroid = QtGui.QPolygonF([QPointF(0, 0.3 * height),
                                    QPointF(0, 0.6 * height),
@@ -97,8 +97,8 @@ class ItemFactory():
 
     def make_SpeedUp_FireRateSpeedUp_ExtraLife(self, width, height, image):
         img1 = QtGui.QImage(image)
-        img2 = img1.scaledToHeight(width)
-        imagee = img2.scaledToWidth(height)
+        img2 = img1.scaledToHeight(height)
+        imagee = img2.scaledToWidth(width)
         imagee.convertToFormat(QtGui.QImage.Format_ARGB32)
         polygon = QtGui.QPolygonF([
             QPointF(0, 0),
