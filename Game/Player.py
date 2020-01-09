@@ -16,7 +16,7 @@ class Player(QObject):
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
-        self.shootInterval = 0.2
+        self.player.shootInterval = 0.2
         self.nextShootTime = time.time()
         self.player.invulnerableTime = 4
         self.player.nextAliveTime = time.time()
@@ -37,4 +37,4 @@ class Player(QObject):
             #        self.player.transform.move(-1)
             if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
                 self.projectileManager.createProjectile(self.player)
-                self.nextShootTime = time.time() + self.shootInterval 
+                self.nextShootTime = time.time() + self.player.shootInterval 

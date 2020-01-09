@@ -26,6 +26,9 @@
     <Compile Include="AsteroidManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FireRateSpeedUp.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GameManager.py">
       <SubType>Code</SubType>
     </Compile>
