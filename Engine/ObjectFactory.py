@@ -8,7 +8,7 @@ from PyQt5.QtCore import QPointF, QRectF
 from PyQt5.QtWidgets import QGraphicsItem
 from ItemFactory import ItemFactory
 
-Types = ["Spaceship", "Asteroid", "Projectile", "SpeedUp", "FireRateSpeedUp"]    # ;)
+Types = ["Spaceship", "Asteroid", "Projectile", "SpeedUp", "FireRateSpeedUp", "ExtraLife"]    # ;)
 class ObjectFactory:
     def __init__(self,SceneManager:SceneManager):
         self.SceneManager = SceneManager
@@ -30,7 +30,25 @@ class ObjectFactory:
             return self._CreateSpeedUp(**kwargs)
         elif(type == Types[4]):
             return self._CreateFireRateSpeedUp(**kwargs)
+        elif(type == Types[5]):
+            return self._CreateExtraLife(**kwargs)
 
+    def _CreateExtraLife(self, **kwargs):
+        go = gameObject.GameObject()
+        go.Type = "ExtraLife"
+        go.transform = transform.Transform()
+        go.transform.x = kwargs["transform"].x
+        go.transform.y = kwargs["transform"].y
+        go.transform.speed = kwargs["transform"].speed
+        go.transform.rotation = kwargs["transform"].rotation
+        go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=None, image=None)
+        go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
+
+        self.SceneManager.scene.addItem(go.Render)
+
+        return go
+        
     def _CreateFireRateSpeedUp(self, **kwargs):
         go = gameObject.GameObject()
         go.Type = "FireRateSpeedUp"
