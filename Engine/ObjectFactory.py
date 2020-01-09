@@ -14,10 +14,13 @@ class ObjectFactory:
         self.SceneManager = SceneManager
         print("Factory on duty.")
         self.itemFactory = ItemFactory(
-            largeAsteroidWidth = 80, largeAsteroidHeight = 80,
-            mediumAsteroidWidth = 50, mediumAsteroidHeight = 50,
-            smallAsteroidWidth = 30, smallAsteroidHeight = 30,
-            player1Width = 80, player1Height = 100)
+            largeAsteroidWidth=80, largeAsteroidHeight=80,
+            mediumAsteroidWidth=50, mediumAsteroidHeight=50,
+            smallAsteroidWidth=30, smallAsteroidHeight=30,
+            player1Width=80, player1Height=100,
+            speedUpWidth=80, speedUpHeight=80,
+            fireRateSpeedUpWidth=80, fireRateSpeedUpHeight=80,
+            extraLifeWidth=80, extraLifeHeight=80)
 
     def Create(self,type,**kwargs):
         if(type == Types[0]):
@@ -42,7 +45,8 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=None, image=None)
+        image, path = self.itemFactory.getExtraLife()
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -58,7 +62,8 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=None, image=None)
+        image, path = self.itemFactory.getFireRateSpeedUp()
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -74,7 +79,8 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=None, image=None)
+        image, path = self.itemFactory.getSpeedUp()
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
