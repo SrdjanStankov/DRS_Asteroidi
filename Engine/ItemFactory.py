@@ -53,7 +53,7 @@ class ItemFactory():
 
     def getFireRateSpeedUp(self):
         if self.fireRateSpeedUpImage is not None and self.fireRateSpeedUpPath is not None:
-            return self.fireRateSpeedUpImage, self.fireRateSpeedUpImage
+            return self.fireRateSpeedUpImage, self.fireRateSpeedUpPath
 
     def getExtraLife(self):
         if self.extraLifeImage is not None and self.extraLifePath is not None:
