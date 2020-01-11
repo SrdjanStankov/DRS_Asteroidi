@@ -1,6 +1,6 @@
 import ObjectFactory as factory
 import SceneManager
-import threading as th
+import GameLoop as gl
 from PyQt5.QtCore import pyqtSignal, QObject
 # Responsible for creating , accessing and destroying objects
 class ObjectManager(QObject):
@@ -50,8 +50,18 @@ class ObjectManager(QObject):
     def Destroy(self,id):
         temp = self.FindById(id)
         if temp != None:
+            gl.GameLoop.getInstance().disconnect_from_update(temp.callable)
             self.SceneManager.scene.removeItem(temp.Render) 
             self.Pool.remove(temp)
         else:
             pass
-            #print(f"Object with id {self.id} not found.") 
+
+
+
+    def internalInstantiate():
+        pass
+    def internalDestroy():
+        pass
+
+    def Update(data):
+        pass

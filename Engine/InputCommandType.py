@@ -1,6 +1,6 @@
 import enum 
 
-class InputCommandType(enum.Enum): 
+class InputCommandType(enum.EnumMeta): 
     none = 0
     left = 1
     right = 2

@@ -22,7 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AsteroidAndPlayerTypes.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CollisionDetection.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommandMapper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GameLoop.py">
@@ -33,6 +39,9 @@
     </Compile>
     <Compile Include="InputCommandType.py" />
     <Compile Include="InputManager.py" />
+    <Compile Include="ItemFactory.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Main.py">
       <SubType>Code</SubType>
     </Compile>
@@ -51,12 +60,18 @@
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="socket_listen.py" />
+    <Compile Include="socket_send.py" />
     <Compile Include="Transform.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Vector.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="firerate.jpg" />
+    <Content Include="speedup.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
