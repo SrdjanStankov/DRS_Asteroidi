@@ -31,6 +31,7 @@
     <Compile Include="CommandMapper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClickableLabel.py" />
     <Compile Include="GameLoop.py">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +56,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SceneManager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MenusFacade.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiplayerMenu.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Signal.py">
