@@ -11,12 +11,13 @@ class Player(QObject):
         self.player.lives = 3
         self.player.points = 0
         self.player.transform.speed = 2
-        self.player.transform.x = 1000
-        self.player.transform.y = 450
+        self.player.transform.x = 750
+        self.player.transform.y = 500
+        self.player.radius = 45
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
-        self.player.shootInterval = 0.2
+        self.player.shootInterval = 0.5
         self.nextShootTime = time.time()
         self.player.invulnerableTime = 4
         self.player.nextAliveTime = time.time()
@@ -29,7 +30,7 @@ class Player(QObject):
                 self.player.transform.rotate(1)
             if command == inputCommand.InputCommandType.up:
                 topCenter = self.player.Render.getTopCenter()
-                if topCenter[0] <= 1300 and topCenter[1] <= 753  and topCenter[0] > 0 and topCenter[1] > 0:
+                if topCenter[0] <= 1400 and topCenter[1] <= 788  and topCenter[0] > 34 and topCenter[1] > 75:
                     self.player.transform.move(1)
             #if command == inputCommand.InputCommandType.down:
             #    topCenter = self.player.Render.getTopCenter()

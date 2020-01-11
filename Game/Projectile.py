@@ -22,6 +22,7 @@ class Projectile(QObject):
                     self.gameSignal.emit(self.projectile.collisions[ind],self.projectile.name,self.projectile.Id)
                 #except:
                 #    pass
-        if not self.projectile.transform.move(1):
+        self.projectile.transform.move(1)
+        if self.projectile.transform.x < 100 or self.projectile.transform.y < 100:
             mng.Managers.getInstance().objects.Destroy(self.projectile.Id)
             

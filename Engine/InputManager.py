@@ -51,7 +51,7 @@ class InputManager:
         if keyboard.is_pressed(up):
             self.Command.append(InputCommandType.InputCommandType.up)
         
-        if keyboard.is_pressed(down):
-            self.Command.append(InputCommandType.InputCommandType.down)
+        #if keyboard.is_pressed(down):
+        #    self.Command.append(InputCommandType.InputCommandType.down)
         #if self.pipeOut is not None:
         #    self.pipeOut.send(json.dumps(self.Command_internal))

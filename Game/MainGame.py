@@ -1,12 +1,10 @@
 import sys
-from Player import Player
+
 from SpeedUp import SpeedUp
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
 from AsteroidAndPlayerTypes import AsteroidType
 import Managers as mgr
-import AsteroidManager as AsteroidManager
-import ProjectileManager as ProjectileManager
 from CollisionDetection import CollisionDetection
 from GameManager import GameManager
 from socket_send import SocketSend
@@ -50,18 +48,11 @@ if __name__ == "__main__":
 
     input = mgr.Managers.getInstance().input
     sceneManager = mgr.Managers.getInstance().scene
-    sceneManager.resize(1300, 768)
+    sceneManager.resize(1550, 1000)
     sceneManager.show()
     objectManager = mgr.Managers.getInstance().objects
-    projectileManager = ProjectileManager.ProjectileManager()
-    go = Player("Dejan",projectileManager)
-    asteroidManager = AsteroidManager.AsteroidManager()
     collisionManager = CollisionDetection(objectManager)
-    gm = GameManager(asteroidManager,projectileManager)
-    projectileManager.gameSignal = gm.asteroidDestroyed
-    asteroidManager.signalCollision = gm.spaceshipDestroyed
-    asteroidManager.signalMapEnd = gm.asteroidEnd
-
+    gm = GameManager()
 
     cl_in,cl_out = mp.Pipe()
     sr_in,sr_out = mp.Pipe()

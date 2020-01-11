@@ -3,9 +3,12 @@ from AsteroidAndPlayerTypes import AsteroidType
 import Managers as mng
 import time
 import threading as th
+from Player import Player
 from random import seed,randint
 from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QObject
 from ScreenSides import ScreenSide
+from AsteroidManager import AsteroidManager
+from ProjectileManager import ProjectileManager
 
 class gameStateUpdate(QObject):
 
@@ -21,21 +24,20 @@ class gameStateUpdate(QObject):
             if gameLoop.GameLoop.getInstance()._cancelation_token==True:
                 break
             self.update.emit()
-            time.sleep(2)
+            time.sleep(4)
 
 
 
 class GameManager(QObject):
     asteroidDestroyed = pyqtSignal(int,int,int)
     spaceshipDestroyed = pyqtSignal(int)
-    asteroidEnd = pyqtSignal()
-    def __init__(self,asteroidManager,projectileManager):
+    def __init__(self):
         super(GameManager,self).__init__()
-        self.asteroidManager = asteroidManager
-        self.projectileManager = projectileManager
+        self.asteroidManager = AsteroidManager(self.spaceshipDestroyed)
+        self.projectileManager = ProjectileManager(self.asteroidDestroyed)
+        self.player = Player("Dejan",self.projectileManager)
         self.asteroidDestroyed.connect(self.asteroidAction)
         self.spaceshipDestroyed.connect(self.spaceshipAction)
-        self.asteroidEnd.connect(self.asteroidEndAction)
         self.currentAsteroidSpeed = 1.8
         self.asteroidsToDestroy = 0
         self.currentLevel = 0
@@ -70,13 +72,11 @@ class GameManager(QObject):
             else:
                 player.points += 200
 
-
     def createSmallerAsteroids(self,x,y,type: AsteroidType):
         asteroidX = x
         asteroidY = y
         self.asteroidManager.createAsteroidSimple(type,asteroidX,asteroidY,self.currentAsteroidSpeed,randint(1,180))
         self.asteroidManager.createAsteroidSimple(type,asteroidX,asteroidY,self.currentAsteroidSpeed,randint(-180,0))
-
 
     def spaceshipAction(self,playerId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
@@ -84,14 +84,11 @@ class GameManager(QObject):
             if time.time() > player.nextAliveTime:
                 player.nextAliveTime = time.time() + player.invulnerableTime
                 if player.lives > 1:
-                    player.transform.x = 1000
-                    player.transform.y = 450
+                    player.transform.x = 750
+                    player.transform.y = 500
                     player.lives -= 1
                 else:
                     mng.Managers.getInstance().objects.Destroy(playerId)
-
-    def asteroidEndAction(self):
-        self.asteroidManager.createAsteroid(ScreenSide(randint(0,3)),self.currentAsteroidSpeed)
 
     def startLevel(self):
         print(f"Starting level {self.currentLevel + 1}")

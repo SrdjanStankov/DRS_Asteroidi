@@ -6,7 +6,7 @@ import Managers as mng
 
 class Asteroid(QObject):
 
-    def __init__(self,type,x,y,rotation,speed,signalCollision,signalMapEnd):
+    def __init__(self,type,x,y,rotation,speed,signalCollision):
         super(Asteroid,self).__init__()
         tempTransform = transform.Transform()
         tempTransform.x = x
@@ -16,17 +16,13 @@ class Asteroid(QObject):
         self.asteroid = mng.Managers.getInstance().objects.Instantiate("Asteroid",asteroidType = type,transform = tempTransform,name = "",callable = self.update)
         self.asteroid.Render.rotateItem()
         self.signalCollision = signalCollision
-        self.signalMapEnd = signalMapEnd
 
 
     def update(self):
         try:
-            if self.asteroid.transform.move(1):
-                for ind,item in enumerate(self.asteroid.collisionsType):
-                    if item == "Spaceship":
-                        self.signalCollision.emit(self.asteroid.collisions[ind])
-            else:
-                mng.Managers.getInstance().objects.Destroy(self.asteroid.Id)
-                self.signalMapEnd.emit()
+            self.asteroid.transform.move(1)
+            for ind,item in enumerate(self.asteroid.collisionsType):
+                if item == "Spaceship":
+                    self.signalCollision.emit(self.asteroid.collisions[ind])
         except:
             pass

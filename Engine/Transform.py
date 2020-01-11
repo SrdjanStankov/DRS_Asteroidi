@@ -19,12 +19,8 @@ class Transform(object):
     def move(self, Direction = 1):
         dx = Direction * math.sin(math.radians(self.rotation)) * self.speed
         dy = Direction * math.cos(math.radians(self.rotation)) * self.speed
-        self.x += dx
-        self.y -= dy
-        if self.x >= 1400 or self.x < -110 or self.y >= 880 or self.y < -110:
-            return False
-        else:
-            return True
+        self.x = (self.x + dx) % 1420
+        self.y = (self.y - dy) % 880
 
 if __name__=="__main__":
     t = Transform()
