@@ -49,3 +49,8 @@ class Renderer(QtWidgets.QGraphicsItem):
         topLeft = self.mapToScene(self.boundingRect().topLeft())
         topRight = self.mapToScene(self.boundingRect().topRight())
         return (topLeft.x() + topRight.x()) / 2, (topLeft.y() + topRight.y()) / 2
+
+    def getBottomCenter(self):
+        botLeft = self.mapToScene(self.boundingRect().bottomLeft())
+        botRight = self.mapToScene(self.boundingRect().bottomRight())
+        return (botLeft.x() + botRight.x()) / 2, (botLeft.y() + botRight.y()) / 2

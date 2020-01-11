@@ -32,10 +32,10 @@ class Player(QObject):
                 topCenter = self.player.Render.getTopCenter()
                 if topCenter[0] <= 1400 and topCenter[1] <= 788  and topCenter[0] > 34 and topCenter[1] > 75:
                     self.player.transform.move(1)
-            #if command == inputCommand.InputCommandType.down:
-            #    topCenter = self.player.Render.getTopCenter()
-            #    if topCenter[0] <= 1300 and topCenter[1] <= 753 and topCenter[0] > 0 and topCenter[1] > 0:
-            #        self.player.transform.move(-1)
+            if command == inputCommand.InputCommandType.down:
+                botCenter = self.player.Render.getBottomCenter()
+                if botCenter[0] <= 1400 and botCenter[1] <= 788  and botCenter[0] > 34 and botCenter[1] > 75:
+                    self.player.transform.move(-1)
             if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
                 self.projectileManager.createProjectile(self.player)
                 self.nextShootTime = time.time() + self.player.shootInterval 

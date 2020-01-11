@@ -1,6 +1,4 @@
 import sys
-
-from SpeedUp import SpeedUp
 from PyQt5 import QtWidgets
 from GameLoop import GameLoop as gl
 from AsteroidAndPlayerTypes import AsteroidType

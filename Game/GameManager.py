@@ -9,6 +9,9 @@ from PyQt5.QtCore import QPointF, QThread, pyqtSignal, QObject
 from ScreenSides import ScreenSide
 from AsteroidManager import AsteroidManager
 from ProjectileManager import ProjectileManager
+from ExtraLife import ExtraLife
+from FireRateSpeedUp import FireRateSpeedUp
+from SpeedUp import SpeedUp
 
 class gameStateUpdate(QObject):
 
@@ -44,6 +47,7 @@ class GameManager(QObject):
         self.noti = gameStateUpdate()
         self.noti.update.connect(self.update)
         self.lock = th.Lock()
+        self.nextPowerUp = 0
 
     def asteroidAction(self,asteroidId,playerId,projectileId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
@@ -106,7 +110,22 @@ class GameManager(QObject):
 
     def update(self):
         if len(mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship")) > 0:
+            self.nextPowerUp = (self.nextPowerUp + 4) % 40
+            if(self.nextPowerUp == 0):
+                self.spawnPowerUp()
             if self.asteroidsToDestroy <= 0:
                 self.startLevel()
         else:
             pass # game over logika
+
+    def spawnPowerUp(self):
+        number = randint(1,3)
+        x = randint(500,700)
+        y = randint(400,500)
+        if number == 1:
+            temp = SpeedUp(x,y)
+        elif number == 2:
+            temp = ExtraLife(x,y)
+        else:
+            temp = FireRateSpeedUp(x,y)
+
