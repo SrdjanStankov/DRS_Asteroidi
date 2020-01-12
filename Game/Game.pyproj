@@ -26,6 +26,7 @@
     <Compile Include="AsteroidManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClickableLabel.py" />
     <Compile Include="ExtraLife.py">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +40,7 @@
     <Compile Include="Managers.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MultiplayerScene.py" />
     <Compile Include="Player.py">
       <SubType>Code</SubType>
     </Compile>
@@ -51,9 +53,13 @@
     <Compile Include="ScreenSides.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SingleplayerScene.py" />
     <Compile Include="SpeedUp.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="StartMenuManager.py" />
+    <Compile Include="StartScene.py" />
+    <Compile Include="View.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
