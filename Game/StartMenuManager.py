@@ -5,6 +5,8 @@ import View as sv
 import StartScene as sc
 import MultiplayerScene as ms
 import SingleplayerScene as ss
+import Managers as mgr
+from GameManager import GameManager
 
 
 class StartMenuManager(QtWidgets.QMainWindow):
@@ -32,8 +34,10 @@ class StartMenuManager(QtWidgets.QMainWindow):
         self.changeViewMethod(multiplayerView)
 
     def changeSceneToSingleplayer(self):
-        pass
-
+        sceneManager = mgr.Managers.getInstance().scene
+        sceneManager.resize(1550, 1000)
+        sceneManager.show()
+        GameManager()
 
     def backFromMultiplayer(self):
         startView = sv.View(self.startScene)

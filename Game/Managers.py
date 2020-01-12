@@ -1,6 +1,7 @@
 import InputManager as inputManager
 import ObjectManager as objMan
 import SceneManager as scene
+import CollisionDetection as collision
 
 class Managers():
     
@@ -18,5 +19,6 @@ class Managers():
             cls.__instance.input = inputManager.InputManager();
             cls.__instance.scene = scene.SceneManager();
             cls.__instance.objects = objMan.ObjectManager(cls.__instance.scene);
+            cls.__instance.collisionDetection = collision.CollisionDetection(cls.__instance.objects)
         return cls.__instance
 
