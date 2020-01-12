@@ -64,7 +64,7 @@ class SceneManager(QtWidgets.QMainWindow):
         self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
-        GameManager()
+        self.gm = GameManager()
 
     def backFromMultiplayer(self):
         startView = sv.View(self.startScene)
