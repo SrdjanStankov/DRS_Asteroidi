@@ -50,6 +50,7 @@
     <Compile Include="ProjectileManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SceneManager.py" />
     <Compile Include="ScreenSides.py">
       <SubType>Code</SubType>
     </Compile>
