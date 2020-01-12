@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>09372e28-7b70-4baa-970a-a42eddd87ac5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Main.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,7 +32,6 @@
     <Compile Include="CommandMapper.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ClickableLabel.py" />
     <Compile Include="GameLoop.py">
       <SubType>Code</SubType>
     </Compile>
@@ -43,21 +43,12 @@
     <Compile Include="ItemFactory.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Main.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MultiplayerScene.py" />
-    <Compile Include="MultiplayerView.py" />
     <Compile Include="ObjectFactory.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ObjectManager.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="OldMenu\Main.py" />
-    <Compile Include="OldMenu\MenusFacade.py" />
-    <Compile Include="OldMenu\MultiplayerMenu.py" />
-    <Compile Include="OldMenu\StartMenu.py" />
     <Compile Include="Renderer.py">
       <SubType>Code</SubType>
     </Compile>
@@ -67,11 +58,8 @@
     <Compile Include="Signal.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SingleplayerScene.py" />
     <Compile Include="socket_listen.py" />
     <Compile Include="socket_send.py" />
-    <Compile Include="StartMenuManager.py" />
-    <Compile Include="StartScene.py" />
     <Compile Include="Transform.py">
       <SubType>Code</SubType>
     </Compile>
@@ -81,11 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="asteroid1.png" />
-    <Content Include="asteroids.jpg" />
     <Content Include="spaceship2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OldMenu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
