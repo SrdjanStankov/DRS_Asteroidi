@@ -104,6 +104,7 @@ class GameManager(QObject):
         if self.currentLevel % 4 == 0:
             for item  in mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship"):
                 item.transform.speed += 0.2
+                item.points += 1000
 
         for _ in range(1,2 + 2 * self.currentLevel):
             self.asteroidManager.createAsteroid(ScreenSide(randint(0,3)),self.currentAsteroidSpeed)
