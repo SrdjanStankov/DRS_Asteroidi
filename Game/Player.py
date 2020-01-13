@@ -2,18 +2,20 @@ from PyQt5.QtCore import QObject
 import Managers as mng
 import InputCommandType as inputCommand
 import time
+import PlayerAttributes as playerAttributes
 
 class Player(QObject):
 
-    def __init__(self,name,projectileManager):
-        super(Player,self).__init__()
-        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship",name = name,callable = self.update)
+    def __init__(self, name, playerType, projectileManager):
+        super(Player, self).__init__()
+        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship", name=name, callable=self.update)
         self.player.lives = 3
         self.player.points = 0
         self.player.transform.speed = 2
         self.player.transform.x = 750
         self.player.transform.y = 500
         self.player.radius = 45
+        self.player.playerType = playerType
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
@@ -21,6 +23,8 @@ class Player(QObject):
         self.nextShootTime = time.time()
         self.player.invulnerableTime = 4
         self.player.nextAliveTime = time.time()
+        attributesItem = playerAttributes.PlayerAttributes(self.player)
+        mng.Managers.getInstance().scene.AddItem(attributesItem)
 
     def update(self):
         for command in mng.Managers.getInstance().input.Command: 

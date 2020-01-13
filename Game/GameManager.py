@@ -12,6 +12,7 @@ from ProjectileManager import ProjectileManager
 from ExtraLife import ExtraLife
 from FireRateSpeedUp import FireRateSpeedUp
 from SpeedUp import SpeedUp
+import AsteroidAndPlayerTypes as  aapt
 
 class gameStateUpdate(QObject):
 
@@ -34,11 +35,12 @@ class gameStateUpdate(QObject):
 class GameManager(QObject):
     asteroidDestroyed = pyqtSignal(int,int,int)
     spaceshipDestroyed = pyqtSignal(int)
+
     def __init__(self):
-        super(GameManager,self).__init__()
+        super(GameManager, self).__init__()
         self.asteroidManager = AsteroidManager(self.spaceshipDestroyed)
         self.projectileManager = ProjectileManager(self.asteroidDestroyed)
-        self.player = Player("Dejan",self.projectileManager)
+        self.player = Player("Dejan", aapt.PlayerType.player1, self.projectileManager)
         self.asteroidDestroyed.connect(self.asteroidAction)
         self.spaceshipDestroyed.connect(self.spaceshipAction)
         self.currentAsteroidSpeed = 1.8
@@ -63,7 +65,7 @@ class GameManager(QObject):
             mng.Managers.getInstance().objects.Destroy(asteroidId)
             if type is AsteroidType.large:
                 player.points += 100
-                self.createSmallerAsteroids(x,y,AsteroidType.medium)
+                self.createSmallerAsteroids(x, y, AsteroidType.medium)
                 self.lock.acquire()
                 self.asteroidsToDestroy += 2
                 self.lock.release()
@@ -102,7 +104,7 @@ class GameManager(QObject):
         self.currentAsteroidSpeed += 0.2
         self.lock.release()
         if self.currentLevel % 4 == 0:
-            for item  in mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship"):
+            for item in mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship"):
                 item.transform.speed += 0.2
                 item.points += 1000
 
