@@ -3,13 +3,6 @@ import keyboard
 import InputCommandType
 from AsteroidAndPlayerTypes import PlayerType
 
-#Set desired input for commands
-left = "left"
-right = "right"
-up = "up"
-down = "down"
-shoot = "ctrl"
-
 playerOne = {"left":"left","right":"right","up":"up","down":"down","shoot":"ctrl"}
 playerTwo = {"left":"a","right":"d","up":"w","down":"s","shoot":42}
 playerThree = {"left":"g","right":"j","up":"y","down":"h","shoot":"v"}

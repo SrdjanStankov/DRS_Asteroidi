@@ -37,7 +37,7 @@ class StartMenuManager(QtWidgets.QMainWindow):
         sceneManager = mgr.Managers.getInstance().scene
         sceneManager.resize(1550, 1000)
         sceneManager.show()
-        GameManager()
+        #GameManager()
 
     def backFromMultiplayer(self):
         startView = sv.View(self.startScene)

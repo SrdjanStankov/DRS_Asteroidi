@@ -9,8 +9,8 @@ class StartScene(QGraphicsScene):
     def __init__(self, singlepalyerMethod, multiplayerMethod, exitMethod, parent=None):
         super(StartScene, self).__init__(parent)
 
-        screenWidth = 1300
-        screenHeight = 700
+        screenWidth = 1370
+        screenHeight = 730
         oImage = QPixmap("asteroids.jpg")
         sImage = oImage.scaled(QSize(screenWidth, screenHeight))  # resize Image to widgets size
 
