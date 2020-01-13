@@ -50,7 +50,7 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
 
 
     def moveItem(self):
-        print(self.player.points)
+        pass
 
     def rotateItem(self):
         pass
