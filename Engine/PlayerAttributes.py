@@ -19,14 +19,12 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
         self.setZValue(1)
         self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
-        self.x_pos = 0
-        self.color = None
         self.font = QFont('Helvetica', 14)
         self.font.setBold(True)
-        self.x_step = 150  #promeniti kada bude bilo potrebno
+        self.x_step = 200  #promeniti kada bude bilo potrebno
 
         if self.player.playerType is aapt.PlayerType.player1:
-            self.x_pos = 50
+            self.x_pos = 0
             self.color = QColor("Grey")
         elif self.player.playerType is aapt.PlayerType.player2:
             self.x_pos = self.x_step

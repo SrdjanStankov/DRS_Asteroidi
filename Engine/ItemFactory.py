@@ -20,6 +20,12 @@ class ItemFactory():
             self.asteroidImages[AsteroidType.large], self.asteroidPaths[AsteroidType.large] = self.makeAsteroid(kwargs["largeAsteroidWidth"],kwargs["largeAsteroidHeight"],'asteroid1.png')
         if "player1Height" in kwargs and "player1Width" in kwargs:
             self.playerImages[PlayerType.player1], self.playerPaths[PlayerType.player1] = self.makePlayer(kwargs["player1Width"],kwargs["player1Height"],'spaceship2.jpg')
+        if "player2Height" in kwargs and "player2Width" in kwargs:
+            self.playerImages[PlayerType.player2], self.playerPaths[PlayerType.player2] = self.makePlayer(kwargs["player2Width"],kwargs["player2Height"],'spaceship2.jpg')
+        if "player3Height" in kwargs and "player3Width" in kwargs:
+            self.playerImages[PlayerType.player3], self.playerPaths[PlayerType.player3] = self.makePlayer(kwargs["player3Width"],kwargs["player3Height"],'spaceship2.jpg')
+        if "player4Height" in kwargs and "player4Width" in kwargs:
+            self.playerImages[PlayerType.player4], self.playerPaths[PlayerType.player4] = self.makePlayer(kwargs["player4Width"],kwargs["player4Height"],'spaceship2.jpg')
         if "mediumAsteroidWidth" in kwargs and "mediumAsteroidHeight" in kwargs: 
             self.asteroidImages[AsteroidType.medium], self.asteroidPaths[AsteroidType.medium] = self.makeAsteroid(kwargs["mediumAsteroidWidth"],kwargs["mediumAsteroidHeight"],'asteroid1.png')
         if "smallAsteroidWidth" in kwargs and "smallAsteroidHeight" in kwargs: 
@@ -33,10 +39,7 @@ class ItemFactory():
 
 
     def getPlayer(self,playerType : PlayerType):
-        if playerType == PlayerType.player1:
-            return self.playerImages[playerType], self.playerPaths[playerType]
-        else:
-            return None, None
+        return self.playerImages[playerType], self.playerPaths[playerType]
 
     def getAsteroid(self,asteroidType:AsteroidType):
         if asteroidType == AsteroidType.large:

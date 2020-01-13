@@ -12,7 +12,7 @@ class Projectile(QObject):
         tempTransform.x, tempTransform.y = shooter.Render.getTopCenter()
         tempTransform.rotation = shooter.transform.rotation
         tempTransform.speed = 6
-        self.projectile = mng.Managers.getInstance().objects.Instantiate("Projectile",transform = tempTransform,name = shooter.Id,callable = self.update)
+        self.projectile = mng.Managers.getInstance().objects.Instantiate("Projectile",transform = tempTransform,name = shooter.Id,callable = self.update,playerType = shooter.playerType)
         self.gameSignal = gameSignal
 
     def update(self):

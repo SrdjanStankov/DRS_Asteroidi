@@ -36,11 +36,15 @@ class GameManager(QObject):
     asteroidDestroyed = pyqtSignal(int,int,int)
     spaceshipDestroyed = pyqtSignal(int)
 
-    def __init__(self):
+    def __init__(self,players):
         super(GameManager, self).__init__()
         self.asteroidManager = AsteroidManager(self.spaceshipDestroyed)
         self.projectileManager = ProjectileManager(self.asteroidDestroyed)
-        self.player = Player("Dejan", aapt.PlayerType.player1, self.projectileManager)
+        self.players = []
+        for i in range(1,4):
+            if aapt.PlayerType(i) in players:
+                self.players.append(Player(players[aapt.PlayerType(i)],aapt.PlayerType(i),self.projectileManager))
+  
         self.asteroidDestroyed.connect(self.asteroidAction)
         self.spaceshipDestroyed.connect(self.spaceshipAction)
         self.currentAsteroidSpeed = 1.8
@@ -90,8 +94,7 @@ class GameManager(QObject):
             if time.time() > player.nextAliveTime:
                 player.nextAliveTime = time.time() + player.invulnerableTime
                 if player.lives > 1:
-                    player.transform.x = 750
-                    player.transform.y = 500
+                    player.setToCenter()
                     player.lives -= 1
                 else:
                     player.lives -= 1

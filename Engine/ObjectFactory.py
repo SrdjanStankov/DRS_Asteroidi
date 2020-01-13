@@ -4,7 +4,7 @@ import Renderer as renderer
 import Transform as transform
 from AsteroidAndPlayerTypes import AsteroidType, PlayerType
 from PyQt5 import QtGui
-from PyQt5.QtCore import QPointF, QRectF
+from PyQt5.QtCore import QPointF, QRectF, Qt
 from PyQt5.QtWidgets import QGraphicsItem
 from ItemFactory import ItemFactory
 
@@ -18,6 +18,9 @@ class ObjectFactory:
             mediumAsteroidWidth=50, mediumAsteroidHeight=50,
             smallAsteroidWidth=30, smallAsteroidHeight=30,
             player1Width=80, player1Height=100,
+            player2Width=80, player2Height=100,
+            player3Width=80, player3Height=100,
+            player4Width=80, player4Height=100,
             speedUpWidth=40, speedUpHeight=110,
             fireRateSpeedUpWidth=40, fireRateSpeedUpHeight=80,
             extraLifeWidth=50, extraLifeHeight=50)
@@ -46,7 +49,7 @@ class ObjectFactory:
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image, path = self.itemFactory.getExtraLife()
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image)
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, pen = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -63,7 +66,7 @@ class ObjectFactory:
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image, path = self.itemFactory.getFireRateSpeedUp()
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image)
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, pen = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -80,7 +83,7 @@ class ObjectFactory:
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image, path = self.itemFactory.getSpeedUp()
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image)
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, pen = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -101,15 +104,15 @@ class ObjectFactory:
         image,path = self.itemFactory.getAsteroid(AsteroidType.large)
         if go.asteroidType is AsteroidType.large:
             go.radius = 40
-            go.Render = renderer.Renderer(80,80,path,go.transform,image,go.Type)
+            go.Render = renderer.Renderer(80,80,path,go.transform,image,None,go.Type)
         elif go.asteroidType is AsteroidType.medium:
             go.radius = 25
             go.transform.speed += 0.2
-            go.Render = renderer.Renderer(50,50,path,go.transform,image,go.Type)
+            go.Render = renderer.Renderer(50,50,path,go.transform,image,None,go.Type)
         else:
             go.transform.speed += 0.4
             go.radius = 15
-            go.Render = renderer.Renderer(30,30,path,go.transform,image,go.Type)
+            go.Render = renderer.Renderer(30,30,path,go.transform,image,None,go.Type)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -122,8 +125,8 @@ class ObjectFactory:
         go.transform = transform.Transform()
         go.name = kwargs["name"]
         go.playerType = kwargs["playerType"]
-        image,path = self.itemFactory.getPlayer(PlayerType.player1)
-        go.Render = renderer.Renderer(80,100,path,go.transform,image,go.Type)
+        image,path = self.itemFactory.getPlayer(kwargs["playerType"])
+        go.Render = renderer.Renderer(80,100,path,go.transform,image,None,go.Type)
         self.SceneManager.scene.addItem(go.Render)
         return go
 
@@ -135,10 +138,18 @@ class ObjectFactory:
         go.name = kwargs["name"]
         go.transform.x = kwargs["transform"].x
         go.transform.y = kwargs["transform"].y
+        
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
-        go.Render =  renderer.Renderer(width,height,None,go.transform,None,go.Type) 
+        if kwargs["playerType"] is PlayerType.player1:
+            go.Render =  renderer.Renderer(width,height,None,go.transform,None,Qt.gray,go.Type) 
+        if kwargs["playerType"] is PlayerType.player2:
+            go.Render =  renderer.Renderer(width,height,None,go.transform,None,Qt.red,go.Type) 
+        if kwargs["playerType"] is PlayerType.player3:
+            go.Render =  renderer.Renderer(width,height,None,go.transform,None,Qt.green,go.Type) 
+        if kwargs["playerType"] is PlayerType.player4:
+            go.Render =  renderer.Renderer(width,height,None,go.transform,None,Qt.yellow,go.Type) 
         self.SceneManager.scene.addItem(go.Render)
         go.Render.moveItem()
         go.Render.rotateItem()

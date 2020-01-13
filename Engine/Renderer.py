@@ -1,11 +1,11 @@
 import typing
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QPen
+from PyQt5.QtGui import QPen, QBrush
 from PyQt5.QtWidgets import QWidget, QStyleOptionGraphicsItem
 from Transform import Transform
 
 class Renderer(QtWidgets.QGraphicsItem):
-    def __init__(self, width, height,path:QtGui.QPainterPath,transform:Transform,image,type, parent=None):
+    def __init__(self, width, height,path:QtGui.QPainterPath,transform:Transform,image,color,type, parent=None):
         super(Renderer, self).__init__(parent)
         self.width = width
         self.height = height
@@ -20,7 +20,8 @@ class Renderer(QtWidgets.QGraphicsItem):
             self.path = path
             self.draw = self.drawImageFunction
         else:
-            self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
+            self.pen = QtGui.QPen(color, 1, QtCore.Qt.SolidLine)
+            self.brush = QBrush(color)
             self.draw = self.drawRectFunction
 
     def paint(self, painter: QtGui.QPainter, option: 'QStyleOptionGraphicsItem',
@@ -36,7 +37,7 @@ class Renderer(QtWidgets.QGraphicsItem):
 
     def drawRectFunction(self,painter: QtGui.QPainter):
         painter.setPen(self.pen)
-        painter.setBrush(QtCore.Qt.red)
+        painter.setBrush(self.brush)
         painter.drawRect(0,0,self.width,self.height)
 
     def moveItem(self):

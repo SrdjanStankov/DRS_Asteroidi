@@ -3,6 +3,7 @@ import Managers as mng
 import InputCommandType as inputCommand
 import time
 import PlayerAttributes as playerAttributes
+from AsteroidAndPlayerTypes import PlayerType
 
 class Player(QObject):
 
@@ -12,9 +13,21 @@ class Player(QObject):
         self.player.lives = 3
         self.player.points = 0
         self.player.transform.speed = 2
-        self.player.transform.x = 750
-        self.player.transform.y = 500
         self.player.radius = 45
+        if playerType is PlayerType.player1:
+            self.centerX = 750
+            self.centerY = 500
+        if playerType is PlayerType.player2:
+            self.centerX = 750
+            self.centerY = 400
+        if playerType is PlayerType.player3:
+            self.centerX = 550
+            self.centerY = 500
+        if playerType is PlayerType.player4:
+            self.centerX = 550
+            self.centerY = 400
+        self.player.setToCenter = self.setToCenter
+        self.setToCenter()
         self.playerType = playerType
         self.shootCounter = 0
         self.projectiles = []
@@ -25,6 +38,10 @@ class Player(QObject):
         self.player.nextAliveTime = time.time()
         attributesItem = playerAttributes.PlayerAttributes(self.player)
         mng.Managers.getInstance().scene.AddItem(attributesItem)
+
+    def setToCenter(self):
+        self.player.transform.x = self.centerX
+        self.player.transform.y = self.centerY
 
     def update(self):
         for command in mng.Managers.getInstance().input.GetCommands(self.playerType): 

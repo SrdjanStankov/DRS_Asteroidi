@@ -10,10 +10,10 @@ up = "up"
 down = "down"
 shoot = "ctrl"
 
-playerOne = {"left":"left","right":"right","up":"up","down":"down","shoot": "ctrl"}
-playerTwo = {"left":"a","right":"d","up":"w","down":"s","shoot":"shift"}
+playerOne = {"left":"left","right":"right","up":"up","down":"down","shoot": 29}
+playerTwo = {"left":"a","right":"d","up":"w","down":"s","shoot":42}
 playerThree = {"left":"j","right":"l","up":"i","down":"k","shoot":"n"}
-playerFour = {"left":52,"right":54,"up":56,"down":53,"shoot":48}
+playerFour = {"left":100,"right":102,"up":104,"down":101,"shoot":96}
 
 # Should be instantiated first to get priority in update cycles
 class InputManager:
