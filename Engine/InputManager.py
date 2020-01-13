@@ -10,10 +10,10 @@ up = "up"
 down = "down"
 shoot = "ctrl"
 
-playerOne = {"left":"left","right":"right","up":"up","down":"down","shoot": 29}
+playerOne = {"left":"left","right":"right","up":"up","down":"down","shoot":"ctrl"}
 playerTwo = {"left":"a","right":"d","up":"w","down":"s","shoot":42}
-playerThree = {"left":"j","right":"l","up":"i","down":"k","shoot":"n"}
-playerFour = {"left":100,"right":102,"up":104,"down":101,"shoot":96}
+playerThree = {"left":"g","right":"j","up":"y","down":"h","shoot":"v"}
+playerFour = {"left":"l","right":"'","up":"p","down":";","shoot":","}
 
 # Should be instantiated first to get priority in update cycles
 class InputManager:
@@ -29,7 +29,7 @@ class InputManager:
         self.commands[PlayerType.player1] = self.checkCommands(playerOne)
         self.commands[PlayerType.player2] = self.checkCommands(playerTwo)
         self.commands[PlayerType.player3] = self.checkCommands(playerThree)
-        #self.commands[PlayerType.player4] = self.checkCommands(playerFour)
+        self.commands[PlayerType.player4] = self.checkCommands(playerFour)
 
     def checkCommands(self,commandScheme):
         commands = []

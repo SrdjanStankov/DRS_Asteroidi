@@ -41,7 +41,7 @@ class GameManager(QObject):
         self.asteroidManager = AsteroidManager(self.spaceshipDestroyed)
         self.projectileManager = ProjectileManager(self.asteroidDestroyed)
         self.players = []
-        for i in range(1,4):
+        for i in range(1,5):
             if aapt.PlayerType(i) in players:
                 self.players.append(Player(players[aapt.PlayerType(i)],aapt.PlayerType(i),self.projectileManager))
   

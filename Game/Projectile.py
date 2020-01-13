@@ -23,6 +23,6 @@ class Projectile(QObject):
                 #except:
                 #    pass
         self.projectile.transform.move(1)
-        if self.projectile.transform.x < 100 or self.projectile.transform.y < 100:
+        if self.projectile.transform.x < 30 or self.projectile.transform.y < 30:
             mng.Managers.getInstance().objects.Destroy(self.projectile.Id)
             

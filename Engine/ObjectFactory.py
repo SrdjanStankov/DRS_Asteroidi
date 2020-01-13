@@ -49,7 +49,7 @@ class ObjectFactory:
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image, path = self.itemFactory.getExtraLife()
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, pen = None)
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, color = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -66,7 +66,7 @@ class ObjectFactory:
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image, path = self.itemFactory.getFireRateSpeedUp()
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, pen = None)
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, color = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)
@@ -83,7 +83,7 @@ class ObjectFactory:
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
         image, path = self.itemFactory.getSpeedUp()
-        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, pen = None)
+        go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, color = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
 
         self.SceneManager.scene.addItem(go.Render)

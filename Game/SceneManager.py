@@ -34,7 +34,7 @@ class SceneManager(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(SceneManager, self).__init__(parent)
         self.startScene = sc.StartScene(self.changeSceneToSingleplayer, self.changeSceneToMultiplayer, self.applicationExitMethod)
-        self.multiplayerScene = ms.MultiplayerScene(self.changeSceneToMultiplayerTwoPlayers,self.changeSceneToMultiplayerThreePlayers,self.backFromMultiplayer)
+        self.multiplayerScene = ms.MultiplayerScene(self.changeSceneToMultiplayerTwoPlayers,self.changeSceneToMultiplayerThreePlayers,self.changeSceneToMultiplayerFourPlayers,self.backFromMultiplayer)
         self.singleplayerScene = ss.SingleplayerScene()
 
         self.startView = sv.View(self.startScene)
@@ -88,7 +88,7 @@ class SceneManager(QtWidgets.QMainWindow):
         self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
-        self.gm = GameManager({PlayerType.player1:"Dejan",PlayerType.player2:"Srdjan",PlayerType.player3:"Nemanja",PlayerType.player3:"Aleksandar"})
+        self.gm = GameManager({PlayerType.player1:"Dejan",PlayerType.player2:"Srdjan",PlayerType.player3:"Nemanja",PlayerType.player4:"Aleksandar"})
 
     def backFromMultiplayer(self):
         startView = sv.View(self.startScene)

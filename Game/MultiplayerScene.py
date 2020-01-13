@@ -6,7 +6,7 @@ from ClickableLabel import ClickableQLabel
 
 
 class MultiplayerScene(QGraphicsScene):
-    def __init__(self,twoPlayersMethod,threePlayersMethod, backMethod, parent=None):
+    def __init__(self,twoPlayersMethod,threePlayersMethod,fourPlayersMethod, backMethod, parent=None):
         super(MultiplayerScene, self).__init__(parent)
 
         screenWidth = 1300
@@ -38,7 +38,7 @@ class MultiplayerScene(QGraphicsScene):
         back.connect(backMethod)
         twoPlayer.connect(twoPlayersMethod)
         threePlayer.connect(threePlayersMethod)
-        #fourPlayer.connect(fourPlayersMethod)
+        fourPlayer.connect(fourPlayersMethod)
 
         self.addWidget(twoPlayer)
         self.addWidget(threePlayer)
