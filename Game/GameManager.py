@@ -94,6 +94,7 @@ class GameManager(QObject):
                     player.transform.y = 500
                     player.lives -= 1
                 else:
+                    player.lives -= 1
                     mng.Managers.getInstance().objects.Destroy(playerId)
 
     def startLevel(self):
