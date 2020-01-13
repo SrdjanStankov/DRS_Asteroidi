@@ -17,7 +17,7 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, False)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, False)
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
-
+        self.setZValue(1)
         self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
         self.x_pos = 0
         self.color = None
@@ -46,7 +46,7 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
 
         painter.setPen(self.color)
         painter.setFont(self.font)
-        painter.drawText(QPointF(50, 50), self.player.name + ",\n Lives : " + str(self.player.lives) + ",\n Points : " + str(self.player.points))
+        painter.drawText(QPointF(50, 50), self.player.name + " : " + str(self.player.points) + "\n Lives : " + str(self.player.lives))
 
 
     def moveItem(self):

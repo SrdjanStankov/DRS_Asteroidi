@@ -49,6 +49,7 @@
     <Compile Include="ObjectManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PlayerAttributes.py" />
     <Compile Include="Renderer.py">
       <SubType>Code</SubType>
     </Compile>

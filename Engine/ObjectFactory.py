@@ -117,14 +117,15 @@ class ObjectFactory:
 
     # Here populate Spaceship with all his properties
     def _CreateSpaceShip(self,**kwargs):
-        self.go = gameObject.GameObject(kwargs["callable"])
-        self.go.Type = "Spaceship"
-        self.go.transform = transform.Transform()
-        self.go.name = kwargs["name"]
+        go = gameObject.GameObject(kwargs["callable"])
+        go.Type = "Spaceship"
+        go.transform = transform.Transform()
+        go.name = kwargs["name"]
+        go.playerType = kwargs["playerType"]
         image,path = self.itemFactory.getPlayer(PlayerType.player1)
-        self.go.Render = renderer.Renderer(80,100,path,self.go.transform,image,self.go.Type)
-        self.SceneManager.scene.addItem(self.go.Render)
-        return self.go
+        go.Render = renderer.Renderer(80,100,path,go.transform,image,go.Type)
+        self.SceneManager.scene.addItem(go.Render)
+        return go
 
     def _CreateProjectile(self,**kwargs):
         width = 4

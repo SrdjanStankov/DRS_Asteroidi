@@ -8,14 +8,14 @@ class Player(QObject):
 
     def __init__(self, name, playerType, projectileManager):
         super(Player, self).__init__()
-        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship", name=name, callable=self.update)
+        self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship", name=name, callable=self.update,playerType = playerType)
         self.player.lives = 3
         self.player.points = 0
         self.player.transform.speed = 2
         self.player.transform.x = 750
         self.player.transform.y = 500
         self.player.radius = 45
-        self.player.playerType = playerType
+        self.playerType = playerType
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
@@ -27,7 +27,7 @@ class Player(QObject):
         mng.Managers.getInstance().scene.AddItem(attributesItem)
 
     def update(self):
-        for command in mng.Managers.getInstance().input.Command: 
+        for command in mng.Managers.getInstance().input.GetCommands(self.playerType): 
             if command == inputCommand.InputCommandType.left:
                 self.player.transform.rotate(-1)
             if command == inputCommand.InputCommandType.right:
