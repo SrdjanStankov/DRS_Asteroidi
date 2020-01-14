@@ -3,8 +3,8 @@ import Managers as mgr
             
 # method for canceling game loop thread
 def cancel():
+    mgr.Managers.getInstance().input.stopListening()
     gl.getInstance().cancel()
-
 
 if __name__ == "__main__":
     

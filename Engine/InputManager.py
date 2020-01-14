@@ -74,7 +74,7 @@ class InputManager:
     def stopListening(self):
         for item in self.processes:
             item.terminate()
-            self.processes.remove(item)
+        self.processes.clear()
 
     
 
