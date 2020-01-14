@@ -6,7 +6,7 @@ from ClickableLabel import ClickableQLabel
 
 
 class MultiplayerScene(QGraphicsScene):
-    def __init__(self,twoPlayersMethod,threePlayersMethod,fourPlayersMethod, backMethod, parent=None):
+    def __init__(self,twoPlayersMethod,threePlayersMethod,fourPlayersMethod, backMethod, tournamentMethod, parent=None):
         super(MultiplayerScene, self).__init__(parent)
 
         screenWidth = 1370
@@ -22,16 +22,19 @@ class MultiplayerScene(QGraphicsScene):
         twoPlayer = ClickableQLabel('2 PLAYER')
         threePlayer = ClickableQLabel('3 PLAYER')
         fourPlayer = ClickableQLabel('4 PLAYER')
+        tournament = ClickableQLabel('TOURNAMENT')
         back = ClickableQLabel('BACK')
 
         twoPlayer.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
         threePlayer.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
         fourPlayer.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
+        tournament.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
         back.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
 
         twoPlayer.setGeometry(QRect(500, 300, 300, 40))  # (x, y, width, height)
         threePlayer.setGeometry(QRect(500, 400, 300, 40))
         fourPlayer.setGeometry(QRect(500, 500, 300, 40))
+        tournament.setGeometry(QRect(500, 600, 300, 40))
         back.setGeometry(QRect(100, 100, 300, 40))
 
         #connect
@@ -39,8 +42,10 @@ class MultiplayerScene(QGraphicsScene):
         twoPlayer.connect(twoPlayersMethod)
         threePlayer.connect(threePlayersMethod)
         fourPlayer.connect(fourPlayersMethod)
+        tournament.connect(tournamentMethod)
 
         self.addWidget(twoPlayer)
         self.addWidget(threePlayer)
         self.addWidget(fourPlayer)
+        self.addWidget(tournament)
         self.addWidget(back)

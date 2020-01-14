@@ -60,6 +60,9 @@
     </Compile>
     <Compile Include="StartMenuManager.py" />
     <Compile Include="StartScene.py" />
+    <Compile Include="TournamentManager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="View.py" />
   </ItemGroup>
   <ItemGroup>

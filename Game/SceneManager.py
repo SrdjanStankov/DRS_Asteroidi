@@ -16,6 +16,7 @@ from AsteroidAndPlayerTypes import PlayerType
 import PlayerLevelInformation as pli
 import PlayerRemainingAsterioids as pra
 import Managers as mng
+import TournamentManager
 
 
 class internalUpdate(QObject):
@@ -38,7 +39,7 @@ class SceneManager(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(SceneManager, self).__init__(parent)
         self.startScene = sc.StartScene(self.changeSceneToSingleplayer, self.changeSceneToMultiplayer, self.applicationExitMethod)
-        self.multiplayerScene = ms.MultiplayerScene(self.changeSceneToMultiplayerTwoPlayers,self.changeSceneToMultiplayerThreePlayers,self.changeSceneToMultiplayerFourPlayers,self.backFromMultiplayer)
+        self.multiplayerScene = ms.MultiplayerScene(self.changeSceneToMultiplayerTwoPlayers,self.changeSceneToMultiplayerThreePlayers,self.changeSceneToMultiplayerFourPlayers,self.backFromMultiplayer, self.changeSceneToTournamentFourPlayers)
         self.singleplayerScene = ss.SingleplayerScene()
 
         self.startView = sv.View(self.startScene)
@@ -99,6 +100,14 @@ class SceneManager(QtWidgets.QMainWindow):
         self.setCentralWidget(self.view)
         self.gm = GameManager({PlayerType.player1:"Dejan",PlayerType.player2:"Srdjan",PlayerType.player3:"Nemanja",PlayerType.player4:"Aleksandar"})
 
+    def changeSceneToTournamentFourPlayers(self):
+        self.view = QtWidgets.QGraphicsView(self.scene)
+        self.view.setSceneRect(90,90, 1250, 738)
+        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
+        self.view.setInteractive(False)
+        self.setCentralWidget(self.view)
+        self.tm = TournamentManager.Tournament("Dejan", "Srdjan", "Nemanja", "Aleksandar")
+
     def backFromMultiplayer(self):
         startView = sv.View(self.startScene)
         self.changeViewMethod(startView)
@@ -113,4 +122,7 @@ class SceneManager(QtWidgets.QMainWindow):
         self.scene.update()
 
     def AddItem(self,renderer):
-        self.scene.addItem(renderer)    
+        self.scene.addItem(renderer)
+
+    def removeItem(self, renderer):
+        self.scene.removeItem(renderer)
