@@ -39,14 +39,14 @@ class ItemFactory():
 
 
     def getPlayer(self,playerType : PlayerType):
-        return self.playerImages[playerType], self.playerPaths[playerType]
+        if playerType in self.playerImages and playerType in self.playerPaths:
+            return self.playerImages[playerType], self.playerPaths[playerType]
+        else:
+            return None,None
 
     def getAsteroid(self,asteroidType:AsteroidType):
-        if asteroidType == AsteroidType.large:
-            if asteroidType in self.asteroidImages:
-                return self.asteroidImages[asteroidType], self.asteroidPaths[asteroidType]
-            else:
-                return None, None
+        if asteroidType in self.asteroidImages and asteroidType in self.asteroidPaths:
+            return self.asteroidImages[asteroidType], self.asteroidPaths[asteroidType]
         else:
             return None, None
 
