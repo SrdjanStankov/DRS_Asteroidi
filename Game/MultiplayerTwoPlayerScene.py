@@ -38,10 +38,16 @@ class MultiplayerTwoPlayerScene(QGraphicsScene):
         self.textbox1 = QLineEdit()
         self.textbox1.move(400, self.y_start)
         self.textbox1.resize(280, 40)
+        font1 = self.textbox1.font()
+        font1.setPointSize(20)
+        self.textbox1.setFont(font1)
 
         self.textbox2 = QLineEdit()
         self.textbox2.move(400, self.y_start + self.y_step)
         self.textbox2.resize(280, 40)
+        font2 = self.textbox2.font()
+        font2.setPointSize(20)
+        self.textbox2.setFont(font2)
 
         start.connect(startMethod) #, str(textbox1.text()), str(textbox2.text()))
 

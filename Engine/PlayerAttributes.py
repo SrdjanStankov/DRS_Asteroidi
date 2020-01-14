@@ -21,7 +21,7 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
         self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
         self.font = QFont('Helvetica', 14)
         self.font.setBold(True)
-        self.x_step = 200  #promeniti kada bude bilo potrebno
+        self.x_step = 250  #promeniti kada bude bilo potrebno
 
         if self.player.playerType is aapt.PlayerType.player1:
             self.x_pos = 0
