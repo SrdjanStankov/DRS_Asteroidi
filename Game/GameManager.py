@@ -38,13 +38,16 @@ class GameManager(QObject):
 
     def __init__(self,players):
         super(GameManager, self).__init__()
-        self.asteroidManager = AsteroidManager(self.spaceshipDestroyed)
-        self.projectileManager = ProjectileManager(self.asteroidDestroyed)
-        self.players = []
+        playerTypes = []
         for i in range(1,5):
             if aapt.PlayerType(i) in players:
-                self.players.append(Player(players[aapt.PlayerType(i)],aapt.PlayerType(i),self.projectileManager))
-  
+                playerTypes.append(aapt.PlayerType(i))
+        mng.Managers.getInstance().input.startListening(playerTypes)
+        self.asteroidManager = AsteroidManager(self.spaceshipDestroyed)
+        self.projectileManager = ProjectileManager(self.asteroidDestroyed)
+        self.players = []          
+        for item in playerTypes:
+            self.players.append(Player(players[item],item,self.projectileManager))
         self.asteroidDestroyed.connect(self.asteroidAction)
         self.spaceshipDestroyed.connect(self.spaceshipAction)
         self.currentAsteroidSpeed = 1.8

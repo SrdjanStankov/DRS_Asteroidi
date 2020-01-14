@@ -9,6 +9,7 @@ class Player(QObject):
 
     def __init__(self, name, playerType, projectileManager):
         super(Player, self).__init__()
+        self.playerType = playerType
         self.player = mng.Managers.getInstance().objects.Instantiate("Spaceship", name=name, callable=self.update,playerType = playerType)
         self.player.lives = 3
         self.player.points = 0
@@ -28,7 +29,7 @@ class Player(QObject):
             self.centerY = 400
         self.player.setToCenter = self.setToCenter
         self.setToCenter()
-        self.playerType = playerType
+       
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager
