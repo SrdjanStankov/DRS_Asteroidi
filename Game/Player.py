@@ -28,8 +28,7 @@ class Player(QObject):
             self.centerX = 550
             self.centerY = 400
         self.player.setToCenter = self.setToCenter
-        self.setToCenter()
-       
+        self.setToCenter()       
         self.shootCounter = 0
         self.projectiles = []
         self.projectileManager = projectileManager

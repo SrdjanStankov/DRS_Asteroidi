@@ -13,6 +13,10 @@ import SingleplayerScene as ss
 from GameManager import GameManager
 import Managers as mgr
 from AsteroidAndPlayerTypes import PlayerType
+import PlayerLevelInformation as pli
+import PlayerRemainingAsterioids as pra
+import Managers as mng
+
 
 class internalUpdate(QObject):
     update = pyqtSignal()
@@ -65,6 +69,11 @@ class SceneManager(QtWidgets.QMainWindow):
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
         self.gm = GameManager({PlayerType.player1:"Dejan"})
+        levelItem = pli.PlayerLevelInformation(self.gm)
+        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(levelItem)
+        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+
 
     def changeSceneToMultiplayerTwoPlayers(self):
         self.view = QtWidgets.QGraphicsView(self.scene)
