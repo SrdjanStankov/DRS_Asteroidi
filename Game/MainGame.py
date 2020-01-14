@@ -8,6 +8,9 @@ def cancel():
 
 if __name__ == "__main__":
     
+    import multiprocessing
+    multiprocessing.freeze_support()
+
     # connect app exit signal to thread stop of game loop
     a = mgr.Managers.getInstance()
     a.app.aboutToQuit.connect(cancel)
