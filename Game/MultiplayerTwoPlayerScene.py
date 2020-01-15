@@ -37,6 +37,13 @@ class MultiplayerTwoPlayerScene(QGraphicsScene):
         start.setGeometry(QRect(screenWidth - 200, screenHeight - 200, 300, 40))
         back.setGeometry(QRect(100, 100, 300, 40))
 
+        commands1 = QLabel("left => left, right => right,\n up => up, down => down,\n shoot => ctrl")
+        commands2 = QLabel("left => a,    right => d,    \n up => w,  down => s,   \n shoot => shift")
+        commands1.setStyleSheet("color: white; font-size: 20px; background-color: rgba(0,0,0,0%)")
+        commands2.setStyleSheet("color: white; font-size: 20px; background-color: rgba(0,0,0,0%)")
+        y_comm_start = self.y_start - 20
+        commands1.setGeometry(QRect(1050, y_comm_start, 300, 64))
+        commands2.setGeometry(QRect(1050, y_comm_start + self.y_step, 300, 64))
 
         self.textbox1 = QLineEdit()
         self.textbox1.move(500, self.y_start)
@@ -72,6 +79,8 @@ class MultiplayerTwoPlayerScene(QGraphicsScene):
         self.addWidget(player2)
         self.addWidget(start)
         self.addWidget(back)
+        self.addWidget(commands1)
+        self.addWidget(commands2)
         self.addWidget(self.textbox1)
         self.addWidget(self.textbox2)
 
