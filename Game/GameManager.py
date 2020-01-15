@@ -57,6 +57,9 @@ class GameManager(QObject):
         self.noti.update.connect(self.update)
         self.lock = th.Lock()
         self.nextPowerUp = 0
+        self.scores = []
+        self.winner = None
+        self.playerAttributes = []
         self.destroyedShipAttribute = None
 
     def asteroidAction(self,asteroidId,playerId,projectileId):
@@ -103,6 +106,11 @@ class GameManager(QObject):
                     player.lives -= 1
                 else:
                     player.lives -= 1
+                    triple = (player.name,player.playerType,player.points)
+                    self.lock.acquire()
+                    self.playerAttributes.append(player.attributesItem)
+                    self.scores.append(triple)
+                    self.lock.release()
                     self.destroyedShipAttribute = player.attributesItem
                     mng.Managers.getInstance().objects.Destroy(playerId)
 
@@ -129,7 +137,8 @@ class GameManager(QObject):
             if self.asteroidsToDestroy <= 0:
                 self.startLevel()
         else:
-            pass # game over logika
+            self.winner = max(self.scores, key = lambda x: x[2])
+            print(f"Winner is {self.winner[0]}: {self.winner[2]}")
 
     def spawnPowerUp(self):
         number = randint(1,3)
