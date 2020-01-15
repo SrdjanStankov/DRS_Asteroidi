@@ -1,7 +1,7 @@
 import GameObject as gameObject
 import SceneManager
 import Renderer as renderer
-
+import pygame
 import Transform as transform
 from AsteroidAndPlayerTypes import AsteroidType, PlayerType
 from PyQt5 import QtGui
@@ -14,6 +14,11 @@ class ObjectFactory:
     def __init__(self,SceneManager:SceneManager):
         self.SceneManager = SceneManager
         print("Factory on duty.")
+        pygame.mixer.init()
+        pygame.init()
+        pygame.mixer.set_num_channels(50)   
+        self.shootSound = pygame.mixer.Sound("3537.wav")
+        self.bigAsteroidExplosionSound = pygame.mixer.Sound("sf_explosion_01.wav")
         self.itemFactory = ItemFactory(
             largeAsteroidWidth=80, largeAsteroidHeight=80,
             mediumAsteroidWidth=50, mediumAsteroidHeight=50,
@@ -102,7 +107,7 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
-        
+        go.sound = self.bigAsteroidExplosionSound
         if go.asteroidType is AsteroidType.large:
             go.radius = 40
             image,path = self.itemFactory.getAsteroid(AsteroidType.large)
@@ -129,6 +134,7 @@ class ObjectFactory:
         go.transform = transform.Transform()
         go.name = kwargs["name"]
         go.playerType = kwargs["playerType"]
+        go.shootSound = self.shootSound
         image,path = self.itemFactory.getPlayer(kwargs["playerType"])
         go.Render = renderer.Renderer(80,100,path,go.transform,image,None,go.Type)
         self.SceneManager.scene.addItem(go.Render)

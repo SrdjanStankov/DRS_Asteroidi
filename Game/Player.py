@@ -2,9 +2,11 @@ from PyQt5.QtCore import QObject
 import Managers as mng
 import InputCommandType as inputCommand
 import time
+from threading import Thread
 import PlayerAttributes as playerAttributes
 from AsteroidAndPlayerTypes import PlayerType
 from PyQt5.QtMultimedia import QSound
+
 
 class Player(QObject):
 
@@ -37,6 +39,8 @@ class Player(QObject):
         self.nextShootTime = time.time()
         self.player.invulnerableTime = 4
         self.player.nextAliveTime = time.time()
+
+
         self.player.attributesItem = playerAttributes.PlayerAttributes(self.player)
         mng.Managers.getInstance().scene.AddItem(self.player.attributesItem)
 
@@ -59,7 +63,6 @@ class Player(QObject):
                 if botCenter[0] <= 1400 and botCenter[1] <= 788  and botCenter[0] > 34 and botCenter[1] > 75:
                     self.player.transform.move(-1)
             if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
+                self.player.shootSound.play()
                 self.projectileManager.createProjectile(self.player)
-                sound = QSound('3537.wav')
-                self.player.Render.pendingSounds.append(sound)
                 self.nextShootTime = time.time() + self.player.shootInterval 

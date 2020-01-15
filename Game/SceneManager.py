@@ -168,9 +168,6 @@ class SceneManager(QtWidgets.QMainWindow):
             if item.itemType == "Spaceship":
                 item.rotateItem()
                 item.moveItem()
-                for i in item.pendingSounds:
-                    i.play()
-                item.pendingSounds.clear()
             else:
                 item.moveItem()
         self.scene.update()
