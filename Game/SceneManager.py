@@ -17,6 +17,10 @@ from AsteroidAndPlayerTypes import PlayerType
 import PlayerLevelInformation as pli
 import PlayerRemainingAsterioids as pra
 import Managers as mng
+import TournamentManager
+import MultiplayerTwoPlayerScene as mtps
+import MultiplayerThreePlayerScene as mthps
+import MultiplayerFourPlayerScene as mfps
 
 
 class internalUpdate(QObject):
@@ -39,7 +43,15 @@ class SceneManager(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(SceneManager, self).__init__(parent)
         self.startScene = sc.StartScene(self.changeSceneToSingleplayer, self.changeSceneToMultiplayer, self.applicationExitMethod)
-        self.multiplayerScene = ms.MultiplayerScene(self.changeSceneToMultiplayerTwoPlayers,self.changeSceneToMultiplayerThreePlayers,self.changeSceneToMultiplayerFourPlayers,self.backFromMultiplayer)
+        self.multiplayerTwoPlayerScene = mtps.MultiplayerTwoPlayerScene(self.startTwoPlayerMethod, self.backFromMultiplayerPlayerMenu)
+        self.multiplayerThreePlayerScene = mthps.MultiplayerThreePlayerScene(self.startThreePlayerMethod, self.backFromMultiplayerPlayerMenu)
+        self.multiplayerFourPlayerScene = mfps.MultiplayerFourPlayerScene(self.startFourPlayerMethod, self.backFromMultiplayerPlayerMenu)
+        self.multiplayerScene = ms.MultiplayerScene(self.changeSceneToMultiplayerTwoPlayers,
+                                                    self.changeSceneToMultiplayerThreePlayers,
+                                                    self.changeSceneToMultiplayerFourPlayers,
+                                                    self.backFromMultiplayer,
+                                                    self.changeSceneToTournamentFourPlayers)
+
         self.singleplayerScene = ss.SingleplayerScene()
 
         self.startView = sv.View(self.startScene)
@@ -75,34 +87,81 @@ class SceneManager(QtWidgets.QMainWindow):
         mng.Managers.getInstance().scene.AddItem(levelItem)
         mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
 
-
     def changeSceneToMultiplayerTwoPlayers(self):
-        self.view = QtWidgets.QGraphicsView(self.scene)
-        self.view.setSceneRect(90,90, 1250, 738)
-        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
-        self.view.setInteractive(False)
-        self.setCentralWidget(self.view)
-        self.gm = GameManager({PlayerType.player1:"Dejan",PlayerType.player2:"Srdjan"})
+        multiplayerTwoPlayerView = sv.View(self.multiplayerTwoPlayerScene)
+        self.changeViewMethod(multiplayerTwoPlayerView)
 
     def changeSceneToMultiplayerThreePlayers(self):
-        self.view = QtWidgets.QGraphicsView(self.scene)
-        self.view.setSceneRect(90,90, 1250, 738)
-        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
-        self.view.setInteractive(False)
-        self.setCentralWidget(self.view)
-        self.gm = GameManager({PlayerType.player1:"Dejan",PlayerType.player2:"Srdjan",PlayerType.player3:"Nemanja"})
+        multiplayerThreePlayerView = sv.View(self.multiplayerThreePlayerScene)
+        self.changeViewMethod(multiplayerThreePlayerView)
 
     def changeSceneToMultiplayerFourPlayers(self):
+        multiplayerFourPlayerView = sv.View(self.multiplayerFourPlayerScene)
+        self.changeViewMethod(multiplayerFourPlayerView)
+
+
+    def changeSceneToTournamentFourPlayers(self):
         self.view = QtWidgets.QGraphicsView(self.scene)
-        self.view.setSceneRect(90,90, 1250, 738)
+        self.view.setSceneRect(90, 90, 1250, 738)
         self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
-        self.gm = GameManager({PlayerType.player1:"Dejan",PlayerType.player2:"Srdjan",PlayerType.player3:"Nemanja",PlayerType.player4:"Aleksandar"})
+        self.tm = TournamentManager.Tournament("Dejan", "Srdjan", "Nemanja", "Aleksandar")
 
     def backFromMultiplayer(self):
         startView = sv.View(self.startScene)
         self.changeViewMethod(startView)
+
+    def backFromMultiplayerPlayerMenu(self):
+        multiplayerView = sv.View(self.multiplayerScene)
+        self.changeViewMethod(multiplayerView)
+
+
+    def startTwoPlayerMethod(self):
+        player1name = self.multiplayerTwoPlayerScene.textbox1.text()
+        player2name = self.multiplayerTwoPlayerScene.textbox2.text()
+        self.view = QtWidgets.QGraphicsView(self.scene)
+        self.view.setSceneRect(90, 90, 1250, 738)
+        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
+        self.view.setInteractive(False)
+        self.setCentralWidget(self.view)
+        self.gm = GameManager({PlayerType.player1: str(player1name), PlayerType.player2: str(player2name)})
+        levelItem = pli.PlayerLevelInformation(self.gm)
+        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(levelItem)
+        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+
+    def startThreePlayerMethod(self):
+        player1name = self.multiplayerThreePlayerScene.textbox1.text()
+        player2name = self.multiplayerThreePlayerScene.textbox2.text()
+        player3name = self.multiplayerThreePlayerScene.textbox3.text()
+        self.view = QtWidgets.QGraphicsView(self.scene)
+        self.view.setSceneRect(90, 90, 1250, 738)
+        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
+        self.view.setInteractive(False)
+        self.setCentralWidget(self.view)
+        self.gm = GameManager({PlayerType.player1: player1name, PlayerType.player2: player2name, PlayerType.player3: player3name})
+        levelItem = pli.PlayerLevelInformation(self.gm)
+        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(levelItem)
+        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+
+    def startFourPlayerMethod(self):
+        player1name = self.multiplayerFourPlayerScene.textbox1.text()
+        player2name = self.multiplayerFourPlayerScene.textbox2.text()
+        player3name = self.multiplayerFourPlayerScene.textbox3.text()
+        player4name = self.multiplayerFourPlayerScene.textbox4.text()
+        self.view = QtWidgets.QGraphicsView(self.scene)
+        self.view.setSceneRect(90, 90, 1250, 738)
+        self.view.setViewportUpdateMode(QtWidgets.QGraphicsView.NoViewportUpdate)
+        self.view.setInteractive(False)
+        self.setCentralWidget(self.view)
+        self.gm = GameManager({PlayerType.player1: player1name, PlayerType.player2: player2name, PlayerType.player3: player3name,
+                               PlayerType.player4: player4name})
+        levelItem = pli.PlayerLevelInformation(self.gm)
+        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(levelItem)
+        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
 
     def update(self):     
         for item in self.scene.items():
@@ -117,4 +176,7 @@ class SceneManager(QtWidgets.QMainWindow):
         self.scene.update()
 
     def AddItem(self,renderer):
-        self.scene.addItem(renderer)    
+        self.scene.addItem(renderer)
+
+    def removeItem(self, renderer):
+        self.scene.removeItem(renderer)

@@ -1,5 +1,6 @@
 from GameLoop import GameLoop as gl
 import Managers as mgr
+import TournamentManager
             
 # method for canceling game loop thread
 def cancel():
@@ -8,6 +9,8 @@ def cancel():
 
 if __name__ == "__main__":
     
+    #t = TournamentManager.Tournament("jedan","dva","tri","cetir")
+
     import multiprocessing
     multiprocessing.freeze_support()
 

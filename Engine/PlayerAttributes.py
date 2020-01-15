@@ -21,7 +21,7 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
         self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
         self.font = QFont('Helvetica', 14)
         self.font.setBold(True)
-        self.x_step = 200  #promeniti kada bude bilo potrebno
+        self.x_step = 250  #promeniti kada bude bilo potrebno
 
         if self.player.playerType is aapt.PlayerType.player1:
             self.x_pos = 0
@@ -31,10 +31,10 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
             self.color = QColor("Red")
         elif self.player.playerType is aapt.PlayerType.player3:
             self.x_pos = self.x_step * 2
-            self.color = QColor("Green")
+            self.color = QColor("Yellow")
         else:
             self.x_pos = self.x_step * 3
-            self.color = QColor("Yellow")
+            self.color = QColor("Green")
 
         self.setPos(self.x_pos, 70)
 

@@ -37,8 +37,8 @@ class Player(QObject):
         self.nextShootTime = time.time()
         self.player.invulnerableTime = 4
         self.player.nextAliveTime = time.time()
-        attributesItem = playerAttributes.PlayerAttributes(self.player)
-        mng.Managers.getInstance().scene.AddItem(attributesItem)
+        self.player.attributesItem = playerAttributes.PlayerAttributes(self.player)
+        mng.Managers.getInstance().scene.AddItem(self.player.attributesItem)
 
     def setToCenter(self):
         self.player.transform.x = self.centerX

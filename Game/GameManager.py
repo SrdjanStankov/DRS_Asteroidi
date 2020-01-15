@@ -101,6 +101,7 @@ class GameManager(QObject):
                     player.lives -= 1
                 else:
                     player.lives -= 1
+                    mng.Managers.getInstance().scene.removeItem(player.attributesItem)
                     mng.Managers.getInstance().objects.Destroy(playerId)
 
     def startLevel(self):
