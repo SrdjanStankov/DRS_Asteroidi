@@ -21,7 +21,9 @@ class gameStateUpdate(QObject):
     def __init__(self):
         super(gameStateUpdate, self).__init__()
         self.t = th.Thread(target=self.loop)
+        self.stop = False
         self.t.start()
+
 
     def loop(self):
         while True:
@@ -61,6 +63,8 @@ class GameManager(QObject):
         self.winner = None
         self.playerAttributes = []
         self.destroyedShipAttribute = []
+        self.isTournament = True
+        self.isOver = False
 
     def asteroidAction(self,asteroidId,playerId,projectileId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
@@ -137,8 +141,20 @@ class GameManager(QObject):
             if self.asteroidsToDestroy <= 0:
                 self.startLevel()
         else:
-            self.winner = max(self.scores, key = lambda x: x[2])
-            print(f"Winner is {self.winner[0]}: {self.winner[2]}")
+            if self.winner is None:
+                self.winner = max(self.scores, key = lambda x: x[2])
+                print(f"Winner is {self.winner[0]}: {self.winner[2]}")
+            if not self.isTournament:
+                if not self.isOver: 
+                    for item in self.destroyedShipAttribute:
+                        mng.Managers.getInstance().scene.removeItem(item)
+                    for item in mng.Managers.getInstance().objects.FindObjectsOfType("Asteroid"):
+                        mng.Managers.getInstance().objects.Destroy(item.Id)
+                    self.isOver = True
+                else:
+                    self.noti.update.disconnect(self.update)
+                    mng.Managers.getInstance().scene.backFromMultiplayer()
+                    mng.Managers.getInstance().input.stopListening()
 
     def spawnPowerUp(self):
         number = randint(1,3)

@@ -53,10 +53,11 @@ class SceneManager(QtWidgets.QMainWindow):
                                                     self.changeSceneToTournamentFourPlayers)
 
         self.singleplayerScene = ss.SingleplayerScene()
-
+        self.gm = None
         self.startView = sv.View(self.startScene)
         self.setCentralWidget(self.startView)
-
+        self.levelItem = None
+        self.remainingAsteriodsItem = None
         self.scene = QtWidgets.QGraphicsScene(self)
         self.scene.setBackgroundBrush(QBrush(QColor('black')))
         self.scene.setSceneRect(0, 0, 1500, 980)
@@ -82,10 +83,11 @@ class SceneManager(QtWidgets.QMainWindow):
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
         self.gm = GameManager({PlayerType.player1:"Dejan"})
-        levelItem = pli.PlayerLevelInformation(self.gm)
-        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
-        mng.Managers.getInstance().scene.AddItem(levelItem)
-        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+        self.gm.isTournament = False
+        self.levelItem = pli.PlayerLevelInformation(self.gm)
+        self.remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(self.levelItem)
+        mng.Managers.getInstance().scene.AddItem(self.remainingAsteriodsItem)
 
     def changeSceneToMultiplayerTwoPlayers(self):
         multiplayerTwoPlayerView = sv.View(self.multiplayerTwoPlayerScene)
@@ -109,6 +111,13 @@ class SceneManager(QtWidgets.QMainWindow):
         self.tm = TournamentManager.Tournament("Dejan", "Srdjan", "Nemanja", "Aleksandar")
 
     def backFromMultiplayer(self):
+        if self.gm is not None:
+            del self.gm
+            self.gm = None
+            self.removeItem(self.levelItem)
+            self.removeItem(self.remainingAsteriodsItem)
+            self.levelItem = None
+            self.remainingAsteroidsItem = None
         startView = sv.View(self.startScene)
         self.changeViewMethod(startView)
 
@@ -126,10 +135,11 @@ class SceneManager(QtWidgets.QMainWindow):
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
         self.gm = GameManager({PlayerType.player1: str(player1name), PlayerType.player2: str(player2name)})
-        levelItem = pli.PlayerLevelInformation(self.gm)
-        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
-        mng.Managers.getInstance().scene.AddItem(levelItem)
-        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+        self.gm.isTournament = False
+        self.levelItem = pli.PlayerLevelInformation(self.gm)
+        self.remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(self.levelItem)
+        mng.Managers.getInstance().scene.AddItem(self.remainingAsteriodsItem)
 
     def startThreePlayerMethod(self):
         player1name = self.multiplayerThreePlayerScene.textbox1.text()
@@ -141,10 +151,11 @@ class SceneManager(QtWidgets.QMainWindow):
         self.view.setInteractive(False)
         self.setCentralWidget(self.view)
         self.gm = GameManager({PlayerType.player1: player1name, PlayerType.player2: player2name, PlayerType.player3: player3name})
-        levelItem = pli.PlayerLevelInformation(self.gm)
-        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
-        mng.Managers.getInstance().scene.AddItem(levelItem)
-        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+        self.gm.isTournament = False
+        self.levelItem = pli.PlayerLevelInformation(self.gm)
+        self.remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(self.levelItem)
+        mng.Managers.getInstance().scene.AddItem(self.remainingAsteriodsItem)
 
     def startFourPlayerMethod(self):
         player1name = self.multiplayerFourPlayerScene.textbox1.text()
@@ -158,10 +169,11 @@ class SceneManager(QtWidgets.QMainWindow):
         self.setCentralWidget(self.view)
         self.gm = GameManager({PlayerType.player1: player1name, PlayerType.player2: player2name, PlayerType.player3: player3name,
                                PlayerType.player4: player4name})
-        levelItem = pli.PlayerLevelInformation(self.gm)
-        remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
-        mng.Managers.getInstance().scene.AddItem(levelItem)
-        mng.Managers.getInstance().scene.AddItem(remainingAsteriodsItem)
+        self.gm.isTournament = False
+        self.levelItem = pli.PlayerLevelInformation(self.gm)
+        self.remainingAsteriodsItem = pra.PlayerRemainingAsteroids(self.gm)
+        mng.Managers.getInstance().scene.AddItem(self.levelItem)
+        mng.Managers.getInstance().scene.AddItem(self.remainingAsteriodsItem)
 
     def update(self):     
         for item in self.scene.items():
