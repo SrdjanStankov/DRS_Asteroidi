@@ -104,6 +104,7 @@ class GameManager(QObject):
         player = mng.Managers.getInstance().objects.FindById(playerId)
         if player is not None:
             if time.time() > player.nextAliveTime:
+                player.destroySound.play()
                 player.nextAliveTime = time.time() + player.invulnerableTime
                 if player.lives > 1:
                     player.setToCenter()

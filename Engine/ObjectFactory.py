@@ -17,10 +17,14 @@ class ObjectFactory:
         pygame.mixer.init()
         pygame.init()
         pygame.mixer.set_num_channels(50)   
-        self.shootSound = pygame.mixer.Sound("3537.wav")
-        self.bigAsteroidExplosionSound = pygame.mixer.Sound("sf_explosion_01.wav")
-        self.mediumAsteroidExplosionSound = pygame.mixer.Sound("sf_explosion_20.wav")
-        self.smallAsteroidExplosionSound = pygame.mixer.Sound("SFB-explosion2.wav")
+        self.shootSound1 = pygame.mixer.Sound("shotPlayer1.wav")
+        self.shootSound2 = pygame.mixer.Sound("shotPlayer2.wav")
+        self.shootSound3 = pygame.mixer.Sound("shotPlayer3.wav")
+        self.shootSound4 = pygame.mixer.Sound("shotPlayer4.wav")
+        self.mediumAsteroidExplosionSound = pygame.mixer.Sound("mediumAsteroid.wav")
+        self.smallAsteroidExplosionSound = pygame.mixer.Sound("smallAsteroid.wav")
+        self.bigAsteroidExplosionSound = pygame.mixer.Sound("largeAsteroid.wav")
+        self.spaceshipExplosionSound = pygame.mixer.Sound("spaceshipDestroy.wav")
         self.itemFactory = ItemFactory(
             largeAsteroidWidth=80, largeAsteroidHeight=80,
             mediumAsteroidWidth=50, mediumAsteroidHeight=50,
@@ -139,7 +143,15 @@ class ObjectFactory:
         go.transform = transform.Transform()
         go.name = kwargs["name"]
         go.playerType = kwargs["playerType"]
-        go.shootSound = self.shootSound
+        if go.playerType is PlayerType.player1:
+            go.shootSound = self.shootSound1
+        elif go.playerType is PlayerType.player2:
+            go.shootSound = self.shootSound2
+        elif go.playerType is PlayerType.player3:
+            go.shootSound = self.shootSound3
+        else:
+            go.shootSound = self.shootSound4
+        go.destroySound = self.spaceshipExplosionSound
         image,path = self.itemFactory.getPlayer(kwargs["playerType"])
         go.Render = renderer.Renderer(80,100,path,go.transform,image,None,go.Type)
         self.SceneManager.scene.addItem(go.Render)
