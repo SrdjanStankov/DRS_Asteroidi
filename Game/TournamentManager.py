@@ -40,6 +40,7 @@ class Tournament(QObject):
         if len(self.bracketsWinners) == 1 and len(self.brackets) <= 0:
             # ovde logika za kraj turnira pobednik se nalazi u self.bracketsWinners[0]
             print('Winner {}'.format(self.bracketsWinners[0]))
+            mng.Managers.getInstance().scene.backFromMultiplayer()
 
     def update(self):
         #spaceships = mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship")
