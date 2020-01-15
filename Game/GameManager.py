@@ -66,10 +66,10 @@ class GameManager(QObject):
             self.asteroidsToDestroy -= 1
             self.lock.release()
             mng.Managers.getInstance().objects.Destroy(projectileId)
+            asteroid.sound.play()
             x = asteroid.transform.x
             y = asteroid.transform.y
             type = asteroid.asteroidType
-            asteroid.sound.play()
             mng.Managers.getInstance().objects.Destroy(asteroidId)
             if type is AsteroidType.large:
                 player.points += 100

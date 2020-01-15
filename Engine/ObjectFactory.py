@@ -19,6 +19,8 @@ class ObjectFactory:
         pygame.mixer.set_num_channels(50)   
         self.shootSound = pygame.mixer.Sound("3537.wav")
         self.bigAsteroidExplosionSound = pygame.mixer.Sound("sf_explosion_01.wav")
+        self.mediumAsteroidExplosionSound = pygame.mixer.Sound("sf_explosion_20.wav")
+        self.smallAsteroidExplosionSound = pygame.mixer.Sound("SFB-explosion2.wav")
         self.itemFactory = ItemFactory(
             largeAsteroidWidth=80, largeAsteroidHeight=80,
             mediumAsteroidWidth=50, mediumAsteroidHeight=50,
@@ -107,17 +109,20 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
-        go.sound = self.bigAsteroidExplosionSound
+        
         if go.asteroidType is AsteroidType.large:
+            go.sound = self.bigAsteroidExplosionSound
             go.radius = 40
             image,path = self.itemFactory.getAsteroid(AsteroidType.large)
             go.Render = renderer.Renderer(80,80,path,go.transform,image,None,go.Type)
         elif go.asteroidType is AsteroidType.medium:
+            go.sound = self.mediumAsteroidExplosionSound
             go.radius = 25
             go.transform.speed += 0.2
             image,path = self.itemFactory.getAsteroid(AsteroidType.medium)
             go.Render = renderer.Renderer(50,50,path,go.transform,image,None,go.Type)
         else:
+            go.sound = self.smallAsteroidExplosionSound
             go.transform.speed += 0.4
             go.radius = 15
             image,path = self.itemFactory.getAsteroid(AsteroidType.small)
