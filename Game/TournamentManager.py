@@ -42,19 +42,23 @@ class Tournament(QObject):
             print('Winner {}'.format(self.bracketsWinners[0]))
 
     def update(self):
-        spaceships = mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship")
-        if len(spaceships) != 2:
+        #spaceships = mng.Managers.getInstance().objects.FindObjectsOfType("Spaceship")
+        if self.gm.winner is not None:
+        #if len(spaceships) != 2:
             # next game
-            winnerName = spaceships[0].name
+            winnerName = self.gm.winner[0]
+            print('bracket winner is ' + winnerName)
             self.bracketsWinners.append(winnerName)
             self.gm.noti.update.disconnect(self.update)
             self.brackets.remove(self.brackets[0])
             mng.Managers.getInstance().input.stopListening()
+            for x in self.gm.destroyedShipAttribute:
+                mng.Managers.getInstance().scene.removeItem(x)
             for x in range(0, mng.Managers.getInstance().objects.id + 1):
                 p = mng.Managers.getInstance().objects.FindById(x)
                 if p is not None:
                     if p.Type == 'Spaceship':
-                        mng.Managers.getInstance().scene.removeItem(self.gm.destroyedShipAttribute)
+                        #mng.Managers.getInstance().scene.removeItem(self.gm.destroyedShipAttribute)
                         mng.Managers.getInstance().scene.removeItem(p.attributesItem)
                 mng.Managers.getInstance().objects.Destroy(x)
             del self.gm

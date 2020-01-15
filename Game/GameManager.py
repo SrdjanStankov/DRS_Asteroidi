@@ -60,7 +60,7 @@ class GameManager(QObject):
         self.scores = []
         self.winner = None
         self.playerAttributes = []
-        self.destroyedShipAttribute = None
+        self.destroyedShipAttribute = []
 
     def asteroidAction(self,asteroidId,playerId,projectileId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
@@ -111,7 +111,7 @@ class GameManager(QObject):
                     self.playerAttributes.append(player.attributesItem)
                     self.scores.append(triple)
                     self.lock.release()
-                    self.destroyedShipAttribute = player.attributesItem
+                    self.destroyedShipAttribute.append(player.attributesItem)
                     mng.Managers.getInstance().objects.Destroy(playerId)
 
     def startLevel(self):
