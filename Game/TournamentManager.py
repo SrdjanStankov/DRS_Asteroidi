@@ -54,6 +54,7 @@ class Tournament(QObject):
                 p = mng.Managers.getInstance().objects.FindById(x)
                 if p is not None:
                     if p.Type == 'Spaceship':
+                        mng.Managers.getInstance().scene.removeItem(self.gm.destroyedShipAttribute)
                         mng.Managers.getInstance().scene.removeItem(p.attributesItem)
                 mng.Managers.getInstance().objects.Destroy(x)
             del self.gm

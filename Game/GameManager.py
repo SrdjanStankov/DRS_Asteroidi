@@ -57,6 +57,7 @@ class GameManager(QObject):
         self.noti.update.connect(self.update)
         self.lock = th.Lock()
         self.nextPowerUp = 0
+        self.destroyedShipAttribute = None
 
     def asteroidAction(self,asteroidId,playerId,projectileId):
         player = mng.Managers.getInstance().objects.FindById(playerId)
@@ -102,7 +103,7 @@ class GameManager(QObject):
                     player.lives -= 1
                 else:
                     player.lives -= 1
-                    mng.Managers.getInstance().scene.removeItem(player.attributesItem)
+                    self.destroyedShipAttribute = player.attributesItem
                     mng.Managers.getInstance().objects.Destroy(playerId)
 
     def startLevel(self):
