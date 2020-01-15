@@ -8,6 +8,7 @@ import GameLoop as gameLoop
 import View as sv
 import StartScene as sc
 import MultiplayerScene as ms
+from PyQt5.QtMultimedia import QSound
 import sys
 import SingleplayerScene as ss
 from GameManager import GameManager
@@ -108,6 +109,9 @@ class SceneManager(QtWidgets.QMainWindow):
             if item.itemType == "Spaceship":
                 item.rotateItem()
                 item.moveItem()
+                for i in item.pendingSounds:
+                    i.play()
+                item.pendingSounds.clear()
             else:
                 item.moveItem()
         self.scene.update()

@@ -11,6 +11,7 @@ class Renderer(QtWidgets.QGraphicsItem):
         self.height = height
         self.itemType = type
         self.transform = transform
+        self.pendingSounds = []
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, True)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, True)

@@ -1,6 +1,7 @@
 import GameObject as gameObject
 import SceneManager
 import Renderer as renderer
+
 import Transform as transform
 from AsteroidAndPlayerTypes import AsteroidType, PlayerType
 from PyQt5 import QtGui
@@ -131,6 +132,7 @@ class ObjectFactory:
         image,path = self.itemFactory.getPlayer(kwargs["playerType"])
         go.Render = renderer.Renderer(80,100,path,go.transform,image,None,go.Type)
         self.SceneManager.scene.addItem(go.Render)
+        
         return go
 
     def _CreateProjectile(self,**kwargs):

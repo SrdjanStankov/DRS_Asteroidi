@@ -4,6 +4,7 @@ import InputCommandType as inputCommand
 import time
 import PlayerAttributes as playerAttributes
 from AsteroidAndPlayerTypes import PlayerType
+from PyQt5.QtMultimedia import QSound
 
 class Player(QObject):
 
@@ -59,4 +60,6 @@ class Player(QObject):
                     self.player.transform.move(-1)
             if command == inputCommand.InputCommandType.shoot and time.time() > self.nextShootTime:
                 self.projectileManager.createProjectile(self.player)
+                sound = QSound('3537.wav')
+                self.player.Render.pendingSounds.append(sound)
                 self.nextShootTime = time.time() + self.player.shootInterval 
