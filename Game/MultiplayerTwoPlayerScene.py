@@ -8,7 +8,7 @@ from PyQt5.QtCore import pyqtSignal
 
 
 class MultiplayerTwoPlayerScene(QGraphicsScene):
-    def __init__(self, startMethod, parent=None):
+    def __init__(self, startMethod, backMethod, parent=None):
         super(MultiplayerTwoPlayerScene, self).__init__(parent)
 
         screenWidth = 1370
@@ -27,29 +27,33 @@ class MultiplayerTwoPlayerScene(QGraphicsScene):
         player1 = QLabel('PLAYER 1')
         player2 = QLabel('PLAYER 2')
         start = ClickableQLabel('START')
+        back = ClickableQLabel('BACK')
         player1.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
         player2.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
         start.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
-        player1.setGeometry(QRect(100, self.y_start, 300, 40))  # (x, y, width, height)
-        player2.setGeometry(QRect(100, self.y_start + self.y_step, 300, 40))
+        back.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
+        player1.setGeometry(QRect(270, self.y_start, 300, 40))  # (x, y, width, height)
+        player2.setGeometry(QRect(270, self.y_start + self.y_step, 300, 40))
         start.setGeometry(QRect(screenWidth - 200, screenHeight - 200, 300, 40))
+        back.setGeometry(QRect(100, 100, 300, 40))
 
 
         self.textbox1 = QLineEdit()
-        self.textbox1.move(400, self.y_start)
+        self.textbox1.move(500, self.y_start)
         self.textbox1.resize(280, 40)
         font1 = self.textbox1.font()
         font1.setPointSize(20)
         self.textbox1.setFont(font1)
 
         self.textbox2 = QLineEdit()
-        self.textbox2.move(400, self.y_start + self.y_step)
+        self.textbox2.move(500, self.y_start + self.y_step)
         self.textbox2.resize(280, 40)
         font2 = self.textbox2.font()
         font2.setPointSize(20)
         self.textbox2.setFont(font2)
 
-        start.connect(startMethod) #, str(textbox1.text()), str(textbox2.text()))
+        start.connect(startMethod)
+        back.connect(backMethod)
 
         oImageSpaceshipGray = QPixmap("spaceship2.jpg")
         sImageSpaceshipGray = oImageSpaceshipGray.scaled(QSize(100, 100))  # resize Image to widgets size
@@ -58,8 +62,8 @@ class MultiplayerTwoPlayerScene(QGraphicsScene):
         oImageSpaceshipYellow = QPixmap("spaceshipRed.jpg")
         sImageSpaceshipYellow = oImageSpaceshipYellow.scaled(QSize(100, 100))  # resize Image to widgets size
         self.graphicsPixmapItem2 = QGraphicsPixmapItem(sImageSpaceshipYellow)
-        self.graphicsPixmapItem1.setPos(800, self.y_start - 30)
-        self.graphicsPixmapItem2.setPos(800, self.y_start + self.y_step - 30)
+        self.graphicsPixmapItem1.setPos(900, self.y_start - 30)
+        self.graphicsPixmapItem2.setPos(900, self.y_start + self.y_step - 30)
 
 
         self.addItem(self.graphicsPixmapItem1)
@@ -67,6 +71,7 @@ class MultiplayerTwoPlayerScene(QGraphicsScene):
         self.addWidget(player1)
         self.addWidget(player2)
         self.addWidget(start)
+        self.addWidget(back)
         self.addWidget(self.textbox1)
         self.addWidget(self.textbox2)
 

@@ -31,10 +31,13 @@ class MultiplayerScene(QGraphicsScene):
         tournament.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
         back.setStyleSheet("color: white; font-size: 40px; background-color: rgba(0,0,0,0%)")
 
-        twoPlayer.setGeometry(QRect(500, 300, 300, 40))  # (x, y, width, height)
-        threePlayer.setGeometry(QRect(500, 400, 300, 40))
-        fourPlayer.setGeometry(QRect(500, 500, 300, 40))
-        tournament.setGeometry(QRect(500, 600, 300, 40))
+        self.y_start = 220
+        self.y_step = 100
+        self.x_pos = 550
+        twoPlayer.setGeometry(QRect(self.x_pos, self.y_start, 300, 40))  # (x, y, width, height)
+        threePlayer.setGeometry(QRect(self.x_pos, self.y_start + self.y_step, 300, 40))
+        fourPlayer.setGeometry(QRect(self.x_pos, self.y_start + self.y_step * 2, 300, 40))
+        tournament.setGeometry(QRect(self.x_pos, self.y_start + self.y_step * 3, 300, 40))
         back.setGeometry(QRect(100, 100, 300, 40))
 
         #connect
