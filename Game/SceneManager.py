@@ -71,6 +71,7 @@ class SceneManager(QtWidgets.QMainWindow):
         self.noti = internalUpdate()
         self.noti.update.connect(self.update)
         self.addSignal.connect(self.AddItem)
+        self.tournamentMenuMapper = tmm.TournamentMenuMappper()
 
     def changeViewMethod(self, view):
         self.setCentralWidget(view)
