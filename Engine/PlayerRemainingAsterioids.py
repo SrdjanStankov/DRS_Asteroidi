@@ -16,7 +16,7 @@ class PlayerRemainingAsteroids(QtWidgets.QGraphicsTextItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, False)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, False)
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
-        self.setZValue(1)
+        self.setZValue(2)
 
         self.color = QColor("Grey")
         self.font = QFont('Helvetica', 14)

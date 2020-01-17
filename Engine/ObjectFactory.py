@@ -158,7 +158,9 @@ class ObjectFactory:
         go.destroySound = self.spaceshipExplosionSound
         image,path = self.itemFactory.getPlayer(kwargs["playerType"])
         go.Render = renderer.Renderer(80,100,path,go.transform,image,None,go.Type)
+		go.Render.setZValue(1)
         self.SceneManager.scene.addItem(go.Render)
+		
         
         return go
 

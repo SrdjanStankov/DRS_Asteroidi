@@ -17,7 +17,7 @@ class PlayerAttributes(QtWidgets.QGraphicsTextItem):
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, False)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsFocusable, False)
         self.setTransformOriginPoint(self.width / 2, self.height / 2)
-        self.setZValue(1)
+        self.setZValue(2)
         self.pen = QPen(QtCore.Qt.red, 1, QtCore.Qt.SolidLine)
         self.font = QFont('Helvetica', 14)
         self.font.setBold(True)
