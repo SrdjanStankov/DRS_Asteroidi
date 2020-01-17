@@ -7,10 +7,10 @@ import Player
 
 class Tournament(QObject):
     signal = pyqtSignal()
-    def __init__(self, *playerNames):
+    def __init__(self, playerNames):
         super(Tournament, self).__init__()
-        self.playerNum = len(playerNames)
-        self.playerNames = [x for x in playerNames]
+
+        self.playerNames = playerNames
         self.brackets = []
         self.bracketsWinners = []
         self.setupBrackets()
