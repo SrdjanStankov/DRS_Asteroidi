@@ -21,6 +21,7 @@ class SpeedUp(GameObject):
             for x in self.obj.collisionsType:
                 if x == "Spaceship":
                     objId = self.obj.collisions[self.obj.collisionsType.index(x)]
+                    self.obj.sound.play()
                     self.shipThatCollected = mgr.Managers.getInstance().objects.FindById(objId)
                     self.shipThatCollected.transform.speed *= self.speedMultiplier
                     self.shipThatCollected.transform.rotationSpeed *= self.rotationMultiplier

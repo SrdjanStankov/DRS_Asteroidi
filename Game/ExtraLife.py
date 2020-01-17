@@ -14,6 +14,7 @@ class ExtraLife(GameObject):
         for x in self.obj.collisionsType:
             if x == "Spaceship":
                 objId = self.obj.collisions[self.obj.collisionsType.index(x)]
+                self.obj.sound.play()
                 self.shipThatCollected = mgr.Managers.getInstance().objects.FindById(objId)
                 self.shipThatCollected.lives += 1
                 mgr.Managers.getInstance().objects.Destroy(self.obj.Id)

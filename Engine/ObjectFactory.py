@@ -14,9 +14,7 @@ class ObjectFactory:
     def __init__(self,SceneManager:SceneManager):
         self.SceneManager = SceneManager
         print("Factory on duty.")
-        pygame.mixer.init()
-        pygame.init()
-        pygame.mixer.set_num_channels(50)   
+   
         self.shootSound1 = pygame.mixer.Sound("shotPlayer1.wav")
         self.shootSound2 = pygame.mixer.Sound("shotPlayer2.wav")
         self.shootSound3 = pygame.mixer.Sound("shotPlayer3.wav")
@@ -25,6 +23,9 @@ class ObjectFactory:
         self.smallAsteroidExplosionSound = pygame.mixer.Sound("smallAsteroid.wav")
         self.bigAsteroidExplosionSound = pygame.mixer.Sound("largeAsteroid.wav")
         self.spaceshipExplosionSound = pygame.mixer.Sound("spaceshipDestroy.wav")
+        self.speedUpSound = pygame.mixer.Sound("speedUp.wav")
+        self.lifeUpSound = pygame.mixer.Sound("lifeUp.wav")
+        self.fireRateUpSound = pygame.mixer.Sound("fireSpeedUp.wav")
         self.itemFactory = ItemFactory(
             largeAsteroidWidth=80, largeAsteroidHeight=80,
             mediumAsteroidWidth=50, mediumAsteroidHeight=50,
@@ -60,6 +61,7 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
+        go.sound = self.lifeUpSound
         image, path = self.itemFactory.getExtraLife()
         go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, color = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
@@ -77,6 +79,7 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
+        go.sound = self.fireRateUpSound
         image, path = self.itemFactory.getFireRateSpeedUp()
         go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, color = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)
@@ -94,6 +97,7 @@ class ObjectFactory:
         go.transform.speed = kwargs["transform"].speed
         go.transform.rotation = kwargs["transform"].rotation
         go.transform.rotationSpeed = kwargs["transform"].rotationSpeed
+        go.sound = self.speedUpSound
         image, path = self.itemFactory.getSpeedUp()
         go.Render = renderer.Renderer(50,50, transform=go.transform, type=go.Type, path=path, image=image, color = None)
         go.Render.setCacheMode(QGraphicsItem.DeviceCoordinateCache)

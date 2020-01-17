@@ -20,11 +20,13 @@ class FireRateSpeedUp(GameObject):
             for x in self.obj.collisionsType:
                 if x == "Spaceship":
                     objId = self.obj.collisions[self.obj.collisionsType.index(x)]
+                    self.obj.sound.play()
                     self.shipThatCollected = mgr.Managers.getInstance().objects.FindById(objId)
                     self.shipThatCollected.shootInterval /= self.fireRateMultiplier
                     self.expirationTime = time() + self.durationTime
                     mgr.Managers.getInstance().objects.Destroy(self.obj.Id)
                     self.collected = True
+                    
         
         if self.collected and (time() >= self.expirationTime):
             try:
